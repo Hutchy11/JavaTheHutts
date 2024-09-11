@@ -41,14 +41,14 @@ public class LoginController {
         Staff staff = staffDAO.login(email, password);
         if (staff != null) {
             showAlert("Login Successful", "Welcome, " + staff.getFullName() + " (Staff)");
-            loadDashboard(event, "staffdashboard.fxml");
+            loadDashboard(event, "initialstaffview.fxml");
             return;
         }
 
         Carer carer = carerDAO.login(email, password);
         if (carer != null) {
             showAlert("Login Successful", "Welcome, " + carer.getFullName() + " (Carer)");
-            loadDashboard(event, "carerdashboard.fxml");
+            loadDashboard(event, "initialcarerview.fxml");
             return;
         }
 
@@ -69,13 +69,13 @@ public class LoginController {
         try {
             // Get the current stage (window) and load the new FXML
             Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
-            Parent root = FXMLLoader.load(getClass().getResource("/com/example/addressbook/" + fxmlFile));
+            Parent root = FXMLLoader.load(getClass().getResource("/com/example/demo/" + fxmlFile));
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
-            showAlert("Error", "Failed to load the dashboard.");
+            showAlert("Error", "Failed to load the view.");
         }
     }
 }
