@@ -1,5 +1,5 @@
 /* Style for the button */
-.signup-button {
+.login-button {
     -fx-background-color: #2E8B57;
     -fx-text-fill: white;
     -fx-padding: 10px;
@@ -7,7 +7,7 @@
     -fx-alignment: center; /* Center the text in the button */
 }
 
-.signup-button:hover {
+.login-button:hover {
     -fx-background-color: #3CB371;
 }
 

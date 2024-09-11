@@ -25,7 +25,7 @@ public class LoginController {
     @FXML
     private Button signinButton;
     @FXML
-    public StaffDAO staffDAO;
+    public IStaffDAO staffDAO;
     public ICarerDAO carerDAO;
     // Constructor
     public LoginController() {
@@ -41,14 +41,14 @@ public class LoginController {
         Staff staff = staffDAO.login(email, password);
         if (staff != null) {
             showAlert("Login Successful", "Welcome, " + staff.getFullName() + " (Staff)");
-            loadDashboard(event, "initialstaffview.fxml");
+            loadDashboard(event, "InitialStaffView.fxml");
             return;
         }
 
         Carer carer = carerDAO.login(email, password);
         if (carer != null) {
             showAlert("Login Successful", "Welcome, " + carer.getFullName() + " (Carer)");
-            loadDashboard(event, "initialcarerview.fxml");
+            loadDashboard(event, "InitialCarerView.fxml");
             return;
         }
 
