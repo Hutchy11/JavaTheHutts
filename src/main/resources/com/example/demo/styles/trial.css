@@ -1,0 +1,39 @@
+/* Style for the button */
+.signup-button {
+    -fx-background-color: #2E8B57;
+    -fx-text-fill: white;
+    -fx-padding: 10px;
+    -fx-pref-width: 100px; /* Make the button wider */
+    -fx-alignment: center; /* Center the text in the button */
+}
+
+.signup-button:hover {
+    -fx-background-color: #3CB371;
+}
+
+/* Style for the HBox containing the button and logo */
+.header-hbox {
+    -fx-background-color: #D3D3D3; /* Light gray background */
+    -fx-padding: 10px; /* Optional padding for spacing */
+}
+
+/* Style for the HBox containing the button and logo */
+.footer-hbox {
+    -fx-background-color: #D3D3D3; /* Light gray background */
+    -fx-padding: 10px; /* Optional padding for spacing */
+}
+
+/* Style for the main heading label */
+.heading-label {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+    -fx-alignment: center;
+}
+
+/* Style for the subheading label */
+.subheading-label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #666666;
+    -fx-alignment: center;
+}
