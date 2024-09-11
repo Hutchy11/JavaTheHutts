@@ -41,6 +41,7 @@ public class LoginController {
         Staff staff = staffDAO.login(email, password);
         if (staff != null) {
             showAlert("Login Successful", "Welcome, " + staff.getFullName() + " (Staff)");
+            Session.setLoggedStaff(staff);
             loadDashboard(event, "InitialStaffView.fxml");
             return;
         }
@@ -48,6 +49,7 @@ public class LoginController {
         Carer carer = carerDAO.login(email, password);
         if (carer != null) {
             showAlert("Login Successful", "Welcome, " + carer.getFullName() + " (Carer)");
+            Session.setLoggedCarer(carer);
             loadDashboard(event, "InitialCarerView.fxml");
             return;
         }

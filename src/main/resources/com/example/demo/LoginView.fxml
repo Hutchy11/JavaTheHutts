@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.text.TextFlow?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.image.Image?>
@@ -10,9 +8,7 @@
 
 <VBox stylesheets="@styles/trial.css" alignment="TOP_LEFT" spacing="0.0" xmlns="http://javafx.com/javafx/21"
       xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.controller.LoginController">
-  <!-- Header HBox -->
   <HBox styleClass="header-hbox" prefHeight="49.0" prefWidth="600.0" alignment="CENTER_LEFT">
-    <!-- Circular Logo -->
     <ImageView fx:id="logoImage" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
       <image>
         <Image url="@styles/logo.png" />
@@ -21,12 +17,10 @@
         <Circle radius="25.0" centerX="25.0" centerY="25.0" />
       </clip>
     </ImageView>
-    <!-- Spacer to push button to the right -->
     <Region HBox.hgrow="ALWAYS" />
   </HBox>
 
   <VBox prefHeight="720.0" prefWidth="300.0" alignment="CENTER" spacing="10.0" style="-fx-background-color: white;">
-    <!-- Main Logo Image -->
     <ImageView fx:id="mainLogoImage" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
       <image>
         <Image url="@styles/mainlogo.png" />
@@ -45,7 +39,6 @@
 
     <Button text="Login" prefHeight="30.0" maxWidth="289.0" onAction="#onLoginButtonClick" styleClass="login-button"/>
     <Region prefHeight="20.0"/>
-
   </VBox>
 
   <HBox styleClass="footer-hbox" prefHeight="49.0" prefWidth="600.0" alignment="CENTER_LEFT">
