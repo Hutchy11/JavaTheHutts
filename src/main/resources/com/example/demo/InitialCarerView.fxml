@@ -20,8 +20,15 @@
                 <Circle radius="25.0" centerX="25.0" centerY="25.0" />
             </clip>
         </ImageView>
+        <fx:include source="NavigationBar.fxml"/>
         <Region HBox.hgrow="ALWAYS" />
     </HBox>
+
+    <!-- Working test.
+    <VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+        <fx:include source="NavigationBar.fxml"/> -->
+        <!-- Other UI components go here -->
+   <!-- </VBox> -->
 
     <VBox prefHeight="720.0" prefWidth="300.0" alignment="CENTER" spacing="10.0" style="-fx-background-color: white;">
         <Label fx:id="successLabel" text="Successful Carer Login with Details" />

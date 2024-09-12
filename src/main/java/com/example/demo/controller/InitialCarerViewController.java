@@ -5,6 +5,20 @@ import com.example.demo.model.Session;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
+// Understand the elements used in the import and reuse in the screen.
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.event.ActionEvent;
+import javafx.stage.Stage;
+
+import java.io.IOException;
+
+
 public class InitialCarerViewController {
 
     @FXML
