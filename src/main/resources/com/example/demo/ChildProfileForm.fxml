@@ -10,6 +10,9 @@
       fx:controller="com.example.demo.controller.ChildProfileFormController">
     <Label text="Enter Child Profile Data" />
 
+    <!-- Carer dropdown -->
+    <ComboBox fx:id="carerComboBox" promptText="Select Carer" />
+
     <TextField fx:id="firstNameField" promptText="First Name" />
     <TextField fx:id="lastNameField" promptText="Last Name" />
     <TextField fx:id="dateOfBirthField" promptText="Date of Birth" />
@@ -17,8 +20,9 @@
     <TextField fx:id="dietaryField" promptText="Dietary Requirements" />
     <TextField fx:id="emergencyContactField" promptText="Emergency Contact" />
 
-    <!-- Career dropdown -->
-    <ComboBox fx:id="carerComboBox" promptText="Select Carer" />
-
-    <Button text="Submit" onAction="#submitChildProfile" />
+    <!-- Button container -->
+    <HBox spacing="10" alignment="CENTER">
+        <Button text="Cancel" onAction="#clearForm" />
+        <Button fx:id="submitButton" text="Submit" onAction="#submitChildProfile" />
+    </HBox>
 </VBox>
