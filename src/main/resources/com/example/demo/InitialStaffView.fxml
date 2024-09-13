@@ -10,8 +10,8 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.shape.Circle?>
 <VBox stylesheets="@styles/trial.css" alignment="TOP_LEFT" spacing="0.0" xmlns="http://javafx.com/javafx/21"
-      xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.controller.LoginController">
-    <HBox styleClass="header-hbox" prefHeight="49.0" prefWidth="600.0" alignment="CENTER_LEFT">
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.controller.InitialStaffViewController">
+    <HBox styleClass="header-hbox" prefHeight="49.0" prefWidth="600.0" alignment="CENTER_LEFT" spacing="10.0">
         <ImageView fx:id="logoImage" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@styles/logo.png" />
@@ -20,12 +20,18 @@
                 <Circle radius="25.0" centerX="25.0" centerY="25.0" />
             </clip>
         </ImageView>
+
+        <!-- The Button is now just to the right of the logo with some space between -->
+        <Button text="Create Child Profile" onAction="#createChildProfile"/>
+
         <Region HBox.hgrow="ALWAYS" />
     </HBox>
 
     <VBox prefHeight="720.0" prefWidth="300.0" alignment="CENTER" spacing="10.0" style="-fx-background-color: white;">
-        <Label text="Successful Staff Login" />
+        <!-- Add fx:id for successLabel -->
+        <Label fx:id="successLabel" text="Successful Staff Login" />
     </VBox>
+
     <HBox styleClass="footer-hbox" prefHeight="49.0" prefWidth="600.0" alignment="CENTER_LEFT">
         <Label text="Call us: 0412345678" />
         <Region HBox.hgrow="ALWAYS" />
