@@ -84,6 +84,8 @@ public class ChildProfileFormController {
         // Save the child data to the database
         try {
             childDAO.insertChild(newChild);
+            // Show success alert
+            showAlert(Alert.AlertType.INFORMATION, "Success", "Child profile successfully created!");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -91,6 +93,14 @@ public class ChildProfileFormController {
         // Close the form window
         Stage stage = (Stage) firstNameField.getScene().getWindow();
         stage.close();
+    }
+
+    private void showAlert(Alert.AlertType alertType, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 
     @FXML
@@ -103,4 +113,5 @@ public class ChildProfileFormController {
         dietaryField.clear();
         emergencyContactField.clear();
     }
+
 }
