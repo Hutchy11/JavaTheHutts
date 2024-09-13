@@ -89,4 +89,14 @@ public class Child {
     public void setEmergencyContact(String emergencyContact) {
         this.emergencyContact = emergencyContact;
     }
+
+    // Method to get the full name (already defined)
+    public String getFullName() {
+        return firstName + " " + lastName;
+    }
+
+    @Override
+    public String toString() {
+        return getFullName(); // Returns the full name when the Carer object is converted to a string
+    }
 }
