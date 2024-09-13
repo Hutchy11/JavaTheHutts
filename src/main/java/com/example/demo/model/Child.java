@@ -1,7 +1,9 @@
 package com.example.demo.model;
 
+import java.util.UUID;
+
 public class Child {
-    private String childId;
+    private String childId; // Automatically generate UUID for staffId
     private String parentId;
     private String firstName;
     private String lastName;
