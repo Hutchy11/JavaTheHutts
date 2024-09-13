@@ -1,6 +1,8 @@
 package com.example.demo.model;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ChildDAO implements IChildDAO {
     private Connection connection;
@@ -44,5 +46,34 @@ public class ChildDAO implements IChildDAO {
             pstmt.setString(8, child.getEmergencyContact());
             pstmt.execute();
         }
+    }
+
+
+    // Fetch all carers from the database
+    public List<Child> getAllChildren() {
+        List<Child> children = new ArrayList<>();
+        String query = "SELECT * FROM child";
+
+        try (Statement stmt = connection.createStatement();
+             ResultSet resultSet = stmt.executeQuery(query)) {
+
+            while (resultSet.next()) {
+                Child child = new Child(
+                        resultSet.getString("ChildId"),
+                        resultSet.getString("ParentId"),
+                        resultSet.getString("FirstName"),
+                        resultSet.getString("LastName"),
+                        resultSet.getString("DateOfBirth"),
+                        resultSet.getString("Allergies"),
+                        resultSet.getString("DietaryRequirements"),
+                        resultSet.getString("EmergencyContact")
+                );
+                children.add(child);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return children;
     }
 }
