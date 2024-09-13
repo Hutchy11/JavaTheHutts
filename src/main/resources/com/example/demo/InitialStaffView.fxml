@@ -23,13 +23,24 @@
 
         <!-- The Button is now just to the right of the logo with some space between -->
         <Button text="Create Child Profile" onAction="#createChildProfile"/>
+        <Button text="View Child Profiles" onAction="#viewChildProfiles"/>
 
         <Region HBox.hgrow="ALWAYS" />
     </HBox>
 
-    <VBox prefHeight="720.0" prefWidth="300.0" alignment="CENTER" spacing="10.0" style="-fx-background-color: white;">
-        <!-- Add fx:id for successLabel -->
+    <VBox fx:id="centerVBox" prefHeight="720.0" prefWidth="300.0" alignment="CENTER" spacing="10.0" style="-fx-background-color: white;">
         <Label fx:id="successLabel" text="Successful Staff Login" />
+        <TableView fx:id="childTableView" visible="false">
+            <columns>
+                <TableColumn fx:id="idColumn" text="ID" />
+                <TableColumn fx:id="parentID" text="parentID" />
+                <TableColumn fx:id="nameColumn" text="Name" />
+                <TableColumn fx:id="dobColumn" text="Date of Birth" />
+                <TableColumn fx:id="allergiesColumn" text="Allergies" />
+                <TableColumn fx:id="dietaryColumn" text="Dietary Requirements" />
+                <TableColumn fx:id="emergencyContactColumn" text="Emergency Contact" />
+            </columns>
+        </TableView>
     </VBox>
 
     <HBox styleClass="footer-hbox" prefHeight="49.0" prefWidth="600.0" alignment="CENTER_LEFT">
