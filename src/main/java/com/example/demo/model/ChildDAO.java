@@ -33,7 +33,7 @@ public class ChildDAO implements IChildDAO {
         }
     }
 
-    public void insertChild(Child child) throws SQLException {
+    public void insertChild(Child child) {
         String query = "INSERT INTO child (ChildId, ParentId, FirstName, LastName, DateOfBirth, Allergies, DietaryRequirements, EmergencyContact) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement pstmt = connection.prepareStatement(query)) {
             pstmt.setString(1, child.getChildId());
@@ -45,6 +45,8 @@ public class ChildDAO implements IChildDAO {
             pstmt.setString(7, child.getDietaryRequirements());
             pstmt.setString(8, child.getEmergencyContact());
             pstmt.execute();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 
