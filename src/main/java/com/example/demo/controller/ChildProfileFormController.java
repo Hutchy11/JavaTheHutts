@@ -82,13 +82,9 @@ public class ChildProfileFormController {
         Child newChild = new Child(childId, selectedCarer.getCarerId(), firstName, lastName, dateOfBirth, allergies, dietaryRequirements, emergencyContact);
 
         // Save the child data to the database
-        try {
-            childDAO.insertChild(newChild);
-            // Show success alert
-            showAlert(Alert.AlertType.INFORMATION, "Success", "Child profile successfully created!");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        childDAO.insertChild(newChild);
+        // Show success alert
+        showAlert(Alert.AlertType.INFORMATION, "Success", "Child profile successfully created!");
 
         // Close the form window
         Stage stage = (Stage) firstNameField.getScene().getWindow();
