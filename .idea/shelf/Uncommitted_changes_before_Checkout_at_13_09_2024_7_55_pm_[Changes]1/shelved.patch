@@ -1,0 +1,236 @@
+Index: src/main/java/com/example/demo/HelloApplication.java
+===================================================================
+diff --git a/src/main/java/com/example/demo/HelloApplication.java b/src/main/java/com/example/demo/HelloApplication.java
+deleted file mode 100644
+--- a/src/main/java/com/example/demo/HelloApplication.java	
++++ /dev/null	
+@@ -1,23 +0,0 @@
+-package com.example.demo;
+-
+-import javafx.application.Application;
+-import javafx.fxml.FXMLLoader;
+-import javafx.scene.Scene;
+-import javafx.stage.Stage;
+-
+-import java.io.IOException;
+-
+-public class HelloApplication extends Application {
+-    @Override
+-    public void start(Stage stage) throws IOException {
+-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
+-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+-        stage.setTitle("Hello!");
+-        stage.setScene(scene);
+-        stage.show();
+-    }
+-
+-    public static void main(String[] args) {
+-        launch();
+-    }
+-}
+\ No newline at end of file
+Index: src/main/resources/com/example/demo/hello-view.fxml
+===================================================================
+diff --git a/src/main/resources/com/example/demo/hello-view.fxml b/src/main/resources/com/example/demo/hello-view.fxml
+deleted file mode 100644
+--- a/src/main/resources/com/example/demo/hello-view.fxml	
++++ /dev/null	
+@@ -1,16 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-
+-<?import javafx.geometry.Insets?>
+-<?import javafx.scene.control.Label?>
+-<?import javafx.scene.layout.VBox?>
+-
+-<?import javafx.scene.control.Button?>
+-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
+-      fx:controller="com.example.demo.HelloController">
+-  <padding>
+-    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+-  </padding>
+-
+-  <Label fx:id="welcomeText"/>
+-  <Button text="Hello!" onAction="#onHelloButtonClick"/>
+-</VBox>
+Index: src/main/java/com/example/demo/HelloController.java
+===================================================================
+diff --git a/src/main/java/com/example/demo/HelloController.java b/src/main/java/com/example/demo/HelloController.java
+deleted file mode 100644
+--- a/src/main/java/com/example/demo/HelloController.java	
++++ /dev/null	
+@@ -1,14 +0,0 @@
+-package com.example.demo;
+-
+-import javafx.fxml.FXML;
+-import javafx.scene.control.Label;
+-
+-public class HelloController {
+-    @FXML
+-    private Label welcomeText;
+-
+-    @FXML
+-    protected void onHelloButtonClick() {
+-        welcomeText.setText("Welcome to JavaFX Application!");
+-    }
+-}
+\ No newline at end of file
+Index: .idea/modules.xml
+===================================================================
+diff --git a/.idea/modules.xml b/.idea/modules.xml
+deleted file mode 100644
+--- a/.idea/modules.xml	
++++ /dev/null	
+@@ -1,8 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="ProjectModuleManager">
+-    <modules>
+-      <module fileurl="file://$PROJECT_DIR$/.idea/JavaTheHutts.iml" filepath="$PROJECT_DIR$/.idea/JavaTheHutts.iml" />
+-    </modules>
+-  </component>
+-</project>
+\ No newline at end of file
+Index: src/main/java/com/example/demo/Main.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/example/demo/Main.java b/src/main/java/com/example/demo/Main.java
+new file mode 100644
+--- /dev/null	
++++ b/src/main/java/com/example/demo/Main.java	
+@@ -0,0 +1,9 @@
++package com.example.demo;
++
++import java.sql.Connection;
++
++public class Main {
++    public static void main(String[] args) {
++        Connection connection = DatabaseConnection.getInstance();
++    }
++}
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"3c859831-7da1-4a09-9a37-21e78ba689e5\" name=\"Changes\" comment=\"\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"MavenImportPreferences\">\r\n    <option name=\"generalSettings\">\r\n      <MavenGeneralSettings>\r\n        <option name=\"mavenHomeTypeForPersistence\" value=\"WRAPPER\" />\r\n      </MavenGeneralSettings>\r\n    </option>\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 6\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2kozpMjK5E7j3Y1S5bH7huvnIJU\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"Application.HelloApplication.executor\": \"Run\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"git-widget-placeholder\": \"main\",\r\n    \"kotlin-language-version-configured\": \"true\",\r\n    \"last_opened_file_path\": \"C:/Users/deepu/Documents/University/CAB302/Assessment Project/demo\"\r\n  }\r\n}]]></component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"3c859831-7da1-4a09-9a37-21e78ba689e5\" name=\"Changes\" comment=\"\" />\r\n      <created>1723964901699</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1723964901699</updated>\r\n    </task>\r\n    <servers />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	
++++ b/.idea/workspace.xml	
+@@ -5,16 +5,49 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="3c859831-7da1-4a09-9a37-21e78ba689e5" name="Changes" comment="">
++      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/Main.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/RecipeController.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/JavaTheHutts.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/JavaTheHutts.iml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/HelloApplication.java" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/HelloController.java" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/demo/hello-view.fxml" beforeDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+     <option name="LAST_RESOLUTION" value="IGNORE" />
++  </component>
++  <component name="FileTemplateManagerImpl">
++    <option name="RECENT_TEMPLATES">
++      <list>
++        <option value="FxmlFile" />
++        <option value="Class" />
++      </list>
++    </option>
+   </component>
+   <component name="Git.Settings">
++    <option name="RECENT_BRANCH_BY_REPOSITORY">
++      <map>
++        <entry key="$PROJECT_DIR$" value="main" />
++      </map>
++    </option>
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+   </component>
++  <component name="GitHubPullRequestSearchHistory">{
++  &quot;lastFilter&quot;: {
++    &quot;state&quot;: &quot;OPEN&quot;,
++    &quot;assignee&quot;: &quot;Hutchy11&quot;
++  }
++}</component>
++  <component name="GithubPullRequestsUISettings">{
++  &quot;selectedUrlAndAccountId&quot;: {
++    &quot;url&quot;: &quot;https://github.com/Hutchy11/JavaTheHutts.git&quot;,
++    &quot;accountId&quot;: &quot;aadf9b53-e13e-4c70-8303-c0a4a464325e&quot;
++  }
++}</component>
+   <component name="MavenImportPreferences">
+     <option name="generalSettings">
+       <MavenGeneralSettings>
+@@ -31,15 +64,24 @@
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent"><![CDATA[{
+-  "keyToString": {
+-    "Application.HelloApplication.executor": "Run",
+-    "RunOnceActivity.ShowReadmeOnStart": "true",
+-    "git-widget-placeholder": "main",
+-    "kotlin-language-version-configured": "true",
+-    "last_opened_file_path": "C:/Users/deepu/Documents/University/CAB302/Assessment Project/demo"
++  <component name="PropertiesComponent">{
++  &quot;keyToString&quot;: {
++    &quot;Application.HelloApplication.executor&quot;: &quot;Run&quot;,
++    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
++    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
++    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
++    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
++    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
++    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
++    &quot;git-widget-placeholder&quot;: &quot;recipe&quot;,
++    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
++    &quot;last_opened_file_path&quot;: &quot;C:/Users/hutch/IdeaProjects/address-book&quot;,
++    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
++    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
++    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
++    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
+   }
+-}]]></component>
++}</component>
+   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+   <component name="TaskManager">
+     <task active="true" id="Default" summary="Default task">
+Index: src/main/java/com/example/demo/RecipeController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/example/demo/RecipeController.java b/src/main/java/com/example/demo/RecipeController.java
+new file mode 100644
+--- /dev/null	
++++ b/src/main/java/com/example/demo/RecipeController.java	
+@@ -0,0 +1,4 @@
++package com.example.demo;
++
++public class RecipeController {
++}
+Index: src/main/java/module-info.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>module com.example.demo {\r\n    requires javafx.controls;\r\n    requires javafx.fxml;\r\n\r\n\r\n    opens com.example.demo to javafx.fxml;\r\n    exports com.example.demo;\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/module-info.java b/src/main/java/module-info.java
+--- a/src/main/java/module-info.java	
++++ b/src/main/java/module-info.java	
+@@ -1,6 +1,7 @@
+ module com.example.demo {
+     requires javafx.controls;
+     requires javafx.fxml;
++    requires java.sql;
+ 
+ 
+     opens com.example.demo to javafx.fxml;
