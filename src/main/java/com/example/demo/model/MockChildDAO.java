@@ -14,11 +14,24 @@ public class MockChildDAO implements IChildDAO{
 
     @Override
     public void insertChild(Child child) {
+        // Validate required fields
+        if (child.getFirstName() == null || child.getFirstName().isEmpty()) {
+            throw new IllegalArgumentException("First Name is required");
+        }
+        if (child.getLastName() == null || child.getLastName().isEmpty()) {
+            throw new IllegalArgumentException("Last Name is required");
+        }
+        if (child.getDateOfBirth() == null || child.getDateOfBirth().isEmpty()) {
+            throw new IllegalArgumentException("Date of Birth is required");
+        }
+        if (child.getEmergencyContact() == null || child.getEmergencyContact().isEmpty()) {
+            throw new IllegalArgumentException("Emergency Contact is required");
+        }
         children.add(child);
     }
 
     @Override
     public List<Child> getAllChildren() {
-        return List.of();
+        return children;
     }
 }
