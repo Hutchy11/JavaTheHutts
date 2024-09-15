@@ -24,7 +24,7 @@
         </VBox>
         <Region HBox.hgrow="ALWAYS" />
         <VBox alignment="CENTER_RIGHT">
-            <fx:include source="StaffNavigationBar.fxml"/>
+            <fx:include source="CarerNavigationBar.fxml"/>
         </VBox>
     </HBox>
     <VBox prefHeight="720.0" prefWidth="300.0" alignment="TOP_LEFT" spacing="10.0" style="-fx-background-color: white;">

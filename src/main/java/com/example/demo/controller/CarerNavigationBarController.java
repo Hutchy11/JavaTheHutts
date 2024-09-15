@@ -9,21 +9,16 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class StaffNavigationBarController {
+public class CarerNavigationBarController {
 
     @FXML
-    private void navigateToStaffHome(ActionEvent event) {
-        loadView(event, "InitialStaffView.fxml");
+    private void navigateToCarerHome(ActionEvent event) {
+        loadView(event, "InitialCarerView.fxml");
     }
 
     @FXML
     private void navigateToProfile(ActionEvent event) {
         loadView(event, "ProfileView.fxml");
-    }
-
-    @FXML
-    private void navigateToRegisterCarer(ActionEvent event) {
-        loadView(event, "RegisterCarerView.fxml");
     }
 
     @FXML
