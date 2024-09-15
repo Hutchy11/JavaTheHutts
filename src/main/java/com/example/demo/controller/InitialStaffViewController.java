@@ -39,8 +39,8 @@ public class InitialStaffViewController {
     }
 
     @FXML
-    private void navigateToHome(ActionEvent event) {
+    private void createPost(ActionEvent event) {
         // Implement the navigation logic here
-        System.out.println("Navigating to Home");
+        System.out.println("Creating Post");
     }
 }
