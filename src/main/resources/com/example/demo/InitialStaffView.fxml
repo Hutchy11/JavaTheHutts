@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.shape.Circle?>
+<VBox stylesheets="@styles/trial.css" alignment="TOP_LEFT" spacing="0.0" xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.controller.LoginController">
+    <HBox styleClass="header-hbox" prefHeight="49.0" prefWidth="600.0" alignment="CENTER_LEFT">
+        <ImageView fx:id="logoImage" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@styles/logo.png" />
+            </image>
+            <clip>
+                <Circle radius="25.0" centerX="25.0" centerY="25.0" />
+            </clip>
+        </ImageView>
+        <Region HBox.hgrow="ALWAYS" />
+    </HBox>
+
+    <VBox prefHeight="720.0" prefWidth="300.0" alignment="CENTER" spacing="10.0" style="-fx-background-color: white;">
+        <Label text="Successful Staff Login" />
+    </VBox>
+    <HBox styleClass="footer-hbox" prefHeight="49.0" prefWidth="600.0" alignment="CENTER_LEFT">
+        <Label text="Call us: 0412345678" />
+        <Region HBox.hgrow="ALWAYS" />
+        <Hyperlink text="Terms and Conditions"/>
+        <Region HBox.hgrow="ALWAYS" />
+        <Label text="150 W. 85th Street, Brisbane" />
+    </HBox>
+</VBox>
