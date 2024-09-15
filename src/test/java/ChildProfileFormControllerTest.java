@@ -1,22 +1,21 @@
-import com.example.demo.model.Carer;
-import com.example.demo.model.ICarerDAO;
-import com.example.demo.model.MockCarerDAO;
-import com.example.demo.model.MockStaffDAO;
+import com.example.demo.model.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ChildProfileFormControllerTest {
 
+    private IChildDAO childDAO;
     private ICarerDAO carerDAO;
 
     @BeforeEach
     void setUp() {
         // Initialize mock DAOs for testing things
         carerDAO = new MockCarerDAO();
+        childDAO = new MockChildDAO();
     }
 
     // Carer Tests - getAllCarers functionality
@@ -60,5 +59,41 @@ public class ChildProfileFormControllerTest {
         assertEquals("password3", thirdCarer.getPassword());
         assertEquals("1122334455", thirdCarer.getPhone());
         assertEquals("789 Boulevard", thirdCarer.getAddress());
+    }
+
+    @Test
+    void testAddChildWithAllRequiredFields() {
+        Child child = new Child("1", "1", "Emily", "Brown", "2020-03-15", "", "", "987654321");
+        childDAO.insertChild(child);
+
+        // Retrieve the child from the mock DAO and check values
+        assertEquals(1, childDAO.getAllChildren().size());
+        Child insertedChild = childDAO.getAllChildren().get(0);
+
+        assertEquals("Emily", insertedChild.getFirstName());
+        assertEquals("Brown", insertedChild.getLastName());
+        assertEquals("2020-03-15", insertedChild.getDateOfBirth());
+        assertEquals("987654321", insertedChild.getEmergencyContact());
+        assertTrue(insertedChild.getAllergies().isEmpty()); // Allergies can be empty
+        assertTrue(insertedChild.getDietaryRequirements().isEmpty()); // Dietary Requirements can be empty
+    }
+
+    @Test
+    void testAddChildMissingRequiredFields() {
+        // Test missing First Name
+        Child missingFirstName = new Child("2", "1", "", "Doe", "2020-04-01", "", "", "987654321");
+        assertThrows(IllegalArgumentException.class, () -> childDAO.insertChild(missingFirstName));
+
+        // Test missing Last Name
+        Child missingLastName = new Child("3", "1", "John", "", "2020-04-01", "", "", "987654321");
+        assertThrows(IllegalArgumentException.class, () -> childDAO.insertChild(missingLastName));
+
+        // Test missing Date of Birth
+        Child missingDOB = new Child("4", "1", "John", "Doe", "", "", "", "987654321");
+        assertThrows(IllegalArgumentException.class, () -> childDAO.insertChild(missingDOB));
+
+        // Test missing Emergency Contact
+        Child missingEmergencyContact = new Child("5", "1", "John", "Doe", "2020-04-01", "", "", "");
+        assertThrows(IllegalArgumentException.class, () -> childDAO.insertChild(missingEmergencyContact));
     }
 }
