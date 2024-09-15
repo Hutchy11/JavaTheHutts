@@ -27,6 +27,11 @@ public class StaffNavigationBarController {
     }
 
     @FXML
+    private void navigateToRegisterStaff(ActionEvent event) {
+        loadView(event, "RegisterCarerView.fxml");
+    }
+
+    @FXML
     private void navigateToSettings(ActionEvent event) {
         loadView(event, "SettingsView.fxml");
     }

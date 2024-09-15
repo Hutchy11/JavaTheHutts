@@ -7,6 +7,7 @@
     <Button text="Home" onAction="#navigateToStaffHome"/>
     <Button text="Profile" onAction="#navigateToProfile"/>
     <Button text="Register Carer" onAction="#navigateToRegisterCarer"/>
+    <Button text="Register Staff" onAction="#navigateToRegisterStaff"/>
     <Button text="Settings" onAction="#navigateToSettings"/>
     <Button text="Logout" onAction="#logout"/>
 </HBox>
