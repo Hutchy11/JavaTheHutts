@@ -12,16 +12,20 @@
 <VBox stylesheets="@styles/trial.css" alignment="TOP_LEFT" spacing="0.0" xmlns="http://javafx.com/javafx/21"
       xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.controller.InitialCarerViewController">
     <HBox styleClass="header-hbox" prefHeight="49.0" prefWidth="600.0" alignment="CENTER_LEFT">
-        <ImageView fx:id="logoImage" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@styles/logo.png" />
-            </image>
-            <clip>
-                <Circle radius="25.0" centerX="25.0" centerY="25.0" />
-            </clip>
-        </ImageView>
-        <fx:include source="NavigationBar.fxml"/>
+        <VBox alignment="CENTER_LEFT">
+            <ImageView fx:id="logoImage" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                    <Image url="@styles/logo.png" />
+                </image>
+                <clip>
+                    <Circle radius="25.0" centerX="25.0" centerY="25.0" />
+                </clip>
+            </ImageView>
+        </VBox>
         <Region HBox.hgrow="ALWAYS" />
+        <VBox alignment="CENTER_RIGHT">
+            <fx:include source="NavigationBar.fxml"/>
+        </VBox>
     </HBox>
 
     <!-- Working test.
