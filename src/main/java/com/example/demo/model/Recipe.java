@@ -4,6 +4,7 @@ import java.util.UUID;
 
 public class Recipe {
     private String recipeId;    // UUID for recipeId
+    private String recipeName;
     private String ingredients;
     private String instructions;
     private String mealType;
@@ -11,8 +12,9 @@ public class Recipe {
 
 
     // Parameterized constructor (with image)
-    public Recipe(String recipeId, String ingredients, String instructions, String mealType, byte[] recipeImage) {
+    public Recipe(String recipeId, String recipeName, String ingredients, String instructions, String mealType, byte[] recipeImage) {
         this.recipeId = (recipeId != null) ? recipeId : generateUUID(); // Use provided recipeId or generate a new one
+        this.recipeName = recipeName;
         this.ingredients = ingredients;
         this.instructions = instructions;
         this.mealType = mealType;
@@ -31,6 +33,14 @@ public class Recipe {
 
     public void setRecipeId(String recipeId) {
         this.recipeId = recipeId;
+    }
+
+    public String getRecipeName() {
+        return recipeName;
+    }
+
+    public void setRecipeName(String recipeName) {
+        this.recipeName = recipeName;
     }
 
     public String getIngredients() {

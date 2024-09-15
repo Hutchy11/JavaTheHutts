@@ -32,11 +32,16 @@
                     <Insets left="40.0" right="40.0" />
                 </VBox.margin>
             </TextField>
-            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="recipeImageView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                 <VBox.margin>
                     <Insets bottom="20.0" top="20.0" />
                 </VBox.margin>
             </ImageView>
+            <Button fx:id="selectImageButton" text="Select Image" onAction="#onSelectImageButtonClick">
+                <VBox.margin>
+                    <Insets bottom="20.0" />
+                </VBox.margin>
+            </Button>
             <Label text="Ingredients" />
             <TextArea fx:id="ingredientsTextArea" prefHeight="200.0" prefWidth="200.0">
                 <VBox.margin>
@@ -49,12 +54,13 @@
                     <Insets left="40.0" right="40.0" />
                 </VBox.margin>
             </TextArea>
-              <Button fx:id="submitButton" alignment="CENTER" mnemonicParsing="false" text="Submit">
-            <VBox.margin>
-               <Insets bottom="20.0" />
-            </VBox.margin>
-         </Button>
-        </children></VBox>
+            <Button fx:id="submitButton" alignment="CENTER" mnemonicParsing="false" text="Submit" onAction="#onSubmitButtonClick">
+                <VBox.margin>
+                    <Insets bottom="20.0" />
+                </VBox.margin>
+            </Button>
+        </children>
+    </VBox>
     <HBox alignment="CENTER_LEFT" prefHeight="49.0" prefWidth="600.0" styleClass="footer-hbox">
         <Label text="Call us: 0412345678" />
         <Region HBox.hgrow="ALWAYS" />

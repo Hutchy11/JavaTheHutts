@@ -17,10 +17,13 @@ public class RecipeDAO implements IRecipeDAO{
             CREATE TABLE IF NOT EXISTS Recipe (
                 RecipeId TEXT PRIMARY KEY,
                 MealPlanId TEXT NOT NULL,
-                Ingredients TEXT NOT NULL,
-                Instructions TEXT NOT NULL,
+                RecipeName TEXT NOT NULL,
                 MealType TEXT NOT NULL,
                 RecipeImage BLOB,
+                Ingredients TEXT NOT NULL,
+                Instructions TEXT NOT NULL,
+                PRIMARY KEY("RecipeId"),
+                FOREIGN KEY("MealPlanId") REFERENCES "MealPlan"("MealPlanId")
             );
         """;
         try (Statement stmt = connection.createStatement()) {
@@ -35,19 +38,18 @@ public class RecipeDAO implements IRecipeDAO{
     // Method to insert a new recipe into the database
     @Override
     public void insertRecipe(Recipe recipe) {
-        try {
-            PreparedStatement insertRecipe = connection.prepareStatement(
-                    "INSERT INTO recipes (recipe_id, ingredients, instructions, meal_type, recipe_image) VALUES (?, ?, ?, ?, ?)");
-            insertRecipe.setString(1, recipe.getRecipeId());
-            insertRecipe.setString(2, recipe.getIngredients());
-            insertRecipe.setString(3, recipe.getInstructions());
-            insertRecipe.setString(4, recipe.getMealType());
-            insertRecipe.setBytes(5, recipe.getRecipeImage());;
-
+        String sql = "INSERT INTO Recipe (RecipeId, RecipeName, MealType, RecipeImage, Ingredients, Instructions) VALUES (?, ?, ?, ?, ?, ?)";
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setString(1, recipe.getRecipeId());
+            pstmt.setString(2, recipe.getRecipeName());
+            pstmt.setString(3, recipe.getMealType());
+            pstmt.setBytes(4, recipe.getRecipeImage());
+            pstmt.setString(5, recipe.getIngredients());
+            pstmt.setString(6, recipe.getInstructions());
+            pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-
     }
 
     // Method to retrieve a recipe by its ID
