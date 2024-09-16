@@ -29,9 +29,9 @@
     </HBox>
     <VBox prefHeight="720.0" prefWidth="300.0" alignment="TOP_LEFT" spacing="10.0" style="-fx-background-color: white;">
         <HBox alignment="CENTER">
-            <Label text="Carer Profile Menu, Select Options Below" />
+            <Label alignment="CENTER" text="Carer Profile Menu, Select Options Below" />
         </HBox>
-        <HBox>
+        <HBox alignment="CENTER_LEFT">
             <Button text="Register Carer Profile" onAction="#navigateToRegisterCarer"/>
         </HBox>
     </VBox>

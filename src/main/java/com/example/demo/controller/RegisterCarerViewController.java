@@ -6,6 +6,12 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert;
 import javafx.event.ActionEvent;
+import javafx.stage.Stage;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+
+import java.io.IOException;
 
 public class RegisterCarerViewController {
 
@@ -51,6 +57,8 @@ public class RegisterCarerViewController {
 
         if (success) {
             showAlert("Success", "Carer registered successfully.");
+            clearFields();
+            navigateToCarerProfileMenu(event);
         } else {
             showAlert("Error", "Failed to register carer.");
         }
@@ -62,6 +70,29 @@ public class RegisterCarerViewController {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+    private void clearFields() {
+        firstNameField.clear();
+        lastNameField.clear();
+        emailField.clear();
+        phoneField.clear();
+        addressField.clear();
+        passwordField.clear();
+        confirmPasswordField.clear();
+    }
+
+    private void navigateToCarerProfileMenu(ActionEvent event) {
+        try {
+            Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+            Parent root = FXMLLoader.load(getClass().getResource("/com/example/demo/CarerProfileMenuView.fxml"));
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            showAlert("Error", "Failed to load the Carer Profile Menu view.");
+        }
     }
 }
 
