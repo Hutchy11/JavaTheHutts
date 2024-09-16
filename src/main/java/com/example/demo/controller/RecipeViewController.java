@@ -70,6 +70,7 @@ public class RecipeViewController {
         }
     }
 
+    // Method to handle the download button click
     @FXML
     private void onDownloadButtonClick() {
         FileChooser fileChooser = new FileChooser();
@@ -82,43 +83,49 @@ public class RecipeViewController {
                 document.addPage(page);
 
                 try (PDPageContentStream contentStream = new PDPageContentStream(document, page)) {
+                    float pageWidth = page.getMediaBox().getWidth();
+                    float margin = 50;
+                    float contentWidth = pageWidth - 2 * margin;
+                    float startX = margin;
+
+                    // Adjust the y-coordinate to reduce the top margin
                     contentStream.setFont(PDType1Font.HELVETICA_BOLD, 20);
                     contentStream.beginText();
-                    contentStream.newLineAtOffset(100, 700);
-                    contentStream.showText("Recipe Name: " + recipeNameLabel.getText());
+                    contentStream.newLineAtOffset(startX, 730); // Adjusted from 700 to 710
+                    contentStream.showText(recipeNameLabel.getText());
                     contentStream.endText();
 
                     Recipe recipe = recipeDAO.getRecipeByName(recipeNameLabel.getText());
                     if (recipe != null && recipe.getRecipeImage() != null) {
                         PDImageXObject pdImage = PDImageXObject.createFromByteArray(document, recipe.getRecipeImage(), "recipeImage");
-                        contentStream.drawImage(pdImage, 100, 500, 200, 150);
+                        contentStream.drawImage(pdImage, startX, 560, 200, 150); // Adjusted from 500 to 560
                     }
 
                     contentStream.setFont(PDType1Font.HELVETICA, 12);
                     contentStream.beginText();
-                    contentStream.newLineAtOffset(100, 450);
+                    contentStream.newLineAtOffset(startX, 530); // Adjusted from 450 to 530
                     contentStream.showText("Ingredients:");
                     contentStream.endText();
 
                     String[] ingredientsLines = ingredientsTextArea.getText().split("\n");
-                    float yOffset = 435;
+                    float yOffset = 515; // Adjusted from 435 to 515
                     for (String line : ingredientsLines) {
                         contentStream.beginText();
-                        contentStream.newLineAtOffset(100, yOffset);
+                        contentStream.newLineAtOffset(startX, yOffset);
                         contentStream.showText(line.replaceAll("[^\\x00-\\x7F]", "")); // Remove unsupported characters
                         contentStream.endText();
                         yOffset -= 15;
                     }
 
                     contentStream.beginText();
-                    contentStream.newLineAtOffset(100, yOffset - 15);
+                    contentStream.newLineAtOffset(startX, yOffset - 15);
                     contentStream.showText("Instructions:");
                     contentStream.endText();
 
                     yOffset -= 30;
                     String[] instructionsLines = instructionsTextArea.getText().split("\n");
                     for (String line : instructionsLines) {
-                        yOffset = addWrappedText(contentStream, line, 100, yOffset, 12, 500);
+                        yOffset = addWrappedText(contentStream, line, startX, yOffset, 12, contentWidth);
                     }
                 }
 
