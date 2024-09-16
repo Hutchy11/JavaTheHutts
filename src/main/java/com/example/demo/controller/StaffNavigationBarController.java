@@ -22,13 +22,8 @@ public class StaffNavigationBarController {
     }
 
     @FXML
-    private void navigateToRegisterCarer(ActionEvent event) {
-        loadView(event, "RegisterCarerView.fxml");
-    }
-
-    @FXML
-    private void navigateToRegisterStaff(ActionEvent event) {
-        loadView(event, "RegisterCarerView.fxml");
+    private void navigateToCarerProfileMenu(ActionEvent event) {
+        loadView(event, "CarerProfileMenuView.fxml");
     }
 
     @FXML
