@@ -1,7 +1,8 @@
-package com.example.demo.controller;
+ package com.example.demo.controller;
 
 import com.example.demo.model.Carer;
 import com.example.demo.model.Session;
+import com.example.demo.model.Staff;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
@@ -19,21 +20,27 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 
-public class InitialCarerViewController {
+public class InitialStaffViewController {
 
     @FXML
     private Label successLabel;
 
     public void initialize() {
-        Carer loggedCarer = Session.getLoggedCarer();  // Retrieve the carer from the session
+        Staff loggedStaff = Session.getLoggedStaff();  // Retrieve the carer from the session
 
-        if (loggedCarer != null) {
+        if (loggedStaff != null) {
             // Set the label with the carer's full name and email
-            successLabel.setText("Successful Carer Login: "
-                    + loggedCarer.getFullName()
-                    + " (" + loggedCarer.getEmail() + ")");
+            successLabel.setText("Successful Staff Login: "
+                    + loggedStaff.getFullName()
+                    + " (" + loggedStaff.getEmail() + ")");
         } else {
-            successLabel.setText("No Carer Logged In.");
+            successLabel.setText("No Staff Logged In.");
         }
+    }
+
+    @FXML
+    private void createPost(ActionEvent event) {
+        // Implement the navigation logic here
+        System.out.println("Creating Post");
     }
 }
