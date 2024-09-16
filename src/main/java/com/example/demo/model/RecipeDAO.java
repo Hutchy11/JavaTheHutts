@@ -1,6 +1,7 @@
 package com.example.demo.model;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class RecipeDAO implements IRecipeDAO{
@@ -63,6 +64,31 @@ public class RecipeDAO implements IRecipeDAO{
         return null;
     }
 
+    // Method to retrieve a recipe by its name
+    @Override
+    public Recipe getRecipeByName(String recipeName) {
+        Recipe recipe = null;
+        String sql = "SELECT * FROM Recipe WHERE RecipeName = ?";
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setString(1, recipeName);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    recipe = new Recipe(
+                            rs.getString("RecipeId"),
+                            rs.getString("RecipeName"),
+                            rs.getString("Ingredients"),
+                            rs.getString("Instructions"),
+                            rs.getString("MealType"),
+                            rs.getBytes("RecipeImage")
+                    );
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return recipe;
+    }
+
     // Method to retrieve all recipes from the database
     @Override
     public List<Recipe> getAllRecipes() {
@@ -79,6 +105,20 @@ public class RecipeDAO implements IRecipeDAO{
     @Override
     public void deleteRecipe(String recipeId) {
 
+    }
+
+    public List<String> getAllRecipeNames() {
+        List<String> recipeNames = new ArrayList<>();
+        String sql = "SELECT RecipeName FROM Recipe";
+        try (Statement stmt = connection.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+            while (rs.next()) {
+                recipeNames.add(rs.getString("RecipeName"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return recipeNames;
     }
 
 }

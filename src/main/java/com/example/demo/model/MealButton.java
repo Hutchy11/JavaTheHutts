@@ -14,6 +14,7 @@ public class MealButton {
             Stage stage = new Stage();
             stage.setTitle("Recipe View");
             stage.setScene(scene);
+            stage.setWidth(600); // Set the desired width here
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
