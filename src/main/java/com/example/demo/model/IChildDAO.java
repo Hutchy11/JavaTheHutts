@@ -2,13 +2,11 @@ package com.example.demo.model;
 
 import java.util.List;
 
-public interface ICarerDAO {
+public interface IChildDAO {
     // Create table (real DAO will implement this to create the table in the DB)
     void createTable();
 
-    // Method for carer login
-    Carer login(String email, String password);
+    void insertChild(Child child);
 
-    List<Carer> getAllCarers();
+    List<Child> getAllChildren();
 }
-

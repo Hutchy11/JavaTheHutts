@@ -27,7 +27,8 @@
             <fx:include source="CarerNavigationBar.fxml"/>
         </VBox>
     </HBox>
-    <VBox prefHeight="720.0" prefWidth="300.0" alignment="TOP_LEFT" spacing="10.0" style="-fx-background-color: white;">
+
+    <VBox prefHeight="720.0" prefWidth="300.0" alignment="CENTER" spacing="10.0" style="-fx-background-color: white;">
         <Label fx:id="successLabel" text="Successful Carer Login with Details" />
         <Label text="Home Page" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-padding: 30 0 0 0;" />
         <VBox alignment="CENTER" spacing="10.0" style="-fx-background-color: grey; -fx-padding: 20;">
