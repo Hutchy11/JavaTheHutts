@@ -53,4 +53,26 @@ public class CarerDAO implements ICarerDAO {
         return null;
     }
 
+    // Method to register a new carer
+    public boolean registerCarer(String carerId, String firstName, String lastName, String email, String password, String phone, String address) {
+        String insertSQL = """
+            INSERT INTO carer (CarerId, FirstName, LastName, Email, Password, Phone, Address)
+            VALUES (?, ?, ?, ?, ?, ?, ?);
+        """;
+        try (PreparedStatement pstmt = connection.prepareStatement(insertSQL)) {
+            pstmt.setString(1, carerId);
+            pstmt.setString(2, firstName);
+            pstmt.setString(3, lastName);
+            pstmt.setString(4, email);
+            pstmt.setString(5, password);
+            pstmt.setString(6, phone);
+            pstmt.setString(7, address);
+            int affectedRows = pstmt.executeUpdate();
+            return affectedRows > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
 }
