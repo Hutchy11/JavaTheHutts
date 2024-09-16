@@ -21,26 +21,11 @@
             </clip>
         </ImageView>
 
-        <Button text="View My Children" onAction="#viewMyChildren"/>
-
         <Region HBox.hgrow="ALWAYS" />
     </HBox>
 
     <VBox prefHeight="720.0" prefWidth="300.0" alignment="CENTER" spacing="10.0" style="-fx-background-color: white;">
         <Label fx:id="successLabel" text="Successful Carer Login with Details" />
-
-        <!-- TableView to display child profiles -->
-        <TableView fx:id="childTableView" visible="false">
-            <columns>
-                <TableColumn fx:id="idColumn" text="ID" />
-                <TableColumn fx:id="parentIDColumn" text="Parent ID" />
-                <TableColumn fx:id="nameColumn" text="Name" />
-                <TableColumn fx:id="dobColumn" text="Date of Birth" />
-                <TableColumn fx:id="allergiesColumn" text="Allergies" />
-                <TableColumn fx:id="dietaryColumn" text="Dietary Requirements" />
-                <TableColumn fx:id="emergencyContactColumn" text="Emergency Contact" />
-            </columns>
-        </TableView>
     </VBox>
 
     <HBox styleClass="footer-hbox" prefHeight="49.0" prefWidth="600.0" alignment="CENTER_LEFT">

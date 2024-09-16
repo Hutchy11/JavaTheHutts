@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.shape.Circle?>
-
 <VBox stylesheets="@styles/trial.css" alignment="TOP_LEFT" spacing="0.0" xmlns="http://javafx.com/javafx/21"
-      xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.controller.InitialStaffViewController">
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.controller.ChildProfileController">
     <HBox styleClass="header-hbox" prefHeight="49.0" prefWidth="600.0" alignment="CENTER_LEFT" spacing="10.0">
         <ImageView fx:id="logoImage" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
             <image>
@@ -16,11 +20,26 @@
                 <Circle radius="25.0" centerX="25.0" centerY="25.0" />
             </clip>
         </ImageView>
+
+        <!-- The Button is now just to the right of the logo with some space between -->
         <Region HBox.hgrow="ALWAYS" />
     </HBox>
 
     <VBox fx:id="centerVBox" prefHeight="720.0" prefWidth="300.0" alignment="CENTER" spacing="10.0" style="-fx-background-color: white;">
-        <Label fx:id="successLabel" text="Successful Staff Login" />
+        <Button text="Create Child Profile" onAction="#createChildProfile"/>
+        <Button text="View Child Profiles" onAction="#viewChildProfiles"/>
+
+        <TableView fx:id="childTableView" visible="false">
+            <columns>
+                <TableColumn fx:id="idColumn" text="ID" />
+                <TableColumn fx:id="parentID" text="parentID" />
+                <TableColumn fx:id="nameColumn" text="Name" />
+                <TableColumn fx:id="dobColumn" text="Date of Birth" />
+                <TableColumn fx:id="allergiesColumn" text="Allergies" />
+                <TableColumn fx:id="dietaryColumn" text="Dietary Requirements" />
+                <TableColumn fx:id="emergencyContactColumn" text="Emergency Contact" />
+            </columns>
+        </TableView>
     </VBox>
 
     <HBox styleClass="footer-hbox" prefHeight="49.0" prefWidth="600.0" alignment="CENTER_LEFT">

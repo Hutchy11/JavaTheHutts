@@ -7,9 +7,11 @@ import com.example.demo.model.Session;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.control.TableColumn;
@@ -47,8 +49,6 @@ public class InitialStaffViewController {
     @FXML
     private TableColumn<Child, String> emergencyContactColumn;
 
-
-
     public void initialize() {
         Staff loggedStaff = Session.getLoggedStaff();  // Retrieve the Staff from the session
 
@@ -64,40 +64,17 @@ public class InitialStaffViewController {
 
 
     @FXML
-    private void createChildProfile() {
+    private void navigateChildProfile(ActionEvent event) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/demo/ChildProfileForm.fxml"));
-            Stage stage = new Stage();
-            stage.setTitle("Create Child Profile");
-            stage.setScene(new Scene(fxmlLoader.load()));
+            // Get the current stage (window) and load the new FXML
+            Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+            Parent root = FXMLLoader.load(getClass().getResource("/com/example/demo/ChildProfileView.fxml"));
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-
-
-    @FXML
-    private void viewChildProfiles() {
-        ChildDAO childDAO = new ChildDAO();
-        List<Child> children = childDAO.getAllChildren();
-        ObservableList<Child> childList = FXCollections.observableArrayList(children);
-
-        // Initialize table columns
-        idColumn.setCellValueFactory(new PropertyValueFactory<>("childId"));
-        parentID.setCellValueFactory(new PropertyValueFactory<>("parentId"));
-        nameColumn.setCellValueFactory(cellData ->
-                new SimpleStringProperty(cellData.getValue().getFirstName() + " " + cellData.getValue().getLastName()));
-        dobColumn.setCellValueFactory(new PropertyValueFactory<>("dateOfBirth"));
-        allergiesColumn.setCellValueFactory(new PropertyValueFactory<>("allergies"));
-        dietaryColumn.setCellValueFactory(new PropertyValueFactory<>("dietaryRequirements"));
-        emergencyContactColumn.setCellValueFactory(new PropertyValueFactory<>("emergencyContact"));
-
-        // Set items in table
-        childTableView.setItems(childList);
-        // Show the table view
-        childTableView.setVisible(true);
 
     }
 }
