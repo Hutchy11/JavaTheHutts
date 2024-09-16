@@ -37,6 +37,9 @@ public class StaffNavigationBarController {
     }
 
     @FXML
+    private void navigateToChildProfile(ActionEvent event) {loadView(event, "StaffChildProfileView.fxml");}
+
+    @FXML
     private void logout(ActionEvent event) {
         // Implement logout logic here
         System.out.println("Logged out");

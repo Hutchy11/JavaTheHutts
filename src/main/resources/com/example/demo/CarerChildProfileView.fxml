@@ -1,14 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
-<?xml version="1.0" encoding="UTF-8"?>
-
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
@@ -29,11 +20,13 @@
 
         <!-- The Button is now just to the right of the logo with some space between -->
         <Region HBox.hgrow="ALWAYS" />
+        <VBox alignment="CENTER_RIGHT">
+            <fx:include source="CarerNavigationBar.fxml"/>
+        </VBox>
     </HBox>
 
     <VBox fx:id="centerVBox" prefHeight="720.0" prefWidth="300.0" alignment="CENTER" spacing="10.0" style="-fx-background-color: white;">
-        <Button text="Create Child Profile" onAction="#createChildProfile"/>
-        <Button text="View Child Profiles" onAction="#viewChildProfiles"/>
+        <Button text="View Child Profiles" onAction="#viewMyChildProfiles"/>
 
         <TableView fx:id="childTableView" visible="false">
             <columns>

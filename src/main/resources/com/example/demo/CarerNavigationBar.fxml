@@ -5,6 +5,7 @@
 
 <HBox spacing="10" alignment="CENTER" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.controller.CarerNavigationBarController">
     <Button text="Home" onAction="#navigateToCarerHome"/>
+    <Button text="Child Profile" onAction="#navigateToChildProfile"/>
     <Button text="Profile" onAction="#navigateToProfile"/>
     <Button text="Settings" onAction="#navigateToSettings"/>
     <Button text="Logout" onAction="#logout"/>

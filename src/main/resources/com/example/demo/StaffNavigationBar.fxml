@@ -5,6 +5,7 @@
 
 <HBox spacing="10" alignment="CENTER" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.controller.StaffNavigationBarController">
     <Button text="Home" onAction="#navigateToStaffHome"/>
+    <Button text="Child Profile" onAction="#navigateToChildProfile"/>
     <Button text="Profile" onAction="#navigateToProfile"/>
     <Button text="Carer Profile Menu" onAction="#navigateToCarerProfileMenu"/>
     <Button text="Staff Profile Menu" onAction="#navigateToStaffProfileMenu"/>

@@ -78,4 +78,33 @@ public class ChildDAO implements IChildDAO {
 
         return children;
     }
+
+    public List<Child> getChildrenByParent(String parentId) {
+        List<Child> children = new ArrayList<>();
+        String query = "SELECT * FROM child WHERE ParentId = ?";
+
+        try (PreparedStatement pstmt = connection.prepareStatement(query)) {
+            pstmt.setString(1, parentId);
+            try (ResultSet resultSet = pstmt.executeQuery()) {
+                while (resultSet.next()) {
+                    Child child = new Child(
+                            resultSet.getString("ChildId"),
+                            resultSet.getString("ParentId"),
+                            resultSet.getString("FirstName"),
+                            resultSet.getString("LastName"),
+                            resultSet.getString("DateOfBirth"),
+                            resultSet.getString("Allergies"),
+                            resultSet.getString("DietaryRequirements"),
+                            resultSet.getString("EmergencyContact")
+                    );
+                    children.add(child);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return children;
+    }
+
 }
