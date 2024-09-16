@@ -1,12 +1,8 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.Child;
-import com.example.demo.model.ChildDAO;
 import com.example.demo.model.Staff;
 import com.example.demo.model.Session;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
@@ -16,14 +12,11 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 
 import javafx.scene.control.Label;
 
 import java.io.IOException;
-import java.sql.SQLException;
-import java.util.List;
 
 public class InitialStaffViewController {
 
@@ -68,7 +61,7 @@ public class InitialStaffViewController {
         try {
             // Get the current stage (window) and load the new FXML
             Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
-            Parent root = FXMLLoader.load(getClass().getResource("/com/example/demo/ChildProfileView.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/com/example/demo/StaffChildProfileView.fxml"));
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
