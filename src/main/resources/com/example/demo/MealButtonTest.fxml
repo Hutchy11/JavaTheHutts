@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+
+<VBox alignment="TOP_LEFT" spacing="0.0" stylesheets="@styles/trial.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.model.MealButton">
+    <HBox alignment="CENTER_LEFT" prefHeight="49.0" prefWidth="600.0" styleClass="header-hbox">
+        <ImageView fx:id="logoImage" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@styles/logo.png" />
+            </image>
+            <clip>
+                <Circle centerX="25.0" centerY="25.0" radius="25.0" />
+            </clip>
+        </ImageView>
+        <Region HBox.hgrow="ALWAYS" />
+    </HBox>
+
+    <VBox alignment="CENTER" prefHeight="720.0" prefWidth="300.0" spacing="10.0" style="-fx-background-color: white;">
+        <Button mnemonicParsing="false" text="Button" onAction="#onButtonClick" />
+    </VBox>
+    <HBox alignment="CENTER_LEFT" prefHeight="49.0" prefWidth="600.0" styleClass="footer-hbox">
+        <Label text="Call us: 0412345678" />
+        <Region HBox.hgrow="ALWAYS" />
+        <Hyperlink text="Terms and Conditions" />
+        <Region HBox.hgrow="ALWAYS" />
+        <Label text="150 W. 85th Street, Brisbane" />
+    </HBox>
+</VBox>

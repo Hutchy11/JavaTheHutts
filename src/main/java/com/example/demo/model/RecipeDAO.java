@@ -6,9 +6,14 @@ import java.util.List;
 public class RecipeDAO implements IRecipeDAO{
     private Connection connection;
 
-    public RecipeDAO(){
-        connection = SqliteConnection.getInstance();
-        createTable();
+    public RecipeDAO() {
+        try {
+            // Initialize the database connection
+            connection = DriverManager.getConnection("jdbc:sqlite:childcaredb.db");
+            createTable();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     // Create table if it doesn't exist
