@@ -1,6 +1,9 @@
 package com.example.demo.model;
-
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
+
 public class CarerDAO implements ICarerDAO {
     private Connection connection;
 
@@ -73,6 +76,29 @@ public class CarerDAO implements ICarerDAO {
             e.printStackTrace();
         }
         return false;
+    }
+
+    public List<Carer> getAllCarers() {
+        List<Carer> carers = new ArrayList<>();
+        String query = "SELECT * FROM carer";
+        try (Statement stmt = connection.createStatement();
+             ResultSet resultSet = stmt.executeQuery(query)) {
+            while (resultSet.next()) {
+                Carer carer = new Carer(
+                        resultSet.getString("CarerId"),
+                        resultSet.getString("FirstName"),
+                        resultSet.getString("LastName"),
+                        resultSet.getString("Email"),
+                        resultSet.getString("Password"),
+                        resultSet.getString("Phone"),
+                        resultSet.getString("Address")
+                );
+                carers.add(carer);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return carers;
     }
 
 }

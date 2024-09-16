@@ -7,6 +7,7 @@
     <Button text="Home" onAction="#navigateToStaffHome"/>
     <Button text="Profile" onAction="#navigateToProfile"/>
     <Button text="Carer Profile Menu" onAction="#navigateToCarerProfileMenu"/>
+    <Button text="Staff Profile Menu" onAction="#navigateToStaffProfileMenu"/>
     <Button text="Settings" onAction="#navigateToSettings"/>
     <Button text="Logout" onAction="#logout"/>
 </HBox>

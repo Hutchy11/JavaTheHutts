@@ -27,6 +27,11 @@ public class StaffNavigationBarController {
     }
 
     @FXML
+    private void navigateToStaffProfileMenu(ActionEvent event) {
+        loadView(event, "StaffProfileMenuView.fxml");
+    }
+
+    @FXML
     private void navigateToSettings(ActionEvent event) {
         loadView(event, "SettingsView.fxml");
     }
