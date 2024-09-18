@@ -5,9 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3c859831-7da1-4a09-9a37-21e78ba689e5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/ChildCareApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/ChildCareApplication.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,6 +43,9 @@
       </MavenGeneralSettings>
     </option>
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="QODANA_PROBLEMS_VIEW_TAB" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
 }</component>
@@ -71,7 +72,7 @@
     "Repository.Attach.Sources": "false",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "Merging recipe",
+    "git-widget-placeholder": "recipe",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/lyjen/Documents/CAB302 Project/JavaTheHutts",
     "project.structure.last.edited": "Libraries",
@@ -88,7 +89,7 @@
       <recent name="com.example.demo" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.All in demo">
+  <component name="RunManager">
     <configuration name="All in demo" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="demo" />
       <option name="PACKAGE_NAME" value="" />
