@@ -58,7 +58,7 @@ public class RecipeViewController {
     public void setRecipeDetails(String recipeName) {
         Recipe recipe = recipeDAO.getRecipeByName(recipeName);
         if (recipe != null) {
-            recipeNameLabel.setText(recipe.getRecipeName());
+            //recipeNameLabel.setText(recipe.getRecipeName());
             ingredientsTextArea.setText(recipe.getIngredients());
             instructionsTextArea.setText(recipe.getInstructions());
             if (recipe.getRecipeImage() != null) {
@@ -92,13 +92,14 @@ public class RecipeViewController {
                     contentStream.setFont(PDType1Font.HELVETICA_BOLD, 20);
                     contentStream.beginText();
                     contentStream.newLineAtOffset(startX, 730); // Adjusted from 700 to 710
-                    contentStream.showText(recipeNameLabel.getText());
+                    contentStream.showText(recipeChoiceBox.getSelectionModel().getSelectedItem());
                     contentStream.endText();
 
-                    Recipe recipe = recipeDAO.getRecipeByName(recipeNameLabel.getText());
+                    String selectedRecipeName = recipeChoiceBox.getSelectionModel().getSelectedItem();
+                    Recipe recipe = recipeDAO.getRecipeByName(selectedRecipeName);
                     if (recipe != null && recipe.getRecipeImage() != null) {
                         PDImageXObject pdImage = PDImageXObject.createFromByteArray(document, recipe.getRecipeImage(), "recipeImage");
-                        contentStream.drawImage(pdImage, startX, 560, 200, 150); // Adjusted from 500 to 560
+                        contentStream.drawImage(pdImage, startX, 560, 200, 150);
                     }
 
                     contentStream.setFont(PDType1Font.HELVETICA, 12);
