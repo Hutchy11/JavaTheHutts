@@ -32,6 +32,16 @@ public class StaffNavigationBarController {
     }
 
     @FXML
+    private void navigateToCreateRecipe(ActionEvent event) {
+        loadView(event, "Recipe.fxml");
+    }
+
+    @FXML
+    private void navigateToViewRecipe(ActionEvent event) {
+        loadView(event, "RecipeView.fxml");
+    }
+
+    @FXML
     private void navigateToSettings(ActionEvent event) {
         loadView(event, "SettingsView.fxml");
     }
