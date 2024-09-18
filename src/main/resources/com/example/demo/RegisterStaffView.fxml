@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.shape.Circle?>
+<VBox stylesheets="@styles/trial.css" alignment="TOP_LEFT" spacing="0.0" xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.controller.RegisterStaffViewController">
+    <HBox styleClass="header-hbox" prefHeight="49.0" prefWidth="600.0" alignment="CENTER_LEFT">
+        <VBox alignment="CENTER_LEFT">
+            <ImageView fx:id="logoImage" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                    <Image url="@styles/logo.png" />
+                </image>
+                <clip>
+                    <Circle radius="25.0" centerX="25.0" centerY="25.0" />
+                </clip>
+            </ImageView>
+        </VBox>
+        <Region HBox.hgrow="ALWAYS" />
+        <VBox alignment="CENTER_RIGHT">
+            <fx:include source="StaffNavigationBar.fxml"/>
+        </VBox>
+    </HBox>
+    <VBox prefHeight="720.0" prefWidth="300.0" alignment="TOP_LEFT" spacing="10.0" style="-fx-background-color: white;">
+        <children>
+            <Label text="Register New User" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+            <TextField fx:id="firstNameField" promptText="First Name" />
+            <TextField fx:id="lastNameField" promptText="Last Name" />
+            <TextField fx:id="emailField" promptText="Email" />
+            <TextField fx:id="phoneField" promptText="Phone" />
+            <TextField fx:id="roleField" promptText="Role" />
+            <TextField fx:id="hireDateField" promptText="Hire Date" />
+            <PasswordField fx:id="passwordField" promptText="Password" />
+            <PasswordField fx:id="confirmPasswordField" promptText="Confirm Password" />
+            <Button text="Register" onAction="#handleRegister" />
+        </children>
+        <padding>
+            <Insets top="20" right="20" bottom="20" left="20"/>
+        </padding>
+    </VBox>
+</VBox>

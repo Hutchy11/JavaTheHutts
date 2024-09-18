@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.image.ImageView?>
@@ -6,7 +10,7 @@
 <?import javafx.scene.shape.Circle?>
 
 <VBox stylesheets="@styles/trial.css" alignment="TOP_LEFT" spacing="0.0" xmlns="http://javafx.com/javafx/21"
-      xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.controller.InitialStaffViewController">
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.controller.CarerProfileMenuViewController">
     <HBox styleClass="header-hbox" prefHeight="49.0" prefWidth="600.0" alignment="CENTER_LEFT">
         <VBox alignment="CENTER_LEFT">
             <ImageView fx:id="logoImage" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
@@ -24,21 +28,22 @@
         </VBox>
     </HBox>
     <VBox prefHeight="720.0" prefWidth="300.0" alignment="TOP_LEFT" spacing="10.0" style="-fx-background-color: white;">
-        <Label fx:id="successLabel" text="Successful Staff Login with Details" />
         <HBox alignment="CENTER">
-            <VBox alignment="CENTER">
-                <Label text="Home Page" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
-            </VBox>
-            <Region HBox.hgrow="ALWAYS" />
-            <Button text="Create Post" onAction="#createPost"/>
+            <Label alignment="CENTER" text="Carer Profile Menu, Select Options Below" />
         </HBox>
-        <VBox alignment="CENTER" spacing="10.0" style="-fx-background-color: grey; -fx-padding: 20;">
-            <Label prefHeight="144.0" text="Image/Text" style="-fx-font-size: 16px; -fx-text-fill: white;" />
-        </VBox>
-        <Label text="Information" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-padding: 30 0 0 0;" />
-        <VBox alignment="CENTER" spacing="10.0" style="-fx-background-color: grey; -fx-padding: 20;">
-            <Label prefHeight="144.0" text="Image/Text" style="-fx-font-size: 16px; -fx-text-fill: white;" />
-        </VBox>
+        <HBox alignment="CENTER_LEFT">
+            <Button text="Register Carer Profile" onAction="#navigateToRegisterCarer"/>
+        </HBox>
+        <TableView fx:id="carerTableView" prefHeight="200.0" prefWidth="600.0">
+            <columns>
+                <TableColumn fx:id="carerIdColumn" text="Carer ID" />
+                <TableColumn fx:id="firstNameColumn" text="First Name" />
+                <TableColumn fx:id="lastNameColumn" text="Last Name" />
+                <TableColumn fx:id="emailColumn" text="Email" />
+                <TableColumn fx:id="phoneColumn" text="Phone" />
+                <TableColumn fx:id="addressColumn" text="Address" />
+            </columns>
+        </TableView>
     </VBox>
 
     <HBox styleClass="footer-hbox" prefHeight="49.0" prefWidth="600.0" alignment="CENTER_LEFT">

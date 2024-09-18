@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="10" alignment="CENTER" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.demo.controller.ChildProfileFormController">
+    <Label text="Enter Child Profile Data" />
+
+    <!-- Carer dropdown -->
+    <ComboBox fx:id="carerComboBox" promptText="Select Carer" />
+
+    <TextField fx:id="firstNameField" promptText="First Name" />
+    <TextField fx:id="lastNameField" promptText="Last Name" />
+    <TextField fx:id="dateOfBirthField" promptText="Date of Birth" />
+    <TextField fx:id="allergiesField" promptText="Allergies" />
+    <TextField fx:id="dietaryField" promptText="Dietary Requirements" />
+    <TextField fx:id="emergencyContactField" promptText="Emergency Contact" />
+
+    <!-- Button container -->
+    <HBox spacing="10" alignment="CENTER">
+        <Button text="Cancel" onAction="#clearForm" />
+        <Button fx:id="submitButton" text="Submit" onAction="#submitChildProfile" />
+    </HBox>
+</VBox>

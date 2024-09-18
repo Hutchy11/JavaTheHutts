@@ -1,6 +1,12 @@
 package com.example.demo.model;
-
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import java.util.ArrayList;
+import java.util.List;
+
+
 public class CarerDAO implements ICarerDAO {
     private Connection connection;
 
@@ -53,4 +59,52 @@ public class CarerDAO implements ICarerDAO {
         return null;
     }
 
+    // Fetch all carers from the database
+    public List<Carer> getAllCarers() {
+        List<Carer> carers = new ArrayList<>();
+        String query = "SELECT * FROM carer";
+
+        try (Statement stmt = connection.createStatement();
+             ResultSet resultSet = stmt.executeQuery(query)) {
+
+            while (resultSet.next()) {
+                Carer carer = new Carer(
+                        resultSet.getString("CarerId"),
+                        resultSet.getString("FirstName"),
+                        resultSet.getString("LastName"),
+                        resultSet.getString("Email"),
+                        resultSet.getString("Password"),
+                        resultSet.getString("Phone"),
+                        resultSet.getString("Address")
+                );
+                carers.add(carer);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return carers;
+    }
+
+    // Method to register a new carer
+    public boolean registerCarer(String carerId, String firstName, String lastName, String email, String password, String phone, String address) {
+        String insertSQL = """
+            INSERT INTO carer (CarerId, FirstName, LastName, Email, Password, Phone, Address)
+            VALUES (?, ?, ?, ?, ?, ?, ?);
+        """;
+        try (PreparedStatement pstmt = connection.prepareStatement(insertSQL)) {
+            pstmt.setString(1, carerId);
+            pstmt.setString(2, firstName);
+            pstmt.setString(3, lastName);
+            pstmt.setString(4, email);
+            pstmt.setString(5, password);
+            pstmt.setString(6, phone);
+            pstmt.setString(7, address);
+            int affectedRows = pstmt.executeUpdate();
+            return affectedRows > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }

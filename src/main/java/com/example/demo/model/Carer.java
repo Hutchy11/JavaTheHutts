@@ -86,4 +86,9 @@ public class Carer {
     public String getFullName() {
         return firstName + " " + lastName;
     }
+
+    @Override
+    public String toString() {
+        return getFullName(); // Returns the full name when the Carer object is converted to a string
+    }
 }
