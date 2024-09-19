@@ -4,7 +4,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RecipeDAO implements IRecipeDAO{
+public class RecipeDAO implements IRecipeDAO {
     private Connection connection;
 
     public RecipeDAO() {
@@ -36,7 +36,7 @@ public class RecipeDAO implements IRecipeDAO{
             // Execute the SQL statement to create the table
             stmt.execute(sql);
             System.out.println("Recipe table created or already exists.");
-        } catch ( SQLException e) {
+        } catch (SQLException e) {
             System.err.println("Error creating Recipe table: " + e.getMessage());
         }
     }
@@ -89,6 +89,30 @@ public class RecipeDAO implements IRecipeDAO{
         return recipe;
     }
 
+    // Method to get recipes by meal type
+    public List<Recipe> getRecipesByMealType(String mealType) {
+        List<Recipe> recipes = new ArrayList<>();
+        String sql = "SELECT * FROM Recipe WHERE MealType = ?";
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setString(1, mealType);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                Recipe recipe = new Recipe(
+                        rs.getString("RecipeId"),
+                        rs.getString("RecipeName"),
+                        rs.getString("Ingredients"),
+                        rs.getString("Instructions"),
+                        rs.getString("MealType"),
+                        rs.getBytes("RecipeImage")
+                );
+                recipes.add(recipe);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return recipes;
+    }
+
     // Method to retrieve all recipes from the database
     @Override
     public List<Recipe> getAllRecipes() {
@@ -98,13 +122,13 @@ public class RecipeDAO implements IRecipeDAO{
     // Method to update a recipe in the database
     @Override
     public void updateRecipe(Recipe recipe) {
-
+        // Implementation here
     }
 
     // Method to delete a recipe from the database
     @Override
     public void deleteRecipe(String recipeId) {
-
+        // Implementation here
     }
 
     public List<String> getAllRecipeNames() {
@@ -120,5 +144,4 @@ public class RecipeDAO implements IRecipeDAO{
         }
         return recipeNames;
     }
-
 }
