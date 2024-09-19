@@ -92,7 +92,25 @@ public class RecipeDAO implements IRecipeDAO{
     // Method to retrieve all recipes from the database
     @Override
     public List<Recipe> getAllRecipes() {
-        return List.of();
+        List<Recipe> recipes = new ArrayList<>();
+        String sql = "SELECT * FROM Recipe";
+        try (Statement stmt = connection.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+            while (rs.next()) {
+                Recipe recipe = new Recipe(
+                        rs.getString("RecipeId"),
+                        rs.getString("RecipeName"),
+                        rs.getString("Ingredients"),
+                        rs.getString("Instructions"),
+                        rs.getString("MealType"),
+                        rs.getBytes("RecipeImage")
+                );
+                recipes.add(recipe);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return recipes;
     }
 
     // Method to update a recipe in the database
