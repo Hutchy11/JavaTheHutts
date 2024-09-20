@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<HBox alignment="CENTER" spacing="10" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.controller.StaffNavigationBarController">
+<HBox alignment="CENTER" spacing="10" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.controller.StaffNavigationBarController">
     <Button onAction="#navigateToStaffHome" text="Home" />
     <Button onAction="#navigateToChildProfile" text="Child Profile" />
     <Button onAction="#navigateToProfile" text="Profile" />
@@ -11,8 +11,7 @@
     <Button onAction="#navigateToStaffProfileMenu" text="Staff Profile Menu" />
    <Button onAction="#navigateToCreateRecipe" text="Create Recipe" />
    <Button onAction="#navigateToViewRecipe" text="Recipe's" />
-   <Button mnemonicParsing="false" text="Create Meal Plan" />
-   <Button mnemonicParsing="false" text="Meal Plans" />
+    <Button onAction="#navigateToCreateMealPlan" text="Create Meal Plan" />
     <Button onAction="#navigateToSettings" text="Settings" />
     <Button onAction="#logout" text="Logout" />
 </HBox>

@@ -1,22 +1,18 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.MealPlan;
-import com.example.demo.model.MealPlanDAO;
 import com.example.demo.model.Recipe;
 import com.example.demo.model.RecipeDAO;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 import java.io.ByteArrayInputStream;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.util.List;
-import java.util.UUID;
 
 public class CreateMealPlanController {
 
@@ -24,177 +20,165 @@ public class CreateMealPlanController {
     private ImageView logoImage;
 
     @FXML
+    private HBox headerHbox;
+
+    @FXML
+    private VBox mainContent;
+
+    @FXML
     private DatePicker datePicker;
 
     @FXML
-    private ChoiceBox<Recipe> mondayBreakfastChoiceBox;
-    @FXML
-    private ChoiceBox<Recipe> mondaySnackChoiceBox;
-    @FXML
-    private ChoiceBox<Recipe> mondayLunchChoiceBox;
+    private GridPane mealPlanGrid;
 
     @FXML
-    private ChoiceBox<Recipe> tuesdayBreakfastChoiceBox;
+    private ComboBox<String> choiceBoxBreakfastMonday;
     @FXML
-    private ChoiceBox<Recipe> tuesdaySnackChoiceBox;
+    private ComboBox<String> choiceBoxBreakfastTuesday;
     @FXML
-    private ChoiceBox<Recipe> tuesdayLunchChoiceBox;
+    private ComboBox<String> choiceBoxBreakfastWednesday;
+    @FXML
+    private ComboBox<String> choiceBoxBreakfastThursday;
+    @FXML
+    private ComboBox<String> choiceBoxBreakfastFriday;
 
     @FXML
-    private ChoiceBox<Recipe> wednesdayBreakfastChoiceBox;
+    private ComboBox<String> choiceBoxSnackMonday;
     @FXML
-    private ChoiceBox<Recipe> wednesdaySnackChoiceBox;
+    private ComboBox<String> choiceBoxSnackTuesday;
     @FXML
-    private ChoiceBox<Recipe> wednesdayLunchChoiceBox;
+    private ComboBox<String> choiceBoxSnackWednesday;
+    @FXML
+    private ComboBox<String> choiceBoxSnackThursday;
+    @FXML
+    private ComboBox<String> choiceBoxSnackFriday;
 
     @FXML
-    private ChoiceBox<Recipe> thursdayBreakfastChoiceBox;
+    private ComboBox<String> choiceBoxLunchMonday;
     @FXML
-    private ChoiceBox<Recipe> thursdaySnackChoiceBox;
+    private ComboBox<String> choiceBoxLunchTuesday;
     @FXML
-    private ChoiceBox<Recipe> thursdayLunchChoiceBox;
+    private ComboBox<String> choiceBoxLunchWednesday;
+    @FXML
+    private ComboBox<String> choiceBoxLunchThursday;
+    @FXML
+    private ComboBox<String> choiceBoxLunchFriday;
 
     @FXML
-    private ChoiceBox<Recipe> fridayBreakfastChoiceBox;
+    private ComboBox<String> choiceBoxSnackMondayEvening;
     @FXML
-    private ChoiceBox<Recipe> fridaySnackChoiceBox;
+    private ComboBox<String> choiceBoxSnackTuesdayEvening;
     @FXML
-    private ChoiceBox<Recipe> fridayLunchChoiceBox;
+    private ComboBox<String> choiceBoxSnackWednesdayEvening;
+    @FXML
+    private ComboBox<String> choiceBoxSnackThursdayEvening;
+    @FXML
+    private ComboBox<String> choiceBoxSnackFridayEvening;
 
     @FXML
-    private Button saveButton;
+    private ImageView imageViewBreakfastMonday;
     @FXML
-    private Button cancelButton;
+    private ImageView imageViewBreakfastTuesday;
+    @FXML
+    private ImageView imageViewBreakfastWednesday;
+    @FXML
+    private ImageView imageViewBreakfastThursday;
+    @FXML
+    private ImageView imageViewBreakfastFriday;
+
+    @FXML
+    private ImageView imageViewSnackMonday;
+    @FXML
+    private ImageView imageViewSnackTuesday;
+    @FXML
+    private ImageView imageViewSnackWednesday;
+    @FXML
+    private ImageView imageViewSnackThursday;
+    @FXML
+    private ImageView imageViewSnackFriday;
+
+    @FXML
+    private ImageView imageViewLunchMonday;
+    @FXML
+    private ImageView imageViewLunchTuesday;
+    @FXML
+    private ImageView imageViewLunchWednesday;
+    @FXML
+    private ImageView imageViewLunchThursday;
+    @FXML
+    private ImageView imageViewLunchFriday;
+
+    @FXML
+    private ImageView imageViewSnackMondayEvening;
+    @FXML
+    private ImageView imageViewSnackTuesdayEvening;
+    @FXML
+    private ImageView imageViewSnackWednesdayEvening;
+    @FXML
+    private ImageView imageViewSnackThursdayEvening;
+    @FXML
+    private ImageView imageViewSnackFridayEvening;
 
     private RecipeDAO recipeDAO = new RecipeDAO();
-    private MealPlanDAO mealPlanDAO;
 
     @FXML
     private void initialize() {
-        // Initialize the controller and populate choice boxes
-        logoImage.setImage(new Image(getClass().getResourceAsStream("/styles/logo.png")));
-        populateChoiceBoxes();
-        addChoiceBoxListeners();
+        // Populate Breakfast
+        populateChoiceBox(choiceBoxBreakfastMonday, "Breakfast", imageViewBreakfastMonday);
+        populateChoiceBox(choiceBoxBreakfastTuesday, "Breakfast", imageViewBreakfastTuesday);
+        populateChoiceBox(choiceBoxBreakfastWednesday, "Breakfast", imageViewBreakfastWednesday);
+        populateChoiceBox(choiceBoxBreakfastThursday, "Breakfast", imageViewBreakfastThursday);
+        populateChoiceBox(choiceBoxBreakfastFriday, "Breakfast", imageViewBreakfastFriday);
 
-        try {
-            Connection connection = DriverManager.getConnection("jdbc:sqlite:your-database-file.db");
-            mealPlanDAO = new MealPlanDAO(connection);
-        } catch (SQLException e) {
-            e.printStackTrace();
+        // Populate Snack (morning or afternoon)
+        populateChoiceBox(choiceBoxSnackMonday, "Snack", imageViewSnackMonday);
+        populateChoiceBox(choiceBoxSnackTuesday, "Snack", imageViewSnackTuesday);
+        populateChoiceBox(choiceBoxSnackWednesday, "Snack", imageViewSnackWednesday);
+        populateChoiceBox(choiceBoxSnackThursday, "Snack", imageViewSnackThursday);
+        populateChoiceBox(choiceBoxSnackFriday, "Snack", imageViewSnackFriday);
+
+        // Populate Lunch
+        populateChoiceBox(choiceBoxLunchMonday, "Lunch", imageViewLunchMonday);
+        populateChoiceBox(choiceBoxLunchTuesday, "Lunch", imageViewLunchTuesday);
+        populateChoiceBox(choiceBoxLunchWednesday, "Lunch", imageViewLunchWednesday);
+        populateChoiceBox(choiceBoxLunchThursday, "Lunch", imageViewLunchThursday);
+        populateChoiceBox(choiceBoxLunchFriday, "Lunch", imageViewLunchFriday);
+
+        // Populate Snack (evening or another type)
+        populateChoiceBox(choiceBoxSnackMondayEvening, "Snack", imageViewSnackMondayEvening);
+        populateChoiceBox(choiceBoxSnackTuesdayEvening, "Snack", imageViewSnackTuesdayEvening);
+        populateChoiceBox(choiceBoxSnackWednesdayEvening, "Snack", imageViewSnackWednesdayEvening);
+        populateChoiceBox(choiceBoxSnackThursdayEvening, "Snack", imageViewSnackThursdayEvening);
+        populateChoiceBox(choiceBoxSnackFridayEvening, "Snack", imageViewSnackFridayEvening);
+    }
+
+    private void populateChoiceBox(ComboBox<String> choiceBox, String mealType, ImageView imageView) {
+        List<Recipe> recipes = recipeDAO.getRecipesByMealType(mealType);
+        System.out.println("Populating ChoiceBox for meal type: " + mealType);
+        for (Recipe recipe : recipes) {
+            System.out.println("Adding recipe: " + recipe.getRecipeName());
+            choiceBox.getItems().add(recipe.getRecipeName());
         }
-    }
 
-    private void populateChoiceBoxes() {
-        List<Recipe> recipes = recipeDAO.getAllRecipes();
-        mondayBreakfastChoiceBox.getItems().addAll(recipes);
-        mondaySnackChoiceBox.getItems().addAll(recipes);
-        mondayLunchChoiceBox.getItems().addAll(recipes);
-        tuesdayBreakfastChoiceBox.getItems().addAll(recipes);
-        tuesdaySnackChoiceBox.getItems().addAll(recipes);
-        tuesdayLunchChoiceBox.getItems().addAll(recipes);
-        wednesdayBreakfastChoiceBox.getItems().addAll(recipes);
-        wednesdaySnackChoiceBox.getItems().addAll(recipes);
-        wednesdayLunchChoiceBox.getItems().addAll(recipes);
-        thursdayBreakfastChoiceBox.getItems().addAll(recipes);
-        thursdaySnackChoiceBox.getItems().addAll(recipes);
-        thursdayLunchChoiceBox.getItems().addAll(recipes);
-        fridayBreakfastChoiceBox.getItems().addAll(recipes);
-        fridaySnackChoiceBox.getItems().addAll(recipes);
-        fridayLunchChoiceBox.getItems().addAll(recipes);
-    }
-
-    private void addChoiceBoxListeners() {
-        mondayBreakfastChoiceBox.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> updateImageView(newVal));
-        mondaySnackChoiceBox.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> updateImageView(newVal));
-        mondayLunchChoiceBox.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> updateImageView(newVal));
-        tuesdayBreakfastChoiceBox.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> updateImageView(newVal));
-        tuesdaySnackChoiceBox.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> updateImageView(newVal));
-        tuesdayLunchChoiceBox.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> updateImageView(newVal));
-        wednesdayBreakfastChoiceBox.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> updateImageView(newVal));
-        wednesdaySnackChoiceBox.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> updateImageView(newVal));
-        wednesdayLunchChoiceBox.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> updateImageView(newVal));
-        thursdayBreakfastChoiceBox.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> updateImageView(newVal));
-        thursdaySnackChoiceBox.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> updateImageView(newVal));
-        thursdayLunchChoiceBox.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> updateImageView(newVal));
-        fridayBreakfastChoiceBox.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> updateImageView(newVal));
-        fridaySnackChoiceBox.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> updateImageView(newVal));
-        fridayLunchChoiceBox.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> updateImageView(newVal));
-    }
-
-    private void updateImageView(Recipe recipe) {
-        if (recipe != null && recipe.getRecipeImage() != null) {
-            ByteArrayInputStream bis = new ByteArrayInputStream(recipe.getRecipeImage());
-            Image image = new Image(bis);
-            logoImage.setImage(image);
-        }
+        choiceBox.setOnAction(event -> {
+            String selectedRecipeName = choiceBox.getSelectionModel().getSelectedItem();
+            Recipe selectedRecipe = recipeDAO.getRecipeByName(selectedRecipeName);
+            if (selectedRecipe != null && selectedRecipe.getRecipeImage() != null) {
+                Image image = new Image(new ByteArrayInputStream(selectedRecipe.getRecipeImage()));
+                imageView.setImage(image);
+            }
+        });
     }
 
     @FXML
     private void handleSaveMealPlan() {
-        // Handle the save button action
-        MealPlan mealPlan = new MealPlan();
-        mealPlan.setMealPlanId(UUID.randomUUID().toString());
-        mealPlan.setStaffId("some-staff-id"); // Replace with actual staff ID
-        mealPlan.setDate(datePicker.getValue().toString());
-
-        // Set recipes for each day
-        mealPlan.setMondayBreakfastRecipeId(getRecipeId(mondayBreakfastChoiceBox));
-        mealPlan.setMondaySnackRecipeId(getRecipeId(mondaySnackChoiceBox));
-        mealPlan.setMondayLunchRecipeId(getRecipeId(mondayLunchChoiceBox));
-
-        mealPlan.setTuesdayBreakfastRecipeId(getRecipeId(tuesdayBreakfastChoiceBox));
-        mealPlan.setTuesdaySnackRecipeId(getRecipeId(tuesdaySnackChoiceBox));
-        mealPlan.setTuesdayLunchRecipeId(getRecipeId(tuesdayLunchChoiceBox));
-
-        mealPlan.setWednesdayBreakfastRecipeId(getRecipeId(wednesdayBreakfastChoiceBox));
-        mealPlan.setWednesdaySnackRecipeId(getRecipeId(wednesdaySnackChoiceBox));
-        mealPlan.setWednesdayLunchRecipeId(getRecipeId(wednesdayLunchChoiceBox));
-
-        mealPlan.setThursdayBreakfastRecipeId(getRecipeId(thursdayBreakfastChoiceBox));
-        mealPlan.setThursdaySnackRecipeId(getRecipeId(thursdaySnackChoiceBox));
-        mealPlan.setThursdayLunchRecipeId(getRecipeId(thursdayLunchChoiceBox));
-
-        mealPlan.setFridayBreakfastRecipeId(getRecipeId(fridayBreakfastChoiceBox));
-        mealPlan.setFridaySnackRecipeId(getRecipeId(fridaySnackChoiceBox));
-        mealPlan.setFridayLunchRecipeId(getRecipeId(fridayLunchChoiceBox));
-
-        mealPlan.setNotes("Some notes"); // Replace with actual notes
-
-        try {
-            mealPlanDAO.saveMealPlan(mealPlan);
-            System.out.println("Meal plan saved");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        // Handle the save meal plan action
+        System.out.println("Meal plan saved!");
     }
 
     @FXML
     private void handleCancelMealPlan() {
-        // Handle the cancel button action
-        System.out.println("Cancel button clicked");
+        // Handle the cancel action
+        System.out.println("Meal plan creation canceled!");
     }
-
-    private String getRecipeId(ChoiceBox<Recipe> choiceBox) {
-        Recipe selectedRecipe = choiceBox.getValue();
-        return selectedRecipe != null ? selectedRecipe.getRecipeId() : null;
-    }
-
-    // Getters and setters for the fields if needed
-    public DatePicker getDatePicker() {
-        return datePicker;
-    }
-
-    public void setDatePicker(DatePicker datePicker) {
-        this.datePicker = datePicker;
-    }
-
-    public ChoiceBox<Recipe> getMondayBreakfastChoiceBox() {
-        return mondayBreakfastChoiceBox;
-    }
-
-    public void setMondayBreakfastChoiceBox(ChoiceBox<Recipe> mondayBreakfastChoiceBox) {
-        this.mondayBreakfastChoiceBox = mondayBreakfastChoiceBox;
-    }
-
-    // Add similar getters and setters for other fields as needed
 }

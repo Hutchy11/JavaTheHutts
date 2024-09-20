@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -50,6 +51,11 @@ public class StaffNavigationBarController {
     private void navigateToChildProfile(ActionEvent event) {loadView(event, "StaffChildProfileView.fxml");}
 
     @FXML
+    private void navigateToCreateMealPlan(ActionEvent event) {
+        loadView(event, "CreateMealPlanView.fxml");
+    }
+
+    @FXML
     private void logout(ActionEvent event) {
         // Implement logout logic here
         System.out.println("Logged out");
@@ -57,7 +63,7 @@ public class StaffNavigationBarController {
 
     private void loadView(ActionEvent event, String fxmlFile) {
         try {
-            Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             Parent root = FXMLLoader.load(getClass().getResource("/com/example/demo/" + fxmlFile));
             Scene scene = new Scene(root);
             stage.setScene(scene);
@@ -67,6 +73,8 @@ public class StaffNavigationBarController {
             //showAlert("Error", "Failed to load the view.");
         }
     }
+
+
 
     /* Figure out if this is worth keeping.
     private void showAlert(String title, String message) {
