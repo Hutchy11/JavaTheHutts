@@ -18,6 +18,7 @@ import java.io.ByteArrayInputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -174,6 +175,23 @@ public class CreateMealPlanController {
 
     }
 
+    public MealPlan createMealPlan(String selectedRecipe, LocalDate selectedDate) {
+        if (selectedRecipe == null) {
+            throw new NullPointerException("Recipe cannot be null");
+        }
+        if (selectedDate.isAfter(LocalDate.now())) {
+            throw new IllegalArgumentException("Date cannot be in the future");
+        }
+
+        MealPlan mealPlan = new MealPlan();
+        mealPlan.setMealPlanId(UUID.randomUUID().toString());
+        mealPlan.setStaffId(""); // Replace with actual staff ID
+        mealPlan.setDate(selectedDate.toString());
+        mealPlan.setRecipeId("monday", "breakfast", "1"); // Replace with actual recipe ID based on selectedRecipe
+
+        return mealPlan;
+    }
+
     private void setMealPlanForDay(MealPlan mealPlan, String day, ComboBox<String> breakfast, ComboBox<String> snack, ComboBox<String> snackEvening, ComboBox<String> lunch) {
         String breakfastId = getSelectedRecipeId(breakfast);
         String snackId = getSelectedRecipeId(snack);
@@ -201,4 +219,5 @@ public class CreateMealPlanController {
     private void handleCancelMealPlan() {
         System.out.println("Meal plan creation canceled!");
     }
+
 }
