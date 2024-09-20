@@ -162,4 +162,23 @@ public class RecipeDAO implements IRecipeDAO {
         }
         return recipeNames;
     }
+
+    //Create Meal Plan
+    public void createMealPlan(MealPlan mealPlan) {
+        String sql = "INSERT INTO MealPlan (MealPlanId, StaffId, Date, RecipeId, Notes) VALUES (?, ?, ?, ?, ?)";
+
+        try (Connection conn = SqliteConnection.getInstance();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, mealPlan.getMealPlanId());
+            pstmt.setString(2, mealPlan.getStaffId());
+            pstmt.setString(3, mealPlan.getDate().toString());
+            pstmt.setString(4, mealPlan.getRecipeId("day", "meal"));
+            pstmt.setString(5, mealPlan.getNotes());
+
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

@@ -17,7 +17,7 @@ public class MealPlanDAO {
             statement.setString(1, mealPlan.getMealPlanId());
             statement.setString(2, mealPlan.getStaffId());
             statement.setString(3, mealPlan.getDate());
-            statement.setString(4, mealPlan.getRecipeId());
+            statement.setString(4, mealPlan.getRecipeId("day", "meal")); // Pass appropriate day and meal arguments
             statement.setString(5, mealPlan.getNotes());
             statement.executeUpdate();
         }
