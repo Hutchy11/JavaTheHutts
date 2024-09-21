@@ -56,6 +56,11 @@ public class StaffNavigationBarController {
     }
 
     @FXML
+    private void navigateToViewMealPlan(ActionEvent event) { loadView(event, "MealPlanView.fxml");}
+
+
+
+    @FXML
     private void logout(ActionEvent event) {
         // Implement logout logic here
         System.out.println("Logged out");
@@ -73,6 +78,7 @@ public class StaffNavigationBarController {
             //showAlert("Error", "Failed to load the view.");
         }
     }
+
 
 
 
