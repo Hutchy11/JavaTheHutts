@@ -33,6 +33,18 @@
         <Label text="Address"/>
         <TextField fx:id="addressField"/>
         <Button text="Update" onAction="#updateUserData"/>
+        <Button text="Reset Password" onAction="#showPasswordResetSection"/>
+    </VBox>
+
+    <VBox fx:id="passwordResetSection" alignment="CENTER" spacing="10" visible="false">
+        <Label text="Current Password"/>
+        <PasswordField fx:id="currentPasswordField"/>
+        <Label text="New Password"/>
+        <PasswordField fx:id="newPasswordField"/>
+        <Label text="Retype New Password"/>
+        <PasswordField fx:id="retypeNewPasswordField"/>
+        <Button text="Submit" onAction="#resetPassword"/>
+        <Button text="Cancel" onAction="#hidePasswordResetSection"/>
     </VBox>
 
     <HBox styleClass="footer-hbox" prefHeight="49.0" prefWidth="600.0" alignment="CENTER_LEFT">
