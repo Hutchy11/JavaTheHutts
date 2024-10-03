@@ -29,4 +29,14 @@ public class MockCarerDAO implements ICarerDAO {
         carers.add(new Carer("3", "Mary", "Johnson", "carer3@example.com", "password3", "1122334455", "789 Boulevard"));
         return carers;
     }
+
+    @Override
+    public void updateCarer(Carer carer) {
+        for (int i = 0; i < carers.size(); i++) {
+            if (carers.get(i).getCarerId().equals(carer.getCarerId())) {
+                carers.set(i, carer);
+                break;
+            }
+        }
+    }
 }
