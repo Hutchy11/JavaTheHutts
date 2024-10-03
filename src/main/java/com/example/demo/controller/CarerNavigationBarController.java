@@ -29,7 +29,7 @@ public class CarerNavigationBarController {
     }
     @FXML
     private void navigateToSettings(ActionEvent event) {
-        loadView(event, "SettingsView.fxml");
+        loadView(event, "CarerSettingsView.fxml");
     }
 
     @FXML
