@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.image.Image?>
+
+<VBox alignment="TOP_LEFT" spacing="0.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.controller.CarerSettingsController" stylesheets="@styles/trial.css">
+    <HBox styleClass="header-hbox" prefHeight="49.0" prefWidth="600.0" alignment="CENTER_LEFT">
+        <VBox alignment="CENTER_LEFT">
+            <ImageView fx:id="logoImage" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                    <Image url="@styles/logo.png" />
+                </image>
+                <clip>
+                    <Circle radius="25.0" centerX="25.0" centerY="25.0" />
+                </clip>
+            </ImageView>
+        </VBox>
+        <Region HBox.hgrow="ALWAYS" />
+        <VBox alignment="CENTER_RIGHT">
+            <fx:include source="CarerNavigationBar.fxml"/>
+        </VBox>
+    </HBox>
+
+    <VBox alignment="CENTER" spacing="10">
+        <Label text="Settings" styleClass="heading-label"/>
+        <Label text="Phone Number"/>
+        <TextField fx:id="phoneNumberField"/>
+        <Label text="Email Address"/>
+        <TextField fx:id="emailField"/>
+        <Label text="Address"/>
+        <TextField fx:id="addressField"/>
+        <Button text="Update" onAction="#updateUserData"/>
+    </VBox>
+
+    <HBox styleClass="footer-hbox" prefHeight="49.0" prefWidth="600.0" alignment="CENTER_LEFT">
+        <Label text="Call us: 0412345678" />
+        <Region HBox.hgrow="ALWAYS" />
+        <Hyperlink text="Terms and Conditions"/>
+        <Region HBox.hgrow="ALWAYS" />
+        <Label text="150 W. 85th Street, Brisbane" />
+    </HBox>
+</VBox>
