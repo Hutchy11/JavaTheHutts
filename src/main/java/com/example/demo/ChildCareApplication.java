@@ -16,7 +16,7 @@ public class ChildCareApplication extends Application {
         primaryStage = stage;
         primaryStage.setTitle(TITLE);
         primaryStage.setMaximized(true);
-        loadScene("InitialStaffView.fxml");
+        loadScene("MealPlanView.fxml");
         primaryStage.show();
     }
 

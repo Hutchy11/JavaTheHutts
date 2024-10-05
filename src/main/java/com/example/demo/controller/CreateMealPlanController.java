@@ -90,6 +90,8 @@ public class CreateMealPlanController {
     @FXML
     private void initialize() {
         populateAllChoiceBoxes();
+        addFieldListeners();
+        checkFieldsCompletion();
     }
 
     private void populateAllChoiceBoxes() {
@@ -132,8 +134,73 @@ public class CreateMealPlanController {
                 Image image = new Image(new ByteArrayInputStream(selectedRecipe.getRecipeImage()));
                 imageView.setImage(image);
             }
+            checkFieldsCompletion();
         });
     }
+
+    private void addFieldListeners() {
+        datePicker.valueProperty().addListener((observable, oldValue, newValue) -> checkFieldsCompletion());
+
+        addComboBoxListener(choiceBoxBreakfastMonday);
+        addComboBoxListener(choiceBoxSnackMonday);
+        addComboBoxListener(choiceBoxLunchMonday);
+        addComboBoxListener(choiceBoxSnackMondayEvening);
+
+        addComboBoxListener(choiceBoxBreakfastTuesday);
+        addComboBoxListener(choiceBoxSnackTuesday);
+        addComboBoxListener(choiceBoxLunchTuesday);
+        addComboBoxListener(choiceBoxSnackTuesdayEvening);
+
+        addComboBoxListener(choiceBoxBreakfastWednesday);
+        addComboBoxListener(choiceBoxSnackWednesday);
+        addComboBoxListener(choiceBoxLunchWednesday);
+        addComboBoxListener(choiceBoxSnackWednesdayEvening);
+
+        addComboBoxListener(choiceBoxBreakfastThursday);
+        addComboBoxListener(choiceBoxSnackThursday);
+        addComboBoxListener(choiceBoxLunchThursday);
+        addComboBoxListener(choiceBoxSnackThursdayEvening);
+
+        addComboBoxListener(choiceBoxBreakfastFriday);
+        addComboBoxListener(choiceBoxSnackFriday);
+        addComboBoxListener(choiceBoxLunchFriday);
+        addComboBoxListener(choiceBoxSnackFridayEvening);
+    }
+
+    private void addComboBoxListener(ComboBox<String> comboBox) {
+        comboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> checkFieldsCompletion());
+    }
+
+    private void checkFieldsCompletion() {
+        boolean allFieldsComplete = datePicker.getValue() != null &&
+                isComboBoxSelected(choiceBoxBreakfastMonday) &&
+                isComboBoxSelected(choiceBoxSnackMonday) &&
+                isComboBoxSelected(choiceBoxLunchMonday) &&
+                isComboBoxSelected(choiceBoxSnackMondayEvening) &&
+                isComboBoxSelected(choiceBoxBreakfastTuesday) &&
+                isComboBoxSelected(choiceBoxSnackTuesday) &&
+                isComboBoxSelected(choiceBoxLunchTuesday) &&
+                isComboBoxSelected(choiceBoxSnackTuesdayEvening) &&
+                isComboBoxSelected(choiceBoxBreakfastWednesday) &&
+                isComboBoxSelected(choiceBoxSnackWednesday) &&
+                isComboBoxSelected(choiceBoxLunchWednesday) &&
+                isComboBoxSelected(choiceBoxSnackWednesdayEvening) &&
+                isComboBoxSelected(choiceBoxBreakfastThursday) &&
+                isComboBoxSelected(choiceBoxSnackThursday) &&
+                isComboBoxSelected(choiceBoxLunchThursday) &&
+                isComboBoxSelected(choiceBoxSnackThursdayEvening) &&
+                isComboBoxSelected(choiceBoxBreakfastFriday) &&
+                isComboBoxSelected(choiceBoxSnackFriday) &&
+                isComboBoxSelected(choiceBoxLunchFriday) &&
+                isComboBoxSelected(choiceBoxSnackFridayEvening);
+
+        createMealPlan.setDisable(!allFieldsComplete);
+    }
+
+    private boolean isComboBoxSelected(ComboBox<String> comboBox) {
+        return comboBox.getSelectionModel().getSelectedItem() != null;
+    }
+
 
     @FXML
     private void createMealPlan() {
@@ -162,6 +229,9 @@ public class CreateMealPlanController {
             alert.setHeaderText(null);
             alert.setContentText("Meal plan saved successfully!");
             alert.showAndWait();
+
+            // Clear all fields
+            clearFields();
         } catch (SQLException e) {
             e.printStackTrace();
 
@@ -173,6 +243,60 @@ public class CreateMealPlanController {
             alert.showAndWait();
         }
 
+    }
+
+    private void clearFields() {
+        datePicker.setValue(null);
+
+        choiceBoxBreakfastMonday.getSelectionModel().clearSelection();
+        choiceBoxSnackMonday.getSelectionModel().clearSelection();
+        choiceBoxLunchMonday.getSelectionModel().clearSelection();
+        choiceBoxSnackMondayEvening.getSelectionModel().clearSelection();
+
+        choiceBoxBreakfastTuesday.getSelectionModel().clearSelection();
+        choiceBoxSnackTuesday.getSelectionModel().clearSelection();
+        choiceBoxLunchTuesday.getSelectionModel().clearSelection();
+        choiceBoxSnackTuesdayEvening.getSelectionModel().clearSelection();
+
+        choiceBoxBreakfastWednesday.getSelectionModel().clearSelection();
+        choiceBoxSnackWednesday.getSelectionModel().clearSelection();
+        choiceBoxLunchWednesday.getSelectionModel().clearSelection();
+        choiceBoxSnackWednesdayEvening.getSelectionModel().clearSelection();
+
+        choiceBoxBreakfastThursday.getSelectionModel().clearSelection();
+        choiceBoxSnackThursday.getSelectionModel().clearSelection();
+        choiceBoxLunchThursday.getSelectionModel().clearSelection();
+        choiceBoxSnackThursdayEvening.getSelectionModel().clearSelection();
+
+        choiceBoxBreakfastFriday.getSelectionModel().clearSelection();
+        choiceBoxSnackFriday.getSelectionModel().clearSelection();
+        choiceBoxLunchFriday.getSelectionModel().clearSelection();
+        choiceBoxSnackFridayEvening.getSelectionModel().clearSelection();
+
+        imageViewBreakfastMonday.setImage(null);
+        imageViewSnackMonday.setImage(null);
+        imageViewLunchMonday.setImage(null);
+        imageViewSnackMondayEvening.setImage(null);
+
+        imageViewBreakfastTuesday.setImage(null);
+        imageViewSnackTuesday.setImage(null);
+        imageViewLunchTuesday.setImage(null);
+        imageViewSnackTuesdayEvening.setImage(null);
+
+        imageViewBreakfastWednesday.setImage(null);
+        imageViewSnackWednesday.setImage(null);
+        imageViewLunchWednesday.setImage(null);
+        imageViewSnackWednesdayEvening.setImage(null);
+
+        imageViewBreakfastThursday.setImage(null);
+        imageViewSnackThursday.setImage(null);
+        imageViewLunchThursday.setImage(null);
+        imageViewSnackThursdayEvening.setImage(null);
+
+        imageViewBreakfastFriday.setImage(null);
+        imageViewSnackFriday.setImage(null);
+        imageViewLunchFriday.setImage(null);
+        imageViewSnackFridayEvening.setImage(null);
     }
 
     public MealPlan createMealPlan(String selectedRecipe, LocalDate selectedDate) {
@@ -219,5 +343,7 @@ public class CreateMealPlanController {
     private void handleCancelMealPlan() {
         System.out.println("Meal plan creation canceled!");
     }
+
+
 
 }
