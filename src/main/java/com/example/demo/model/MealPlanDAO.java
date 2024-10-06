@@ -71,85 +71,29 @@ public class MealPlanDAO implements IMealPlanDAO {
         return mealPlanDates;
     }
 
-    // Method to retrieve a meal plan by its ID
     @Override
-    public MealPlan getMealPlanById(String mealPlanId) {
-        return null; // No meal plan found
-    }
-
-    // Method to retrieve a meal plan by its date
-    @Override
-    public MealPlan getMealPlanByDate(String date) {
-        MealPlan mealPlan = null;
-        String sql = "SELECT * FROM MealPlan WHERE Date = ?";
+    public List<String> getAllRecipeIdsByDate(String date) {
+        List<String> recipeIds = new ArrayList<>();
+        String sql = "SELECT RecipeId FROM MealPlan WHERE Date = ?";
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
             pstmt.setString(1, date);
             try (ResultSet rs = pstmt.executeQuery()) {
-                if (rs.next()) {
-                    mealPlan = new MealPlan(
-                            rs.getString("MealPlanId"),
-                            rs.getString("StaffId"),
-                            rs.getString("Date"),
-                            rs.getString("RecipeId")
-                    );
+                while (rs.next()) {
+                    String recipeIdField = rs.getString("RecipeId");
+
+                    // Split RecipeId if comma-separated
+                    String[] individualIds = recipeIdField.split(",");
+                    for (String id : individualIds) {
+                        recipeIds.add(id.trim());  // Trim to remove any whitespace
+                    }
                 }
             }
+            
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return mealPlan;
+        System.out.println(recipeIds);
+        return recipeIds;
     }
 
-    @Override
-    public List<MealPlan> getAllMealPlans() {
-        List<MealPlan> mealPlans = new ArrayList<>();
-        String sql = "SELECT mp.MealPlanId, mp.StaffId, mp.Date, r.RecipeId, r.RecipeName, r.MealType, r.RecipeImage " +
-                "FROM MealPlan mp " +
-                "LEFT JOIN Recipe r ON mp.MealPlanId = r.MealPlanId";
-
-        try (PreparedStatement statement = connection.prepareStatement(sql);
-             ResultSet resultSet = statement.executeQuery()) {
-
-            Map<String, MealPlan> mealPlanMap = new HashMap<>();
-
-            while (resultSet.next()) {
-                String mealPlanId = resultSet.getString("MealPlanId");
-                MealPlan mealPlan = mealPlanMap.get(mealPlanId);
-                if (mealPlan == null) {
-                    mealPlan = new MealPlan();
-                    mealPlan.setMealPlanId(mealPlanId);
-                    mealPlan.setStaffId(resultSet.getString("StaffId"));
-                    mealPlan.setDate(resultSet.getString("Date"));
-                    mealPlanMap.put(mealPlanId, mealPlan);
-                }
-
-                String recipeId = resultSet.getString("RecipeId");
-                String recipeName = resultSet.getString("RecipeName");
-                String mealType = resultSet.getString("MealType");
-                String imageUrl = resultSet.getString("RecipeImage") != null ? "data:image/png;base64," + Base64.getEncoder().encodeToString(resultSet.getBytes("RecipeImage")) : null;
-
-                // Set the recipe details in the meal plan
-                if (recipeId != null) {
-                    mealPlan.setRecipeId("day", mealType, recipeId); // Replace "day" with actual day value
-                    mealPlan.setRecipeName("day", mealType, recipeName); // Replace "day" with actual day value
-                    mealPlan.setMealImage("day", mealType, imageUrl); // Replace "day" with actual day value
-                }
-            }
-
-            mealPlans.addAll(mealPlanMap.values());
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return mealPlans;
-    }
-
-    @Override
-    public void updateMealPlan(MealPlan mealPlan) {
-        // Implementation here
-    }
-
-    @Override
-    public void deleteMealPlan(String mealPlanId) {
-        // Implementation here
-    }
 }

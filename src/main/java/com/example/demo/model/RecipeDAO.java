@@ -58,12 +58,6 @@ public class RecipeDAO implements IRecipeDAO {
         }
     }
 
-    // Method to retrieve a recipe by its ID
-    @Override
-    public Recipe getRecipeById(String recipeId) {
-        return null;
-    }
-
     // Method to retrieve a recipe by its name
     @Override
     public Recipe getRecipeByName(String recipeName) {
@@ -113,40 +107,28 @@ public class RecipeDAO implements IRecipeDAO {
         return recipes;
     }
 
-    // Method to retrieve all recipes from the database
     @Override
-    public List<Recipe> getAllRecipes() {
-        List<Recipe> recipes = new ArrayList<>();
-        String sql = "SELECT * FROM Recipe";
-        try (Statement stmt = connection.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
-            while (rs.next()) {
-                Recipe recipe = new Recipe(
-                        rs.getString("RecipeId"),
-                        rs.getString("RecipeName"),
-                        rs.getString("Ingredients"),
-                        rs.getString("Instructions"),
-                        rs.getString("MealType"),
-                        rs.getBytes("RecipeImage")
-                );
-                recipes.add(recipe);
+    public List<String> getRecipeNameById(List<String> recipeIds) {
+        List<String> recipeNames = new ArrayList<>();
+
+        String sql = "SELECT RecipeName FROM Recipe WHERE RecipeId = ?";
+
+        // Loop through each recipeId and retrieve the corresponding recipe name
+        for (String recipeId : recipeIds) {
+            try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+                pstmt.setString(1, recipeId);
+                try (ResultSet rs = pstmt.executeQuery()) {
+                    if (rs.next()) {
+                        String recipeName = rs.getString("RecipeName");
+                        recipeNames.add(recipeName);  // Add the recipe name to the list
+                    }
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
-        return recipes;
-    }
-
-    // Method to update a recipe in the database
-    @Override
-    public void updateRecipe(Recipe recipe) {
-        // Implementation here
-    }
-
-    // Method to delete a recipe from the database
-    @Override
-    public void deleteRecipe(String recipeId) {
-        // Implementation here
+        System.out.println(recipeNames);
+        return recipeNames;  // Return the list of recipe names
     }
 
     public List<String> getAllRecipeNames() {
@@ -163,21 +145,4 @@ public class RecipeDAO implements IRecipeDAO {
         return recipeNames;
     }
 
-    //Create Meal Plan
-    public void createMealPlan(MealPlan mealPlan) {
-        String sql = "INSERT INTO MealPlan (MealPlanId, StaffId, Date, RecipeId) VALUES (?, ?, ?, ?)";
-
-        try (Connection conn = SqliteConnection.getInstance();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-
-            pstmt.setString(1, mealPlan.getMealPlanId());
-            pstmt.setString(2, mealPlan.getStaffId());
-            pstmt.setString(3, mealPlan.getDate().toString());
-            pstmt.setString(4, mealPlan.getRecipeId("day", "meal"));
-
-            pstmt.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
 }

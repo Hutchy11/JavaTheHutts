@@ -208,44 +208,6 @@ public class CreateMealPlanController {
         return comboBox.getSelectionModel().getSelectedItem() != null;
     }
 
-
-    private String[] collectRecipeIds() {
-        String[] recipeIds = new String[40];
-        int index = 0;
-
-        // Collect RecipeIds for Monday
-        recipeIds[index++] = choiceBoxBreakfastMonday.getValue();
-        recipeIds[index++] = choiceBoxSnackMonday.getValue();
-        recipeIds[index++] = choiceBoxLunchMonday.getValue();
-        recipeIds[index++] = choiceBoxSnackMondayEvening.getValue();
-
-        // Collect RecipeIds for Tuesday
-        recipeIds[index++] = choiceBoxBreakfastTuesday.getValue();
-        recipeIds[index++] = choiceBoxSnackTuesday.getValue();
-        recipeIds[index++] = choiceBoxLunchTuesday.getValue();
-        recipeIds[index++] = choiceBoxSnackTuesdayEvening.getValue();
-
-        // Collect RecipeIds for Wednesday
-        recipeIds[index++] = choiceBoxBreakfastWednesday.getValue();
-        recipeIds[index++] = choiceBoxSnackWednesday.getValue();
-        recipeIds[index++] = choiceBoxLunchWednesday.getValue();
-        recipeIds[index++] = choiceBoxSnackWednesdayEvening.getValue();
-
-        // Collect RecipeIds for Thursday
-        recipeIds[index++] = choiceBoxBreakfastThursday.getValue();
-        recipeIds[index++] = choiceBoxSnackThursday.getValue();
-        recipeIds[index++] = choiceBoxLunchThursday.getValue();
-        recipeIds[index++] = choiceBoxSnackThursdayEvening.getValue();
-
-        // Collect RecipeIds for Friday
-        recipeIds[index++] = choiceBoxBreakfastFriday.getValue();
-        recipeIds[index++] = choiceBoxSnackFriday.getValue();
-        recipeIds[index++] = choiceBoxLunchFriday.getValue();
-        recipeIds[index++] = choiceBoxSnackFridayEvening.getValue();
-
-        return recipeIds;
-    }
-
     @FXML
     private void createMealPlan() {
         MealPlan mealPlan = new MealPlan();
@@ -374,35 +336,5 @@ public class CreateMealPlanController {
 
         return mealPlan;
     }
-
-    private void setMealPlanForDay(MealPlan mealPlan, String day, ComboBox<String> breakfast, ComboBox<String> snack, ComboBox<String> snackEvening, ComboBox<String> lunch) {
-        String breakfastId = getSelectedRecipeId(breakfast);
-        String snackId = getSelectedRecipeId(snack);
-        String snackEveningId = getSelectedRecipeId(snackEvening);
-        String lunchId = getSelectedRecipeId(lunch);
-
-        if (breakfastId == null || snackId == null || snackEveningId == null || lunchId == null) {
-            System.out.println("Please select all meals for " + day);
-            return;
-        }
-
-        mealPlan.setRecipeId(day, "breakfast", breakfastId);
-        mealPlan.setRecipeId(day, "snack", snackId);
-        mealPlan.setRecipeId(day, "snack2", snackEveningId); // Evening snack
-        mealPlan.setRecipeId(day, "lunch", lunchId);
-    }
-
-    private String getSelectedRecipeId(ComboBox<String> choiceBox) {
-        String selectedRecipeName = choiceBox.getSelectionModel().getSelectedItem();
-        Recipe selectedRecipe = recipeDAO.getRecipeByName(selectedRecipeName);
-        return selectedRecipe != null ? selectedRecipe.getRecipeId() : null;
-    }
-
-    @FXML
-    private void handleCancelMealPlan() {
-        System.out.println("Meal plan creation canceled!");
-    }
-
-
 
 }

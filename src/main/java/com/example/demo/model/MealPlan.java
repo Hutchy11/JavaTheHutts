@@ -36,28 +36,12 @@ public class MealPlan {
         this.mealPlanId = mealPlanId;
     }
 
-    public String getMealImage(String day, String meal) {
-        return mealImages.getOrDefault(day, new HashMap<>()).get(meal);
-    }
-
-    public void setMealImage(String day, String meal, String imageUrl) {
-        mealImages.computeIfAbsent(day, k -> new HashMap<>()).put(meal, imageUrl);
-    }
-
     public String getRecipeId(String day, String meal) {
         return recipeIds.getOrDefault(day, new HashMap<>()).get(meal);
     }
 
     public void setRecipeId(String day, String meal, String recipeId) {
         recipeIds.computeIfAbsent(day, k -> new HashMap<>()).put(meal, recipeId);
-    }
-
-    public String getRecipeName(String day, String meal) {
-        return recipeNames.getOrDefault(day, new HashMap<>()).get(meal);
-    }
-
-    public void setRecipeName(String day, String meal, String recipeName) {
-        recipeNames.computeIfAbsent(day, k -> new HashMap<>()).put(meal, recipeName);
     }
 
     public Map<String, Map<String, String>> getRecipeIds() {

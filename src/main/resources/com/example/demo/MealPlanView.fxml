@@ -32,7 +32,7 @@
             </VBox.margin></Label>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                 <children>
-                    <Label fx:id="mealPlanDateLabel" alignment="CENTER" text="Date:" >
+                    <Label alignment="CENTER" text="Date:" >
                         <HBox.margin>
                             <Insets bottom="20.0" top="40.0" />
                         </HBox.margin>
@@ -89,51 +89,51 @@
                     <ImageView fx:id="imageViewSnackFridayEvening" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" GridPane.columnIndex="5" GridPane.rowIndex="11" />
 
                     <!-- Meal Name Choices -->
-                    <TextField fx:id="textField1" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                    <TextField fx:id="textField2" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                    <TextField fx:id="textField3" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-                    <TextField fx:id="textField4" GridPane.columnIndex="4" GridPane.rowIndex="3" />
-                    <TextField fx:id="textField5" GridPane.columnIndex="5" GridPane.rowIndex="3" />
-                    <TextField fx:id="textField6" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                    <TextField fx:id="textField7" GridPane.columnIndex="2" GridPane.rowIndex="6" />
-                    <TextField fx:id="textField8" GridPane.columnIndex="3" GridPane.rowIndex="6" />
-                    <TextField fx:id="textField9" GridPane.columnIndex="4" GridPane.rowIndex="6" />
-                    <TextField fx:id="textField10" GridPane.columnIndex="5" GridPane.rowIndex="6" />
-                    <TextField fx:id="textField11" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-                    <TextField fx:id="textField12" GridPane.columnIndex="2" GridPane.rowIndex="9" />
-                    <TextField fx:id="textField13" GridPane.columnIndex="3" GridPane.rowIndex="9" />
-                    <TextField fx:id="textField14" GridPane.columnIndex="4" GridPane.rowIndex="9" />
-                    <TextField fx:id="textField15" GridPane.columnIndex="5" GridPane.rowIndex="9" />
+                    <Label fx:id="mondayBreakfastLabel" text="" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                    <Label fx:id="tuesdayBreakfastLabel" text="" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                    <Label fx:id="wednesdayBreakfastLabel" text="" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                    <Label fx:id="thursdayBreakfastLabel" text="" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+                    <Label fx:id="fridayBreakfastLabel" text="" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+                    <Label fx:id="mondaySnack1Label" text="" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                    <Label fx:id="tuesdaySnack1Label" text="" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+                    <Label fx:id="wednesdaySnack1Label" text="" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+                    <Label fx:id="thursdaySnack1Label" text="" GridPane.columnIndex="4" GridPane.rowIndex="6" />
+                    <Label fx:id="fridaySnack1Label" text="" GridPane.columnIndex="5" GridPane.rowIndex="6" />
+                    <Label fx:id="mondayLunchLabel" text="" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                    <Label fx:id="tuesdayLunchLabel" text="" GridPane.columnIndex="2" GridPane.rowIndex="9" />
+                    <Label fx:id="wednesdayLunchLabel" text="" GridPane.columnIndex="3" GridPane.rowIndex="9" />
+                    <Label fx:id="thursdayLunchLabel" text="" GridPane.columnIndex="4" GridPane.rowIndex="9" />
+                    <Label fx:id="fridayLunchLabel" text="" GridPane.columnIndex="5" GridPane.rowIndex="9" />
 
                     <!-- Snack Choices (evening) -->
-                    <TextField fx:id="textField16" GridPane.columnIndex="1" GridPane.rowIndex="12" />
-                    <TextField fx:id="textField17" GridPane.columnIndex="2" GridPane.rowIndex="12" />
-                    <TextField fx:id="textField18" GridPane.columnIndex="3" GridPane.rowIndex="12" />
-                    <TextField fx:id="textField19" GridPane.columnIndex="4" GridPane.rowIndex="12" />
-                    <TextField fx:id="textField20" GridPane.columnIndex="5" GridPane.rowIndex="12" />
+                    <Label fx:id="mondaySnack2Label" text="" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+                    <Label fx:id="tuesdaySnack2Label" text="" GridPane.columnIndex="2" GridPane.rowIndex="12" />
+                    <Label fx:id="wednesdaySnack2Label" text="" GridPane.columnIndex="3" GridPane.rowIndex="12" />
+                    <Label fx:id="thursdaySnack2Label" text="" GridPane.columnIndex="4" GridPane.rowIndex="12" />
+                    <Label fx:id="fridaySnack2Label" text="" GridPane.columnIndex="5" GridPane.rowIndex="12" />
                 </children>
                 <columnConstraints>
-                    <ColumnConstraints minWidth="200" />
-                    <ColumnConstraints minWidth="200" />
-                    <ColumnConstraints minWidth="200" />
-                    <ColumnConstraints minWidth="200" />
-                    <ColumnConstraints minWidth="200" />
-                    <ColumnConstraints minWidth="200" />
+                    <ColumnConstraints />
+                    <ColumnConstraints />
+                    <ColumnConstraints />
+                    <ColumnConstraints />
+                    <ColumnConstraints />
+                    <ColumnConstraints />
                 </columnConstraints>
                 <rowConstraints>
-                    <RowConstraints minHeight="30" />
-                    <RowConstraints minHeight="30" />
-                    <RowConstraints minHeight="30" />
-                    <RowConstraints minHeight="30" />
-                    <RowConstraints minHeight="30" />
-                    <RowConstraints minHeight="30" />
-                    <RowConstraints minHeight="30" />
-                    <RowConstraints minHeight="30" />
-                    <RowConstraints minHeight="30" />
-                    <RowConstraints minHeight="30" />
-                    <RowConstraints minHeight="30" />
-                    <RowConstraints minHeight="30" />
-                    <RowConstraints minHeight="30" />
+                    <RowConstraints />
+                    <RowConstraints />
+                    <RowConstraints />
+                    <RowConstraints />
+                    <RowConstraints />
+                    <RowConstraints />
+                    <RowConstraints />
+                    <RowConstraints />
+                    <RowConstraints />
+                    <RowConstraints />
+                    <RowConstraints />
+                    <RowConstraints />
+                    <RowConstraints />
                 </rowConstraints>
             </GridPane>
          <padding>
