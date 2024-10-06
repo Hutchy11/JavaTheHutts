@@ -100,7 +100,7 @@
                     <ComboBox fx:id="choiceBoxSnackFridayEvening" prefWidth="150.0" GridPane.columnIndex="5" GridPane.rowIndex="12" />
 
                     <!-- Image Views for Meals -->
-                    <ImageView fx:id="imageViewBreakfastMonday" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                   <ImageView fx:id="imageViewBreakfastMonday" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                     <ImageView fx:id="imageViewBreakfastTuesday" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                     <ImageView fx:id="imageViewBreakfastWednesday" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" GridPane.columnIndex="3" GridPane.rowIndex="2" />
                     <ImageView fx:id="imageViewBreakfastThursday" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" GridPane.columnIndex="4" GridPane.rowIndex="2" />

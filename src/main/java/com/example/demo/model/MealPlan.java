@@ -10,12 +10,21 @@ public class MealPlan {
     private Map<String, Map<String, String>> recipeIds; // Maps day to meal type to recipe ID
     private Map<String, Map<String, String>> mealImages;
     private Map<String, Map<String, String>> recipeNames; // Maps day to meal type to recipe name
-    private String notes;
 
     public MealPlan() {
         recipeIds = new HashMap<>();
         mealImages = new HashMap<>();
         recipeNames = new HashMap<>();
+    }
+
+    // Constructor to match the parameters being passed in MealPlanDAO
+    public MealPlan(String mealPlanId, String staffId, String date, String recipeIds) {
+        this.mealPlanId = mealPlanId;
+        this.staffId = staffId;
+        this.date = date;
+        this.recipeIds = new HashMap<>();
+        this.mealImages = new HashMap<>();
+        this.recipeNames = new HashMap<>();
     }
 
     // Getters and setters
@@ -55,7 +64,6 @@ public class MealPlan {
         return recipeIds;
     }
 
-
     public String getStaffId() {
         return staffId;
     }
@@ -72,11 +80,4 @@ public class MealPlan {
         this.date = date;
     }
 
-    public String getNotes() {
-        return notes;
-    }
-
-    public void setNotes(String notes) {
-        this.notes = notes;
-    }
 }

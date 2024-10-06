@@ -19,8 +19,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 public class CreateMealPlanController {
 
@@ -86,6 +85,7 @@ public class CreateMealPlanController {
     @FXML private ImageView imageViewSnackFridayEvening;
 
     private final RecipeDAO recipeDAO = new RecipeDAO();
+    private Map<String, String> recipeNameToIdMap = new HashMap<>();
 
     @FXML
     private void initialize() {
@@ -125,10 +125,12 @@ public class CreateMealPlanController {
         List<Recipe> recipes = recipeDAO.getRecipesByMealType(mealType);
         for (Recipe recipe : recipes) {
             choiceBox.getItems().add(recipe.getRecipeName());
+            recipeNameToIdMap.put(recipe.getRecipeName(), recipe.getRecipeId());
         }
 
         choiceBox.setOnAction(event -> {
-            String selectedRecipeName = choiceBox.getSelectionModel().getSelectedItem();
+            String selectedRecipeName = choiceBox.getValue();
+            String recipeId = recipeNameToIdMap.get(selectedRecipeName);
             Recipe selectedRecipe = recipeDAO.getRecipeByName(selectedRecipeName);
             if (selectedRecipe != null && selectedRecipe.getRecipeImage() != null && imageView != null) {
                 Image image = new Image(new ByteArrayInputStream(selectedRecipe.getRecipeImage()));
@@ -136,6 +138,11 @@ public class CreateMealPlanController {
             }
             checkFieldsCompletion();
         });
+    }
+
+    private String getRecipeIdFromChoiceBox(ComboBox<String> choiceBox) {
+        String selectedRecipeName = choiceBox.getValue();
+        return recipeNameToIdMap.get(selectedRecipeName);
     }
 
     private void addFieldListeners() {
@@ -202,26 +209,79 @@ public class CreateMealPlanController {
     }
 
 
+    private String[] collectRecipeIds() {
+        String[] recipeIds = new String[40];
+        int index = 0;
+
+        // Collect RecipeIds for Monday
+        recipeIds[index++] = choiceBoxBreakfastMonday.getValue();
+        recipeIds[index++] = choiceBoxSnackMonday.getValue();
+        recipeIds[index++] = choiceBoxLunchMonday.getValue();
+        recipeIds[index++] = choiceBoxSnackMondayEvening.getValue();
+
+        // Collect RecipeIds for Tuesday
+        recipeIds[index++] = choiceBoxBreakfastTuesday.getValue();
+        recipeIds[index++] = choiceBoxSnackTuesday.getValue();
+        recipeIds[index++] = choiceBoxLunchTuesday.getValue();
+        recipeIds[index++] = choiceBoxSnackTuesdayEvening.getValue();
+
+        // Collect RecipeIds for Wednesday
+        recipeIds[index++] = choiceBoxBreakfastWednesday.getValue();
+        recipeIds[index++] = choiceBoxSnackWednesday.getValue();
+        recipeIds[index++] = choiceBoxLunchWednesday.getValue();
+        recipeIds[index++] = choiceBoxSnackWednesdayEvening.getValue();
+
+        // Collect RecipeIds for Thursday
+        recipeIds[index++] = choiceBoxBreakfastThursday.getValue();
+        recipeIds[index++] = choiceBoxSnackThursday.getValue();
+        recipeIds[index++] = choiceBoxLunchThursday.getValue();
+        recipeIds[index++] = choiceBoxSnackThursdayEvening.getValue();
+
+        // Collect RecipeIds for Friday
+        recipeIds[index++] = choiceBoxBreakfastFriday.getValue();
+        recipeIds[index++] = choiceBoxSnackFriday.getValue();
+        recipeIds[index++] = choiceBoxLunchFriday.getValue();
+        recipeIds[index++] = choiceBoxSnackFridayEvening.getValue();
+
+        return recipeIds;
+    }
+
     @FXML
     private void createMealPlan() {
         MealPlan mealPlan = new MealPlan();
-        mealPlan.setMealPlanId(UUID.randomUUID().toString());
+        mealPlan.setMealPlanId(UUID.randomUUID().toString()); // Ensure unique MealPlanId
         mealPlan.setStaffId(""); // Replace with actual staff ID
         mealPlan.setDate(datePicker.getValue().toString());
 
-        // Set recipe IDs for each day
-        setMealPlanForDay(mealPlan, "monday", choiceBoxBreakfastMonday, choiceBoxSnackMonday, choiceBoxSnackMondayEvening, choiceBoxLunchMonday);
-        setMealPlanForDay(mealPlan, "tuesday", choiceBoxBreakfastTuesday, choiceBoxSnackTuesday, choiceBoxSnackTuesdayEvening, choiceBoxLunchTuesday);
-        setMealPlanForDay(mealPlan, "wednesday", choiceBoxBreakfastWednesday, choiceBoxSnackWednesday, choiceBoxSnackWednesdayEvening, choiceBoxLunchWednesday);
-        setMealPlanForDay(mealPlan, "thursday", choiceBoxBreakfastThursday, choiceBoxSnackThursday, choiceBoxSnackThursdayEvening, choiceBoxLunchThursday);
-        setMealPlanForDay(mealPlan, "friday", choiceBoxBreakfastFriday, choiceBoxSnackFriday, choiceBoxSnackFridayEvening, choiceBoxLunchFriday);
+        // Collect and set RecipeIds using getRecipeIdFromChoiceBox
+        mealPlan.setRecipeId("monday", "breakfast", getRecipeIdFromChoiceBox(choiceBoxBreakfastMonday));
+        mealPlan.setRecipeId("monday", "snack", getRecipeIdFromChoiceBox(choiceBoxSnackMonday));
+        mealPlan.setRecipeId("monday", "lunch", getRecipeIdFromChoiceBox(choiceBoxLunchMonday));
+        mealPlan.setRecipeId("monday", "snack2", getRecipeIdFromChoiceBox(choiceBoxSnackMondayEvening));
+
+        mealPlan.setRecipeId("tuesday", "breakfast", getRecipeIdFromChoiceBox(choiceBoxBreakfastTuesday));
+        mealPlan.setRecipeId("tuesday", "snack", getRecipeIdFromChoiceBox(choiceBoxSnackTuesday));
+        mealPlan.setRecipeId("tuesday", "lunch", getRecipeIdFromChoiceBox(choiceBoxLunchTuesday));
+        mealPlan.setRecipeId("tuesday", "snack2", getRecipeIdFromChoiceBox(choiceBoxSnackTuesdayEvening));
+
+        mealPlan.setRecipeId("wednesday", "breakfast", getRecipeIdFromChoiceBox(choiceBoxBreakfastWednesday));
+        mealPlan.setRecipeId("wednesday", "snack", getRecipeIdFromChoiceBox(choiceBoxSnackWednesday));
+        mealPlan.setRecipeId("wednesday", "lunch", getRecipeIdFromChoiceBox(choiceBoxLunchWednesday));
+        mealPlan.setRecipeId("wednesday", "snack2", getRecipeIdFromChoiceBox(choiceBoxSnackWednesdayEvening));
+
+        mealPlan.setRecipeId("thursday", "breakfast", getRecipeIdFromChoiceBox(choiceBoxBreakfastThursday));
+        mealPlan.setRecipeId("thursday", "snack", getRecipeIdFromChoiceBox(choiceBoxSnackThursday));
+        mealPlan.setRecipeId("thursday", "lunch", getRecipeIdFromChoiceBox(choiceBoxLunchThursday));
+        mealPlan.setRecipeId("thursday", "snack2", getRecipeIdFromChoiceBox(choiceBoxSnackThursdayEvening));
+
+        mealPlan.setRecipeId("friday", "breakfast", getRecipeIdFromChoiceBox(choiceBoxBreakfastFriday));
+        mealPlan.setRecipeId("friday", "snack", getRecipeIdFromChoiceBox(choiceBoxSnackFriday));
+        mealPlan.setRecipeId("friday", "lunch", getRecipeIdFromChoiceBox(choiceBoxLunchFriday));
+        mealPlan.setRecipeId("friday", "snack2", getRecipeIdFromChoiceBox(choiceBoxSnackFridayEvening));
 
         try (Connection connection = DriverManager.getConnection("jdbc:sqlite:childcaredb.db")) {
-            MealPlanDAO mealPlanDAO = new MealPlanDAO(connection);
-            mealPlanDAO.saveMealPlan(mealPlan);
-
-            // Print to console
-            System.out.println("Meal plan saved!");
+            MealPlanDAO mealPlanDAO = new MealPlanDAO();
+            mealPlanDAO.insertMealPlan(mealPlan);
 
             // Show success alert
             Alert alert = new Alert(AlertType.INFORMATION);
@@ -242,7 +302,6 @@ public class CreateMealPlanController {
             alert.setContentText(e.getMessage());
             alert.showAndWait();
         }
-
     }
 
     private void clearFields() {

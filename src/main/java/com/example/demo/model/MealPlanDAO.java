@@ -1,60 +1,109 @@
 package com.example.demo.model;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.*;
+import java.util.stream.Collectors;
 
-public class MealPlanDAO {
+public class MealPlanDAO implements IMealPlanDAO {
     private Connection connection;
 
-    public MealPlanDAO(Connection connection) {
-        this.connection = connection;
-    }
-
-    public void saveMealPlan(MealPlan mealPlan) throws SQLException {
-        String sql = "INSERT INTO MealPlan (MealPlanId, StaffId, Date, Notes) VALUES (?, ?, ?, ?)";
-        try (PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setString(1, mealPlan.getMealPlanId());
-            statement.setString(2, mealPlan.getStaffId());
-            statement.setString(3, mealPlan.getDate());
-            statement.setString(4, mealPlan.getNotes());
-            statement.executeUpdate();
-        }
-
-        // Save recipes associated with this meal plan
-        for (String day : mealPlan.getRecipeIds().keySet()) {
-            for (String mealType : mealPlan.getRecipeIds().get(day).keySet()) {
-                String recipeId = mealPlan.getRecipeId(day, mealType);
-                // Save the recipe to the Recipe table, if needed.
-            }
+    public MealPlanDAO() {
+        try {
+            // Initialize the database connection
+            connection = DriverManager.getConnection("jdbc:sqlite:childcaredb.db");
+            createTable();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
-
-    public MealPlan getMealPlanById(String mealPlanId) throws SQLException {
-        String sql = "SELECT * FROM MealPlan WHERE MealPlanId = ?";
-        try (PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setString(1, mealPlanId);
-            ResultSet resultSet = statement.executeQuery();
-
-            if (resultSet.next()) {
-                MealPlan mealPlan = new MealPlan();
-                mealPlan.setMealPlanId(resultSet.getString("MealPlanId"));
-                mealPlan.setStaffId(resultSet.getString("StaffId"));
-                mealPlan.setDate(resultSet.getString("Date"));
-                mealPlan.setRecipeId("day", "meal", resultSet.getString("RecipeId")); // Adjust as needed
-                mealPlan.setNotes(resultSet.getString("Notes"));
-                return mealPlan;
-            }
+    // Create table if it doesn't exist
+    public void createTable() {
+        String createTableSQL = """
+            CREATE TABLE IF NOT EXISTS MealPlan (
+                MealPlanId TEXT PRIMARY KEY,
+                StaffId TEXT NOT NULL,
+                Date TEXT NOT NULL,
+                RecipeId TEXT
+            );
+        """;
+        try (PreparedStatement pstmt = connection.prepareStatement(createTableSQL)) {
+            pstmt.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+    }
+
+    public void insertMealPlan(MealPlan mealPlan) {
+        String mealPlanId = mealPlan.getMealPlanId();
+        String recipeIds = mealPlan.getRecipeIds().values().stream()
+                .flatMap(dayRecipes -> dayRecipes.values().stream())
+                .collect(Collectors.joining(","));
+
+        String sql = "INSERT INTO MealPlan (MealPlanId, StaffId, Date, RecipeId) VALUES (?, ?, ?, ?)";
+        try (Connection connection = DriverManager.getConnection("jdbc:sqlite:childcaredb.db");
+             PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setString(1, mealPlanId);
+            pstmt.setString(2, mealPlan.getStaffId());
+            pstmt.setString(3, mealPlan.getDate());
+            pstmt.setString(4, recipeIds);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static List<String> getAllMealPlanDates() {
+        List<String> mealPlanDates = new ArrayList<>();
+        String query = "SELECT DISTINCT date FROM MealPlan";
+
+        try (Connection connection = SqliteConnection.getInstance();
+             PreparedStatement pstmt = connection.prepareStatement(query);
+             ResultSet resultSet = pstmt.executeQuery()) {
+
+            while (resultSet.next()) {
+                mealPlanDates.add(resultSet.getString("date"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return mealPlanDates;
+    }
+
+    // Method to retrieve a meal plan by its ID
+    @Override
+    public MealPlan getMealPlanById(String mealPlanId) {
         return null; // No meal plan found
     }
 
-    public List<MealPlan> getAllMealPlans() throws SQLException {
+    // Method to retrieve a meal plan by its date
+    @Override
+    public MealPlan getMealPlanByDate(String date) {
+        MealPlan mealPlan = null;
+        String sql = "SELECT * FROM MealPlan WHERE Date = ?";
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setString(1, date);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    mealPlan = new MealPlan(
+                            rs.getString("MealPlanId"),
+                            rs.getString("StaffId"),
+                            rs.getString("Date"),
+                            rs.getString("RecipeId")
+                    );
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return mealPlan;
+    }
+
+    @Override
+    public List<MealPlan> getAllMealPlans() {
         List<MealPlan> mealPlans = new ArrayList<>();
-        String sql = "SELECT mp.MealPlanId, mp.StaffId, mp.Date, mp.Notes, r.RecipeId, r.RecipeName, r.MealType, r.RecipeImage " +
+        String sql = "SELECT mp.MealPlanId, mp.StaffId, mp.Date, r.RecipeId, r.RecipeName, r.MealType, r.RecipeImage " +
                 "FROM MealPlan mp " +
                 "LEFT JOIN Recipe r ON mp.MealPlanId = r.MealPlanId";
 
@@ -71,7 +120,6 @@ public class MealPlanDAO {
                     mealPlan.setMealPlanId(mealPlanId);
                     mealPlan.setStaffId(resultSet.getString("StaffId"));
                     mealPlan.setDate(resultSet.getString("Date"));
-                    mealPlan.setNotes(resultSet.getString("Notes"));
                     mealPlanMap.put(mealPlanId, mealPlan);
                 }
 
@@ -89,9 +137,19 @@ public class MealPlanDAO {
             }
 
             mealPlans.addAll(mealPlanMap.values());
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return mealPlans;
     }
 
+    @Override
+    public void updateMealPlan(MealPlan mealPlan) {
+        // Implementation here
+    }
 
+    @Override
+    public void deleteMealPlan(String mealPlanId) {
+        // Implementation here
+    }
 }
