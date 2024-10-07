@@ -50,8 +50,6 @@ public class ChildDAO implements IChildDAO {
         }
     }
 
-
-    // Fetch all carers from the database
     public List<Child> getAllChildren() {
         List<Child> children = new ArrayList<>();
         String query = "SELECT * FROM child";
@@ -107,4 +105,19 @@ public class ChildDAO implements IChildDAO {
         return children;
     }
 
+    public void updateChild(Child child) {
+        String sql = "UPDATE child SET FirstName = ?, LastName = ?, DateOfBirth = ?, Allergies = ?, DietaryRequirements = ?, EmergencyContact = ? WHERE ChildId = ?";
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setString(1, child.getFirstName());
+            pstmt.setString(2, child.getLastName());
+            pstmt.setString(3, child.getDateOfBirth());
+            pstmt.setString(4, child.getAllergies());
+            pstmt.setString(5, child.getDietaryRequirements());
+            pstmt.setString(6, child.getEmergencyContact());
+            pstmt.setString(7, child.getChildId());
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
