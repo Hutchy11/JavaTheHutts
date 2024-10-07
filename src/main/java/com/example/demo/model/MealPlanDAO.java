@@ -5,12 +5,16 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 /**
- * Controller class for the Register Carer View.
- * Handles the registration of a new carer.
+ * Data Access Object (DAO) class for MealPlan.
+ * Handles database operations related to meal plans.
  */
 public class MealPlanDAO implements IMealPlanDAO {
     private Connection connection;
 
+    /**
+     * Constructor for the MealPlanDAO class.
+     * Initializes the database connection and creates the meal plan table if it doesn't exist.
+     */
     public MealPlanDAO() {
         try {
             // Initialize the database connection
@@ -21,7 +25,9 @@ public class MealPlanDAO implements IMealPlanDAO {
         }
     }
 
-    // Create table if it doesn't exist
+    /**
+     * Creates the meal plan table in the database if it doesn't exist.
+     */
     public void createTable() {
         String createTableSQL = """
             CREATE TABLE IF NOT EXISTS MealPlan (
@@ -38,6 +44,11 @@ public class MealPlanDAO implements IMealPlanDAO {
         }
     }
 
+    /**
+     * Inserts a new meal plan into the database.
+     *
+     * @param mealPlan the MealPlan object to be inserted
+     */
     public void insertMealPlan(MealPlan mealPlan) {
         String mealPlanId = mealPlan.getMealPlanId();
         String recipeIds = mealPlan.getRecipeIds().values().stream()
@@ -57,6 +68,11 @@ public class MealPlanDAO implements IMealPlanDAO {
         }
     }
 
+    /**
+     * Fetches all distinct meal plan dates from the database.
+     *
+     * @return a list of meal plan dates
+     */
     public static List<String> getAllMealPlanDates() {
         List<String> mealPlanDates = new ArrayList<>();
         String query = "SELECT DISTINCT date FROM MealPlan";
@@ -75,6 +91,12 @@ public class MealPlanDAO implements IMealPlanDAO {
         return mealPlanDates;
     }
 
+    /**
+     * Fetches all recipe IDs for a given date from the database.
+     *
+     * @param date the date for which to fetch recipe IDs
+     * @return a list of recipe IDs
+     */
     @Override
     public List<String> getAllRecipeIdsByDate(String date) {
         List<String> recipeIds = new ArrayList<>();

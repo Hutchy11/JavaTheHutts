@@ -11,6 +11,10 @@ import java.sql.SQLException;
 public class SqliteConnection {
     private static Connection instance = null;
 
+    /**
+     * Private constructor to prevent instantiation.
+     * Initializes the database connection.
+     */
     private SqliteConnection() {
         String url = "jdbc:sqlite:childcaredb.db";
         try {
@@ -20,6 +24,12 @@ public class SqliteConnection {
         }
     }
 
+    /**
+     * Returns the single instance of the database connection.
+     * If the instance is null, it initializes the connection.
+     *
+     * @return the single instance of the database connection
+     */
     public static Connection getInstance() {
         if (instance == null) {
             new SqliteConnection();

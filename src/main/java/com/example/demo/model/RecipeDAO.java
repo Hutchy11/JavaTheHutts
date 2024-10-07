@@ -5,15 +5,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Controller class for the Register Carer View.
- * Handles the registration of a new carer.
+ * Data Access Object (DAO) class for Recipe.
+ * Handles database operations related to recipes.
  */
 public class RecipeDAO implements IRecipeDAO {
     private Connection connection;
 
+    /**
+     * Constructor for the RecipeDAO class.
+     * Initializes the database connection and creates the recipe table if it doesn't exist.
+     */
     public RecipeDAO() {
         try {
-            // Initialize the database connection
             connection = DriverManager.getConnection("jdbc:sqlite:childcaredb.db");
             createTable();
         } catch (SQLException e) {
@@ -21,7 +24,9 @@ public class RecipeDAO implements IRecipeDAO {
         }
     }
 
-    // Create table if it doesn't exist
+    /**
+     * Creates the recipe table in the database if it doesn't exist.
+     */
     public void createTable() {
         String sql = """
             CREATE TABLE IF NOT EXISTS Recipe (
@@ -45,7 +50,11 @@ public class RecipeDAO implements IRecipeDAO {
         }
     }
 
-    // Method to insert a new recipe into the database
+    /**
+     * Inserts a new recipe into the database.
+     *
+     * @param recipe the Recipe object to be inserted
+     */
     @Override
     public void insertRecipe(Recipe recipe) {
         String sql = "INSERT INTO Recipe (RecipeId, RecipeName, MealType, RecipeImage, Ingredients, Instructions) VALUES (?, ?, ?, ?, ?, ?)";
@@ -62,7 +71,12 @@ public class RecipeDAO implements IRecipeDAO {
         }
     }
 
-    // Method to retrieve a recipe by its name
+    /**
+     * Retrieves a recipe by its name from the database.
+     *
+     * @param recipeName the name of the recipe
+     * @return the Recipe object if found, null otherwise
+     */
     @Override
     public Recipe getRecipeByName(String recipeName) {
         Recipe recipe = null;
@@ -87,7 +101,12 @@ public class RecipeDAO implements IRecipeDAO {
         return recipe;
     }
 
-    // Method to get recipes by meal type
+    /**
+     * Retrieves recipes by meal type from the database.
+     *
+     * @param mealType the type of meal (e.g., breakfast, lunch, dinner)
+     * @return a list of Recipe objects
+     */
     public List<Recipe> getRecipesByMealType(String mealType) {
         List<Recipe> recipes = new ArrayList<>();
         String sql = "SELECT * FROM Recipe WHERE MealType = ?";
@@ -111,6 +130,12 @@ public class RecipeDAO implements IRecipeDAO {
         return recipes;
     }
 
+    /**
+     * Retrieves recipe names by their IDs from the database.
+     *
+     * @param recipeIds a list of recipe IDs
+     * @return a list of recipe names
+     */
     @Override
     public List<String> getRecipeNameById(List<String> recipeIds) {
         List<String> recipeNames = new ArrayList<>();
@@ -135,6 +160,11 @@ public class RecipeDAO implements IRecipeDAO {
         return recipeNames;  // Return the list of recipe names
     }
 
+    /**
+     * Retrieves all recipe names from the database.
+     *
+     * @return a list of all recipe names
+     */
     public List<String> getAllRecipeNames() {
         List<String> recipeNames = new ArrayList<>();
         String sql = "SELECT RecipeName FROM Recipe";

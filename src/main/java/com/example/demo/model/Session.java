@@ -28,7 +28,9 @@ public class Session {
         return loggedStaff;
     }
 
-    // Clear the session
+    /**
+     * Clear the logged-in Carer and Staff.
+     */
     public static void clear() {
         loggedCarer = null;
         loggedStaff = null;

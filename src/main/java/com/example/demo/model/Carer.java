@@ -1,8 +1,8 @@
 package com.example.demo.model;
 
 /**
- * Controller class for the Register Carer View.
- * Handles the registration of a new carer.
+ * Model class representing a Carer.
+ * Contains information about a carer and provides methods to access and modify this information.
  */
 public class Carer {
     private String carerId;
@@ -13,6 +13,18 @@ public class Carer {
     private String phone;
     private String address;
 
+    /**
+     * Constructor for the Carer class.
+     * Initializes a new Carer object with the specified details.
+     *
+     * @param carerId the unique ID of the carer
+     * @param firstName the first name of the carer
+     * @param lastName the last name of the carer
+     * @param email the email address of the carer
+     * @param password the password of the carer
+     * @param phone the phone number of the carer
+     * @param address the address of the carer
+     */
     public Carer(String carerId, String firstName, String lastName, String email, String password, String phone, String address) {
         this.carerId = carerId;
         this.firstName = firstName;

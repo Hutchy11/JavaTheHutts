@@ -7,18 +7,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Controller class for the Register Carer View.
- * Handles the registration of a new carer.
+ * Data Access Object (DAO) class for Carer.
+ * Handles database operations related to carers.
  */
 public class CarerDAO implements ICarerDAO {
     private Connection connection;
 
+    /**
+     * Constructor for the CarerDAO class.
+     * Initializes the database connection and creates the carer table if it doesn't exist.
+     */
     public CarerDAO(){
         connection = SqliteConnection.getInstance();
         createTable();
     }
 
-    // Create table if it doesn't exist
+    /**
+     * Creates the carer table in the database if it doesn't exist.
+     */
     public void createTable() {
         String createTableSQL = """
             CREATE TABLE IF NOT EXISTS carer (
@@ -38,7 +44,13 @@ public class CarerDAO implements ICarerDAO {
         }
     }
 
-    // Method for carer login
+    /**
+     * Logs in a carer by checking the email and password.
+     *
+     * @param email the email of the carer
+     * @param password the password of the carer
+     * @return the Carer object if login is successful, null otherwise
+     */
     public Carer login(String email, String password) {
         String query = "SELECT * FROM carer WHERE Email = ? AND Password = ?";
         try (PreparedStatement pstmt = connection.prepareStatement(query)) {
@@ -62,7 +74,11 @@ public class CarerDAO implements ICarerDAO {
         return null;
     }
 
-    // Fetch all carers from the database
+    /**
+     * Fetches all carers from the database.
+     *
+     * @return a list of Carer objects
+     */
     public List<Carer> getAllCarers() {
         List<Carer> carers = new ArrayList<>();
         String query = "SELECT * FROM carer";
@@ -89,7 +105,18 @@ public class CarerDAO implements ICarerDAO {
         return carers;
     }
 
-    // Method to register a new carer
+    /**
+     * Registers a new carer in the database.
+     *
+     * @param carerId the unique ID of the carer
+     * @param firstName the first name of the carer
+     * @param lastName the last name of the carer
+     * @param email the email address of the carer
+     * @param password the password of the carer
+     * @param phone the phone number of the carer
+     * @param address the address of the carer
+     * @return true if the registration is successful, false otherwise
+     */
     public boolean registerCarer(String carerId, String firstName, String lastName, String email, String password, String phone, String address) {
         String insertSQL = """
             INSERT INTO carer (CarerId, FirstName, LastName, Email, Password, Phone, Address)

@@ -5,17 +5,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Controller class for the Register Carer View.
- * Handles the registration of a new carer.
+ * Data Access Object (DAO) class for Child.
+ * Handles database operations related to children.
  */
 public class ChildDAO implements IChildDAO {
     private Connection connection;
 
+    /**
+     * Constructor for the ChildDAO class.
+     * Initializes the database connection and creates the child table if it doesn't exist.
+     */
     public ChildDAO() {
         connection = SqliteConnection.getInstance();
         createTable();
     }
 
+    /**
+     * Creates the child table in the database if it doesn't exist.
+     */
     public void createTable() {
         String createTableSQL = """
             CREATE TABLE IF NOT EXISTS child (
@@ -37,6 +44,11 @@ public class ChildDAO implements IChildDAO {
         }
     }
 
+    /**
+     * Inserts a new child into the database.
+     *
+     * @param child the Child object to be inserted
+     */
     public void insertChild(Child child) {
         String query = "INSERT INTO child (ChildId, ParentId, FirstName, LastName, DateOfBirth, Allergies, DietaryRequirements, EmergencyContact) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement pstmt = connection.prepareStatement(query)) {
@@ -55,7 +67,11 @@ public class ChildDAO implements IChildDAO {
     }
 
 
-    // Fetch all carers from the database
+    /**
+     * Fetches all children from the database.
+     *
+     * @return a list of Child objects
+     */
     public List<Child> getAllChildren() {
         List<Child> children = new ArrayList<>();
         String query = "SELECT * FROM child";
@@ -83,6 +99,12 @@ public class ChildDAO implements IChildDAO {
         return children;
     }
 
+    /**
+     * Fetches children from the database by parent ID.
+     *
+     * @param parentId the ID of the parent
+     * @return a list of Child objects associated with the given parent ID
+     */
     public List<Child> getChildrenByParent(String parentId) {
         List<Child> children = new ArrayList<>();
         String query = "SELECT * FROM child WHERE ParentId = ?";

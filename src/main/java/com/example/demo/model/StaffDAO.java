@@ -5,17 +5,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Controller class for the Carer Navigation Bar.
- * Handles navigation between different views for carers.
+ * Data Access Object (DAO) class for Staff.
+ * Handles database operations related to staff members.
  */
 public class StaffDAO implements IStaffDAO {
     private Connection connection;
 
+    /**
+     * Constructor for the StaffDAO class.
+     * Initializes the database connection and creates the staff table if it doesn't exist.
+     */
     public StaffDAO(){
         connection = SqliteConnection.getInstance();
         createTable();
     }
 
+    /**
+     * Creates the staff table in the database if it doesn't exist.
+     */
     public void createTable() {
         String sql = "CREATE TABLE IF NOT EXISTS staff ("
                 + "StaffId TEXT PRIMARY KEY, "       // UUID probably
@@ -37,6 +44,13 @@ public class StaffDAO implements IStaffDAO {
         }
     }
 
+    /**
+     * Logs in a staff member by verifying their email and password.
+     *
+     * @param email the email of the staff member
+     * @param password the password of the staff member
+     * @return the Staff object if login is successful, null otherwise
+     */
     public Staff login(String email, String password) {
         String query = "SELECT * FROM staff WHERE Email = ? AND Password = ?";
         try (PreparedStatement pstmt = connection.prepareStatement(query)) {
@@ -67,7 +81,19 @@ public class StaffDAO implements IStaffDAO {
         }
     }
 
-    // Method to register a new staff
+    /**
+     * Registers a new staff member in the database.
+     *
+     * @param staffId the unique ID of the staff member
+     * @param firstName the first name of the staff member
+     * @param lastName the last name of the staff member
+     * @param email the email of the staff member
+     * @param password the password of the staff member
+     * @param phone the phone number of the staff member
+     * @param role the role of the staff member
+     * @param hireDate the hire date of the staff member
+     * @return true if the registration is successful, false otherwise
+     */
     public boolean registerStaff(String staffId, String firstName, String lastName, String email, String password, String phone, String role, String hireDate) {
         String insertSQL = """
             INSERT INTO staff (StaffId, FirstName, LastName, Email, Password, Phone, Role, HireDate)
@@ -90,6 +116,11 @@ public class StaffDAO implements IStaffDAO {
         return false;
     }
 
+    /**
+     * Retrieves all staff members from the database.
+     *
+     * @return a list of Staff objects
+     */
     public List<Staff> getAllStaffs() {
         List<Staff> staffs = new ArrayList<>();
         String query = "SELECT * FROM staff";
