@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" spacing="10" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.controller.EditStaffProfileDialogController">
+    <Label text="Edit Staff Profile" />
+    <TextField fx:id="firstNameField" promptText="First Name" />
+    <TextField fx:id="lastNameField" promptText="Last Name" />
+    <TextField fx:id="emailField" promptText="Email" />
+    <TextField fx:id="phoneField" promptText="Phone" />
+    <TextField fx:id="hireDateField" promptText="Hire Date" />
+    <TextField fx:id="roleField" promptText="Role" />
+    <TextField fx:id="passwordField" layoutX="10.0" layoutY="182.0" promptText="Password" />
+    <HBox alignment="CENTER" spacing="10">
+        <Button onAction="#cancel" text="Cancel" />
+        <Button onAction="#save" text="Save" />
+    </HBox>
+</VBox>

@@ -18,6 +18,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.List;
 
 
 public class StaffProfileMenuViewController {
@@ -55,6 +56,12 @@ public class StaffProfileMenuViewController {
         roleColumn.setCellValueFactory(new PropertyValueFactory<>("role"));
         hireDateColumn.setCellValueFactory(new PropertyValueFactory<>("hireDate"));
 
+        staffTableView.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 2 && staffTableView.getSelectionModel().getSelectedItem() != null) {
+                openEditStaffProfileDialog(staffTableView.getSelectionModel().getSelectedItem());
+            }
+        });
+
         loadStaffData();
     }
 
@@ -74,6 +81,29 @@ public class StaffProfileMenuViewController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void openEditStaffProfileDialog(Staff staff) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/demo/EditStaffProfile.fxml"));
+            Parent parent = loader.load();
+
+            EditStaffProfileDialogController controller = loader.getController();
+            controller.setStaff(staff);
+            controller.setParentController(this);
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(parent));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void refreshTable() {
+        List<Staff> staff = staffDAO.getAllStaffs();
+        ObservableList<Staff> staffList = FXCollections.observableArrayList(staff);
+        staffTableView.setItems(staffList);
     }
 
     public static class CreateMealPlanController {
