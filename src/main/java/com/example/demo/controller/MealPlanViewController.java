@@ -13,15 +13,15 @@ import java.util.List;
 public class MealPlanViewController {
 
     @FXML
-    private Label mondayBreakfastLabel;
+    public Label mondayBreakfastLabel;
     @FXML
-    private Label tuesdayBreakfastLabel;
+    public Label tuesdayBreakfastLabel;
     @FXML
-    private Label wednesdayBreakfastLabel;
+    public Label wednesdayBreakfastLabel;
     @FXML
-    private Label thursdayBreakfastLabel;
+    public Label thursdayBreakfastLabel;
     @FXML
-    private Label fridayBreakfastLabel;
+    public Label fridayBreakfastLabel;
     @FXML
     private Label mondaySnack1Label;
     @FXML
@@ -73,8 +73,8 @@ public class MealPlanViewController {
     @FXML
     private ImageView imageViewSnackThursdayEvening, imageViewSnackFridayEvening;
 
-    private MealPlanDAO mealPlanDAO = new MealPlanDAO();
-    private RecipeDAO recipeDAO = new RecipeDAO();
+    public MealPlanDAO mealPlanDAO = new MealPlanDAO();
+    public RecipeDAO recipeDAO = new RecipeDAO();
 
 
     @FXML
@@ -90,7 +90,9 @@ public class MealPlanViewController {
 
     public void setMealPlanDetails(String date) {
         List<String> recipeIds = mealPlanDAO.getAllRecipeIdsByDate(date);
+        System.out.println("Fetched recipe IDs: " + recipeIds);
         List<String> recipeNames = recipeDAO.getRecipeNameById(recipeIds);
+        System.out.println("Fetched recipe names: " + recipeNames);
 
         if (recipeNames != null && recipeNames.size() >= 19) {
             // Set labels and images for each day of the week

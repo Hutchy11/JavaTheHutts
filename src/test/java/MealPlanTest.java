@@ -37,4 +37,5 @@ class MealPlanTest {
             controller.createMealPlan(null, LocalDate.of(2023, 10, 1));
         });
     }
+
 }
