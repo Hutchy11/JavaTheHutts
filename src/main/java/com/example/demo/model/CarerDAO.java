@@ -107,4 +107,22 @@ public class CarerDAO implements ICarerDAO {
         }
         return false;
     }
+
+    // Method to update a carer
+    public void updateCarer(Carer carer) {
+        String sql = "UPDATE carer SET FirstName = ?, LastName = ?, Email = ?, Phone = ?, Address = ?, Password = ? WHERE CarerId = ?";
+
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setString(1, carer.getFirstName());
+            pstmt.setString(2, carer.getLastName());
+            pstmt.setString(3, carer.getEmail());
+            pstmt.setString(4, carer.getPhone());
+            pstmt.setString(5, carer.getAddress());
+            pstmt.setString(6, carer.getPassword());
+            pstmt.setString(7, carer.getCarerId());
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
