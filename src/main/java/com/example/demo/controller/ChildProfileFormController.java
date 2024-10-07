@@ -1,23 +1,24 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.*;
+import com.example.demo.model.Carer;
+import com.example.demo.model.CarerDAO;
+import com.example.demo.model.Child;
+import com.example.demo.model.ChildDAO;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-import java.sql.*;
 import java.util.List;
 import java.util.UUID;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.scene.control.Button;
-
 public class ChildProfileFormController {
 
-    private CarerDAO carerDAO = new CarerDAO(); // Initialize CarerDAO
-    private ChildDAO childDAO = new ChildDAO(); // Initialize ChildDAO
+    private final CarerDAO carerDAO = new CarerDAO(); // Initialize CarerDAO
+    private final ChildDAO childDAO = new ChildDAO(); // Initialize ChildDAO
 
     @FXML
     private TextField firstNameField;

@@ -7,9 +7,9 @@ public class MealPlan {
     private String mealPlanId;
     private String staffId;
     private String date;
-    private Map<String, Map<String, String>> recipeIds; // Maps day to meal type to recipe ID
-    private Map<String, Map<String, String>> mealImages;
-    private Map<String, Map<String, String>> recipeNames; // Maps day to meal type to recipe name
+    private final Map<String, Map<String, String>> recipeIds; // Maps day to meal type to recipe ID
+    private final Map<String, Map<String, String>> mealImages;
+    private final Map<String, Map<String, String>> recipeNames; // Maps day to meal type to recipe name
     private String notes;
 
     public MealPlan() {

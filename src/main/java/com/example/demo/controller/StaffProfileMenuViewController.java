@@ -39,7 +39,7 @@ public class StaffProfileMenuViewController {
     @FXML
     private TableColumn<Staff, String> hireDateColumn;
 
-    private StaffDAO staffDAO;
+    private final StaffDAO staffDAO;
 
     public StaffProfileMenuViewController() {
         staffDAO = new StaffDAO();

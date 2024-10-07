@@ -1,56 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.Circle?>
-
-<VBox stylesheets="@styles/trial.css" alignment="TOP_LEFT" spacing="0.0" xmlns="http://javafx.com/javafx/21"
-      xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.controller.CarerProfileMenuViewController">
+<VBox xmlns:fx="http://javafx.com/fxml/1" stylesheets="@styles/trial.css" alignment="TOP_LEFT" spacing="0.0"
+      xmlns="http://javafx.com/javafx/21" fx:controller="com.example.demo.controller.CarerProfileMenuViewController">
     <HBox styleClass="header-hbox" prefHeight="49.0" prefWidth="600.0" alignment="CENTER_LEFT">
         <VBox alignment="CENTER_LEFT">
             <ImageView fx:id="logoImage" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                 <image>
-                    <Image url="@styles/logo.png" />
+                    <Image url="@styles/logo.png"/>
                 </image>
                 <clip>
-                    <Circle radius="25.0" centerX="25.0" centerY="25.0" />
+                    <Circle radius="25.0" centerX="25.0" centerY="25.0"/>
                 </clip>
             </ImageView>
         </VBox>
-        <Region HBox.hgrow="ALWAYS" />
+        <Region HBox.hgrow="ALWAYS"/>
         <VBox alignment="CENTER_RIGHT">
             <fx:include source="StaffNavigationBar.fxml"/>
         </VBox>
     </HBox>
     <VBox prefHeight="720.0" prefWidth="300.0" alignment="TOP_LEFT" spacing="10.0" style="-fx-background-color: white;">
         <HBox alignment="CENTER">
-            <Label alignment="CENTER" text="Carer Profile Menu, Select Options Below" />
+            <Label alignment="CENTER" text="Carer Profile Menu, Select Options Below"/>
         </HBox>
         <HBox alignment="CENTER_LEFT">
             <Button text="Register Carer Profile" onAction="#navigateToRegisterCarer"/>
         </HBox>
         <TableView fx:id="carerTableView" prefHeight="200.0" prefWidth="600.0">
             <columns>
-                <TableColumn fx:id="carerIdColumn" text="Carer ID" />
-                <TableColumn fx:id="firstNameColumn" text="First Name" />
-                <TableColumn fx:id="lastNameColumn" text="Last Name" />
-                <TableColumn fx:id="emailColumn" text="Email" />
-                <TableColumn fx:id="phoneColumn" text="Phone" />
-                <TableColumn fx:id="addressColumn" text="Address" />
+                <TableColumn fx:id="carerIdColumn" text="Carer ID"/>
+                <TableColumn fx:id="firstNameColumn" text="First Name"/>
+                <TableColumn fx:id="lastNameColumn" text="Last Name"/>
+                <TableColumn fx:id="emailColumn" text="Email"/>
+                <TableColumn fx:id="phoneColumn" text="Phone"/>
+                <TableColumn fx:id="addressColumn" text="Address"/>
             </columns>
         </TableView>
     </VBox>
 
     <HBox styleClass="footer-hbox" prefHeight="49.0" prefWidth="600.0" alignment="CENTER_LEFT">
-        <Label text="Call us: 0412345678" />
-        <Region HBox.hgrow="ALWAYS" />
+        <Label text="Call us: 0412345678"/>
+        <Region HBox.hgrow="ALWAYS"/>
         <Hyperlink text="Terms and Conditions"/>
-        <Region HBox.hgrow="ALWAYS" />
-        <Label text="150 W. 85th Street, Brisbane" />
+        <Region HBox.hgrow="ALWAYS"/>
+        <Label text="150 W. 85th Street, Brisbane"/>
     </HBox>
 </VBox>

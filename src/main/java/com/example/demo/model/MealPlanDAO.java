@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.*;
 
 public class MealPlanDAO {
-    private Connection connection;
+    private final Connection connection;
 
     public MealPlanDAO(Connection connection) {
         this.connection = connection;

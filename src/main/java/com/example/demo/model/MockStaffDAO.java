@@ -1,6 +1,6 @@
 package com.example.demo.model;
 
-public class MockStaffDAO implements IStaffDAO{
+public class MockStaffDAO implements IStaffDAO {
     @Override
     public void createTable() {
         // This wil not be tested.

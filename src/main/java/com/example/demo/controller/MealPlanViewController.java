@@ -1,12 +1,12 @@
 package com.example.demo.controller;
 
+import com.example.demo.model.MealPlan;
+import com.example.demo.model.MealPlanService;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import com.example.demo.model.MealPlanService;
-import com.example.demo.model.MealPlan;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -20,57 +20,85 @@ public class MealPlanViewController {
     private TextField dateField;
 
     // Individual TextField declarations
-    @FXML private TextField textField1; // Monday Breakfast
-    @FXML private TextField textField2; // Tuesday Breakfast
-    @FXML private TextField textField3; // Wednesday Breakfast
-    @FXML private TextField textField4; // Thursday Breakfast
-    @FXML private TextField textField5; // Friday Breakfast
+    @FXML
+    private TextField textField1; // Monday Breakfast
+    @FXML
+    private TextField textField2; // Tuesday Breakfast
+    @FXML
+    private TextField textField3; // Wednesday Breakfast
+    @FXML
+    private TextField textField4; // Thursday Breakfast
+    @FXML
+    private TextField textField5; // Friday Breakfast
 
-    @FXML private TextField textField6; // Monday Snack
-    @FXML private TextField textField7; // Tuesday Snack
-    @FXML private TextField textField8; // Wednesday Snack
-    @FXML private TextField textField9; // Thursday Snack
-    @FXML private TextField textField10; // Friday Snack
+    @FXML
+    private TextField textField6; // Monday Snack
+    @FXML
+    private TextField textField7; // Tuesday Snack
+    @FXML
+    private TextField textField8; // Wednesday Snack
+    @FXML
+    private TextField textField9; // Thursday Snack
+    @FXML
+    private TextField textField10; // Friday Snack
 
-    @FXML private TextField textField11; // Monday Lunch
-    @FXML private TextField textField12; // Tuesday Lunch
-    @FXML private TextField textField13; // Wednesday Lunch
-    @FXML private TextField textField14; // Thursday Lunch
-    @FXML private TextField textField15; // Friday Lunch
+    @FXML
+    private TextField textField11; // Monday Lunch
+    @FXML
+    private TextField textField12; // Tuesday Lunch
+    @FXML
+    private TextField textField13; // Wednesday Lunch
+    @FXML
+    private TextField textField14; // Thursday Lunch
+    @FXML
+    private TextField textField15; // Friday Lunch
 
-    @FXML private TextField textField16; // Monday Evening Snack
-    @FXML private TextField textField17; // Tuesday Evening Snack
-    @FXML private TextField textField18; // Wednesday Evening Snack
-    @FXML private TextField textField19; // Thursday Evening Snack
-    @FXML private TextField textField20; // Friday Evening Snack
+    @FXML
+    private TextField textField16; // Monday Evening Snack
+    @FXML
+    private TextField textField17; // Tuesday Evening Snack
+    @FXML
+    private TextField textField18; // Wednesday Evening Snack
+    @FXML
+    private TextField textField19; // Thursday Evening Snack
+    @FXML
+    private TextField textField20; // Friday Evening Snack
 
     // Individual ImageView declarations
-    @FXML private ImageView imageViewBreakfastMonday, imageViewBreakfastTuesday, imageViewBreakfastWednesday;
-    @FXML private ImageView imageViewBreakfastThursday, imageViewBreakfastFriday;
-    @FXML private ImageView imageViewSnackMonday, imageViewSnackTuesday, imageViewSnackWednesday;
-    @FXML private ImageView imageViewSnackThursday, imageViewSnackFriday;
-    @FXML private ImageView imageViewLunchMonday, imageViewLunchTuesday, imageViewLunchWednesday;
-    @FXML private ImageView imageViewLunchThursday, imageViewLunchFriday;
-    @FXML private ImageView imageViewSnackMondayEvening, imageViewSnackTuesdayEvening, imageViewSnackWednesdayEvening;
-    @FXML private ImageView imageViewSnackThursdayEvening, imageViewSnackFridayEvening;
+    @FXML
+    private ImageView imageViewBreakfastMonday, imageViewBreakfastTuesday, imageViewBreakfastWednesday;
+    @FXML
+    private ImageView imageViewBreakfastThursday, imageViewBreakfastFriday;
+    @FXML
+    private ImageView imageViewSnackMonday, imageViewSnackTuesday, imageViewSnackWednesday;
+    @FXML
+    private ImageView imageViewSnackThursday, imageViewSnackFriday;
+    @FXML
+    private ImageView imageViewLunchMonday, imageViewLunchTuesday, imageViewLunchWednesday;
+    @FXML
+    private ImageView imageViewLunchThursday, imageViewLunchFriday;
+    @FXML
+    private ImageView imageViewSnackMondayEvening, imageViewSnackTuesdayEvening, imageViewSnackWednesdayEvening;
+    @FXML
+    private ImageView imageViewSnackThursdayEvening, imageViewSnackFridayEvening;
 
     @FXML
-    private TextField[] breakfastFields = new TextField[5]; // Index 0-4 for days
+    private final TextField[] breakfastFields = new TextField[5]; // Index 0-4 for days
     @FXML
-    private TextField[] snackFields = new TextField[5];
+    private final TextField[] snackFields = new TextField[5];
     @FXML
-    private TextField[] lunchFields = new TextField[5];
+    private final TextField[] lunchFields = new TextField[5];
     @FXML
-    private TextField[] eveningSnackFields = new TextField[5];
+    private final TextField[] eveningSnackFields = new TextField[5];
 
     @FXML
-    private ImageView[] breakfastImageViews = new ImageView[5];
+    private final ImageView[] breakfastImageViews = new ImageView[5];
     @FXML
-    private ImageView[] snackImageViews = new ImageView[5];
+    private final ImageView[] snackImageViews = new ImageView[5];
     @FXML
-    private ImageView[] lunchImageViews = new ImageView[5];
+    private final ImageView[] lunchImageViews = new ImageView[5];
     @FXML
-    private ImageView[] eveningSnackImageViews = new ImageView[5];
+    private final ImageView[] eveningSnackImageViews = new ImageView[5];
 
     private MealPlanService mealPlanService;
     private List<MealPlan> mealPlans;
@@ -86,32 +114,52 @@ public class MealPlanViewController {
     }
 
     private void initializeFieldsAndImages() {
-        breakfastFields[0] = textField1; breakfastFields[1] = textField2; breakfastFields[2] = textField3;
-        breakfastFields[3] = textField4; breakfastFields[4] = textField5;
+        breakfastFields[0] = textField1;
+        breakfastFields[1] = textField2;
+        breakfastFields[2] = textField3;
+        breakfastFields[3] = textField4;
+        breakfastFields[4] = textField5;
 
-        snackFields[0] = textField6; snackFields[1] = textField7; snackFields[2] = textField8;
-        snackFields[3] = textField9; snackFields[4] = textField10;
+        snackFields[0] = textField6;
+        snackFields[1] = textField7;
+        snackFields[2] = textField8;
+        snackFields[3] = textField9;
+        snackFields[4] = textField10;
 
-        lunchFields[0] = textField11; lunchFields[1] = textField12; lunchFields[2] = textField13;
-        lunchFields[3] = textField14; lunchFields[4] = textField15;
+        lunchFields[0] = textField11;
+        lunchFields[1] = textField12;
+        lunchFields[2] = textField13;
+        lunchFields[3] = textField14;
+        lunchFields[4] = textField15;
 
-        eveningSnackFields[0] = textField16; eveningSnackFields[1] = textField17; eveningSnackFields[2] = textField18;
-        eveningSnackFields[3] = textField19; eveningSnackFields[4] = textField20;
+        eveningSnackFields[0] = textField16;
+        eveningSnackFields[1] = textField17;
+        eveningSnackFields[2] = textField18;
+        eveningSnackFields[3] = textField19;
+        eveningSnackFields[4] = textField20;
 
-        breakfastImageViews[0] = imageViewBreakfastMonday; breakfastImageViews[1] = imageViewBreakfastTuesday;
-        breakfastImageViews[2] = imageViewBreakfastWednesday; breakfastImageViews[3] = imageViewBreakfastThursday;
+        breakfastImageViews[0] = imageViewBreakfastMonday;
+        breakfastImageViews[1] = imageViewBreakfastTuesday;
+        breakfastImageViews[2] = imageViewBreakfastWednesday;
+        breakfastImageViews[3] = imageViewBreakfastThursday;
         breakfastImageViews[4] = imageViewBreakfastFriday;
 
-        snackImageViews[0] = imageViewSnackMonday; snackImageViews[1] = imageViewSnackTuesday;
-        snackImageViews[2] = imageViewSnackWednesday; snackImageViews[3] = imageViewSnackThursday;
+        snackImageViews[0] = imageViewSnackMonday;
+        snackImageViews[1] = imageViewSnackTuesday;
+        snackImageViews[2] = imageViewSnackWednesday;
+        snackImageViews[3] = imageViewSnackThursday;
         snackImageViews[4] = imageViewSnackFriday;
 
-        lunchImageViews[0] = imageViewLunchMonday; lunchImageViews[1] = imageViewLunchTuesday;
-        lunchImageViews[2] = imageViewLunchWednesday; lunchImageViews[3] = imageViewLunchThursday;
+        lunchImageViews[0] = imageViewLunchMonday;
+        lunchImageViews[1] = imageViewLunchTuesday;
+        lunchImageViews[2] = imageViewLunchWednesday;
+        lunchImageViews[3] = imageViewLunchThursday;
         lunchImageViews[4] = imageViewLunchFriday;
 
-        eveningSnackImageViews[0] = imageViewSnackMondayEvening; eveningSnackImageViews[1] = imageViewSnackTuesdayEvening;
-        eveningSnackImageViews[2] = imageViewSnackWednesdayEvening; eveningSnackImageViews[3] = imageViewSnackThursdayEvening;
+        eveningSnackImageViews[0] = imageViewSnackMondayEvening;
+        eveningSnackImageViews[1] = imageViewSnackTuesdayEvening;
+        eveningSnackImageViews[2] = imageViewSnackWednesdayEvening;
+        eveningSnackImageViews[3] = imageViewSnackThursdayEvening;
         eveningSnackImageViews[4] = imageViewSnackFridayEvening;
     }
 
@@ -147,12 +195,18 @@ public class MealPlanViewController {
 
     private String getDay(int index) {
         switch (index) {
-            case 0: return "Monday";
-            case 1: return "Tuesday";
-            case 2: return "Wednesday";
-            case 3: return "Thursday";
-            case 4: return "Friday";
-            default: return "";
+            case 0:
+                return "Monday";
+            case 1:
+                return "Tuesday";
+            case 2:
+                return "Wednesday";
+            case 3:
+                return "Thursday";
+            case 4:
+                return "Friday";
+            default:
+                return "";
         }
     }
 

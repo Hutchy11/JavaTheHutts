@@ -33,7 +33,7 @@ public class CarerProfileMenuViewController {
     @FXML
     private TableColumn<Carer, String> addressColumn;
 
-    private CarerDAO carerDAO;
+    private final CarerDAO carerDAO;
 
     public CarerProfileMenuViewController() {
         carerDAO = new CarerDAO();

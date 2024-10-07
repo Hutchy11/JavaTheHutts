@@ -5,14 +5,13 @@ import com.example.demo.model.MealPlanDAO;
 import com.example.demo.model.Recipe;
 import com.example.demo.model.RecipeDAO;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.control.Button;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-
 
 import java.io.ByteArrayInputStream;
 import java.sql.Connection;
@@ -24,68 +23,99 @@ import java.util.UUID;
 
 public class CreateMealPlanController {
 
-    @FXML private ImageView logoImage;
-
-    // Monday
-    @FXML private ComboBox<String> choiceBoxBreakfastMonday;
-    @FXML private ComboBox<String> choiceBoxSnackMonday;
-    @FXML private ComboBox<String> choiceBoxLunchMonday;
-    @FXML private ComboBox<String> choiceBoxSnackMondayEvening;
-
-    // Tuesday
-    @FXML private ComboBox<String> choiceBoxBreakfastTuesday;
-    @FXML private ComboBox<String> choiceBoxSnackTuesday;
-    @FXML private ComboBox<String> choiceBoxLunchTuesday;
-    @FXML private ComboBox<String> choiceBoxSnackTuesdayEvening;
-
-    // Wednesday
-    @FXML private ComboBox<String> choiceBoxBreakfastWednesday;
-    @FXML private ComboBox<String> choiceBoxSnackWednesday;
-    @FXML private ComboBox<String> choiceBoxLunchWednesday;
-    @FXML private ComboBox<String> choiceBoxSnackWednesdayEvening;
-
-    // Thursday
-    @FXML private ComboBox<String> choiceBoxBreakfastThursday;
-    @FXML private ComboBox<String> choiceBoxSnackThursday;
-    @FXML private ComboBox<String> choiceBoxLunchThursday;
-    @FXML private ComboBox<String> choiceBoxSnackThursdayEvening;
-
-    // Friday
-    @FXML private ComboBox<String> choiceBoxBreakfastFriday;
-    @FXML private ComboBox<String> choiceBoxSnackFriday;
-    @FXML private ComboBox<String> choiceBoxLunchFriday;
-    @FXML private ComboBox<String> choiceBoxSnackFridayEvening;
-
-    @FXML private DatePicker datePicker;
-    @FXML private Button createMealPlan;
-
-    // ImageViews for meals
-    @FXML private ImageView imageViewBreakfastMonday;
-    @FXML private ImageView imageViewSnackMonday;
-    @FXML private ImageView imageViewLunchMonday;
-    @FXML private ImageView imageViewSnackMondayEvening;
-
-    @FXML private ImageView imageViewBreakfastTuesday;
-    @FXML private ImageView imageViewSnackTuesday;
-    @FXML private ImageView imageViewLunchTuesday;
-    @FXML private ImageView imageViewSnackTuesdayEvening;
-
-    @FXML private ImageView imageViewBreakfastWednesday;
-    @FXML private ImageView imageViewSnackWednesday;
-    @FXML private ImageView imageViewLunchWednesday;
-    @FXML private ImageView imageViewSnackWednesdayEvening;
-
-    @FXML private ImageView imageViewBreakfastThursday;
-    @FXML private ImageView imageViewSnackThursday;
-    @FXML private ImageView imageViewLunchThursday;
-    @FXML private ImageView imageViewSnackThursdayEvening;
-
-    @FXML private ImageView imageViewBreakfastFriday;
-    @FXML private ImageView imageViewSnackFriday;
-    @FXML private ImageView imageViewLunchFriday;
-    @FXML private ImageView imageViewSnackFridayEvening;
-
     private final RecipeDAO recipeDAO = new RecipeDAO();
+    @FXML
+    private ImageView logoImage;
+    // Monday
+    @FXML
+    private ComboBox<String> choiceBoxBreakfastMonday;
+    @FXML
+    private ComboBox<String> choiceBoxSnackMonday;
+    @FXML
+    private ComboBox<String> choiceBoxLunchMonday;
+    @FXML
+    private ComboBox<String> choiceBoxSnackMondayEvening;
+    // Tuesday
+    @FXML
+    private ComboBox<String> choiceBoxBreakfastTuesday;
+    @FXML
+    private ComboBox<String> choiceBoxSnackTuesday;
+    @FXML
+    private ComboBox<String> choiceBoxLunchTuesday;
+    @FXML
+    private ComboBox<String> choiceBoxSnackTuesdayEvening;
+    // Wednesday
+    @FXML
+    private ComboBox<String> choiceBoxBreakfastWednesday;
+    @FXML
+    private ComboBox<String> choiceBoxSnackWednesday;
+    @FXML
+    private ComboBox<String> choiceBoxLunchWednesday;
+    @FXML
+    private ComboBox<String> choiceBoxSnackWednesdayEvening;
+    // Thursday
+    @FXML
+    private ComboBox<String> choiceBoxBreakfastThursday;
+    @FXML
+    private ComboBox<String> choiceBoxSnackThursday;
+    @FXML
+    private ComboBox<String> choiceBoxLunchThursday;
+    @FXML
+    private ComboBox<String> choiceBoxSnackThursdayEvening;
+    // Friday
+    @FXML
+    private ComboBox<String> choiceBoxBreakfastFriday;
+    @FXML
+    private ComboBox<String> choiceBoxSnackFriday;
+    @FXML
+    private ComboBox<String> choiceBoxLunchFriday;
+    @FXML
+    private ComboBox<String> choiceBoxSnackFridayEvening;
+    @FXML
+    private DatePicker datePicker;
+    @FXML
+    private Button createMealPlan;
+    // ImageViews for meals
+    @FXML
+    private ImageView imageViewBreakfastMonday;
+    @FXML
+    private ImageView imageViewSnackMonday;
+    @FXML
+    private ImageView imageViewLunchMonday;
+    @FXML
+    private ImageView imageViewSnackMondayEvening;
+    @FXML
+    private ImageView imageViewBreakfastTuesday;
+    @FXML
+    private ImageView imageViewSnackTuesday;
+    @FXML
+    private ImageView imageViewLunchTuesday;
+    @FXML
+    private ImageView imageViewSnackTuesdayEvening;
+    @FXML
+    private ImageView imageViewBreakfastWednesday;
+    @FXML
+    private ImageView imageViewSnackWednesday;
+    @FXML
+    private ImageView imageViewLunchWednesday;
+    @FXML
+    private ImageView imageViewSnackWednesdayEvening;
+    @FXML
+    private ImageView imageViewBreakfastThursday;
+    @FXML
+    private ImageView imageViewSnackThursday;
+    @FXML
+    private ImageView imageViewLunchThursday;
+    @FXML
+    private ImageView imageViewSnackThursdayEvening;
+    @FXML
+    private ImageView imageViewBreakfastFriday;
+    @FXML
+    private ImageView imageViewSnackFriday;
+    @FXML
+    private ImageView imageViewLunchFriday;
+    @FXML
+    private ImageView imageViewSnackFridayEvening;
 
     @FXML
     private void initialize() {

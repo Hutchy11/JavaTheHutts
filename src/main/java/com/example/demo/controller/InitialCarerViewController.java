@@ -12,8 +12,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+
 import java.util.List;
 import java.util.stream.Collectors;
+
 public class InitialCarerViewController {
 
     @FXML

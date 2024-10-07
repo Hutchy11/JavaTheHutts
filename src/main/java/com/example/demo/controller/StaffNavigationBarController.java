@@ -48,7 +48,9 @@ public class StaffNavigationBarController {
     }
 
     @FXML
-    private void navigateToChildProfile(ActionEvent event) {loadView(event, "StaffChildProfileView.fxml");}
+    private void navigateToChildProfile(ActionEvent event) {
+        loadView(event, "StaffChildProfileView.fxml");
+    }
 
     @FXML
     private void navigateToCreateMealPlan(ActionEvent event) {
@@ -56,8 +58,9 @@ public class StaffNavigationBarController {
     }
 
     @FXML
-    private void navigateToViewMealPlan(ActionEvent event) { loadView(event, "MealPlanView.fxml");}
-
+    private void navigateToViewMealPlan(ActionEvent event) {
+        loadView(event, "MealPlanView.fxml");
+    }
 
 
     @FXML

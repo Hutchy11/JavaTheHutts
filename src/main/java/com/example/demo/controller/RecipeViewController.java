@@ -1,16 +1,15 @@
 package com.example.demo.controller;
 
+import com.example.demo.model.Recipe;
+import com.example.demo.model.RecipeDAO;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.stage.FileChooser;
 import javafx.scene.layout.VBox;
-
-import com.example.demo.model.Recipe;
-import com.example.demo.model.RecipeDAO;
+import javafx.stage.FileChooser;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
@@ -42,7 +41,7 @@ public class RecipeViewController {
     @FXML
     private VBox rootVBox;
 
-    private RecipeDAO recipeDAO = new RecipeDAO();
+    private final RecipeDAO recipeDAO = new RecipeDAO();
 
     @FXML
     public void initialize() {

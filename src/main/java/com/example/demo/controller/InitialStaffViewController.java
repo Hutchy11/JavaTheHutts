@@ -1,16 +1,10 @@
 package com.example.demo.controller;
+
 import com.example.demo.model.Session;
 import com.example.demo.model.Staff;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-
-// Understand the elements used in the import and reuse in the screen.
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-import java.io.IOException;
 
 
 public class InitialStaffViewController {

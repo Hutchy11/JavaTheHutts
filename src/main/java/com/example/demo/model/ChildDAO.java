@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ChildDAO implements IChildDAO {
-    private Connection connection;
+    private final Connection connection;
 
     public ChildDAO() {
         connection = SqliteConnection.getInstance();
@@ -14,18 +14,18 @@ public class ChildDAO implements IChildDAO {
 
     public void createTable() {
         String createTableSQL = """
-            CREATE TABLE IF NOT EXISTS child (
-                ChildId TEXT PRIMARY KEY,
-                ParentId TEXT NOT NULL,
-                FirstName TEXT NOT NULL,
-                LastName TEXT NOT NULL,
-                DateOfBirth TEXT NOT NULL,
-                Allergies TEXT,
-                DietaryRequirements TEXT,
-                EmergencyContact TEXT NOT NULL,
-                FOREIGN KEY (ParentId) REFERENCES Carer(CarerId)
-            );
-        """;
+                    CREATE TABLE IF NOT EXISTS child (
+                        ChildId TEXT PRIMARY KEY,
+                        ParentId TEXT NOT NULL,
+                        FirstName TEXT NOT NULL,
+                        LastName TEXT NOT NULL,
+                        DateOfBirth TEXT NOT NULL,
+                        Allergies TEXT,
+                        DietaryRequirements TEXT,
+                        EmergencyContact TEXT NOT NULL,
+                        FOREIGN KEY (ParentId) REFERENCES Carer(CarerId)
+                    );
+                """;
         try (PreparedStatement pstmt = connection.prepareStatement(createTableSQL)) {
             pstmt.execute();
         } catch (SQLException e) {

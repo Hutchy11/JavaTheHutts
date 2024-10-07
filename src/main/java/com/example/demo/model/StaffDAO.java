@@ -6,9 +6,9 @@ import java.util.List;
 
 
 public class StaffDAO implements IStaffDAO {
-    private Connection connection;
+    private final Connection connection;
 
-    public StaffDAO(){
+    public StaffDAO() {
         connection = SqliteConnection.getInstance();
         createTable();
     }
@@ -29,7 +29,7 @@ public class StaffDAO implements IStaffDAO {
             // Execute the SQL statement to create the table
             stmt.execute(sql);
             System.out.println("Staff table created or already exists.");
-        } catch ( SQLException e) {
+        } catch (SQLException e) {
             System.err.println("Error creating staff table: " + e.getMessage());
         }
     }
@@ -67,9 +67,9 @@ public class StaffDAO implements IStaffDAO {
     // Method to register a new staff
     public boolean registerStaff(String staffId, String firstName, String lastName, String email, String password, String phone, String role, String hireDate) {
         String insertSQL = """
-            INSERT INTO staff (StaffId, FirstName, LastName, Email, Password, Phone, Role, HireDate)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?);
-        """;
+                    INSERT INTO staff (StaffId, FirstName, LastName, Email, Password, Phone, Role, HireDate)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?);
+                """;
         try (PreparedStatement pstmt = connection.prepareStatement(insertSQL)) {
             pstmt.setString(1, staffId);
             pstmt.setString(2, firstName);

@@ -11,15 +11,6 @@ public class ChildCareApplication extends Application {
     public static final String TITLE = "Bright Beginnings";
     private static Stage primaryStage;
 
-    @Override
-    public void start(Stage stage) throws IOException {
-        primaryStage = stage;
-        primaryStage.setTitle(TITLE);
-        primaryStage.setMaximized(true);
-        loadScene("InitialStaffView.fxml");
-        primaryStage.show();
-    }
-
     public static void loadScene(String fxmlFile) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(ChildCareApplication.class.getResource(fxmlFile));
         Scene scene = new Scene(fxmlLoader.load());
@@ -31,5 +22,14 @@ public class ChildCareApplication extends Application {
 
     public static void main(String[] args) {
         launch();
+    }
+
+    @Override
+    public void start(Stage stage) throws IOException {
+        primaryStage = stage;
+        primaryStage.setTitle(TITLE);
+        primaryStage.setMaximized(true);
+        loadScene("InitialStaffView.fxml");
+        primaryStage.show();
     }
 }

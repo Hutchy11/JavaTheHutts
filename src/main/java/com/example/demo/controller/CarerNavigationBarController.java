@@ -15,18 +15,22 @@ public class CarerNavigationBarController {
     private void navigateToCarerHome(ActionEvent event) {
         loadView(event, "InitialCarerView.fxml");
     }
+
     @FXML
     private void navigateToProfile(ActionEvent event) {
         loadView(event, "ProfileView.fxml");
     }
+
     @FXML
     private void navigateToViewRecipe(ActionEvent event) {
         loadView(event, "RecipeView.fxml");
     }
+
     @FXML
     private void navigateToChildProfile(ActionEvent event) {
         loadView(event, "CarerChildProfileView.fxml");
     }
+
     @FXML
     private void navigateToSettings(ActionEvent event) {
         loadView(event, "SettingsView.fxml");

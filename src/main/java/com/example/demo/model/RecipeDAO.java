@@ -20,18 +20,18 @@ public class RecipeDAO implements IRecipeDAO {
     // Create table if it doesn't exist
     public void createTable() {
         String sql = """
-            CREATE TABLE IF NOT EXISTS Recipe (
-                RecipeId TEXT PRIMARY KEY,
-                MealPlanId TEXT NOT NULL,
-                RecipeName TEXT NOT NULL,
-                MealType TEXT NOT NULL,
-                RecipeImage BLOB,
-                Ingredients TEXT NOT NULL,
-                Instructions TEXT NOT NULL,
-                PRIMARY KEY("RecipeId"),
-                FOREIGN KEY("MealPlanId") REFERENCES "MealPlan"("MealPlanId")
-            );
-        """;
+                    CREATE TABLE IF NOT EXISTS Recipe (
+                        RecipeId TEXT PRIMARY KEY,
+                        MealPlanId TEXT NOT NULL,
+                        RecipeName TEXT NOT NULL,
+                        MealType TEXT NOT NULL,
+                        RecipeImage BLOB,
+                        Ingredients TEXT NOT NULL,
+                        Instructions TEXT NOT NULL,
+                        PRIMARY KEY("RecipeId"),
+                        FOREIGN KEY("MealPlanId") REFERENCES "MealPlan"("MealPlanId")
+                    );
+                """;
         try (Statement stmt = connection.createStatement()) {
             // Execute the SQL statement to create the table
             stmt.execute(sql);
@@ -172,7 +172,7 @@ public class RecipeDAO implements IRecipeDAO {
 
             pstmt.setString(1, mealPlan.getMealPlanId());
             pstmt.setString(2, mealPlan.getStaffId());
-            pstmt.setString(3, mealPlan.getDate().toString());
+            pstmt.setString(3, mealPlan.getDate());
             pstmt.setString(4, mealPlan.getRecipeId("day", "meal"));
             pstmt.setString(5, mealPlan.getNotes());
 

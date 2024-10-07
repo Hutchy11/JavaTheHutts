@@ -10,6 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -38,7 +39,7 @@ public class RecipeController {
     @FXML
     private Button selectImageButton; // Button to select an image
 
-    private RecipeDAO recipeDAO = new RecipeDAO(); // Initialize RecipeDAO
+    private final RecipeDAO recipeDAO = new RecipeDAO(); // Initialize RecipeDAO
     private byte[] recipeImage; // Byte array to store the selected image
 
     // Protected method to check if all fields are completed and enable submit button

@@ -2,64 +2,66 @@
 
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
+<?import javafx.scene.shape.Circle?>
+<VBox xmlns:fx="http://javafx.com/fxml/1" alignment="TOP_LEFT" spacing="0.0" stylesheets="@styles/trial.css"
+      xmlns="http://javafx.com/javafx/17.0.2-ea" fx:controller="com.example.demo.controller.RecipeViewController">
+    <HBox alignment="CENTER_LEFT" prefHeight="49.0" prefWidth="600.0" styleClass="header-hbox">
+        <ImageView fx:id="logoImage" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@styles/logo.png"/>
+            </image>
+            <clip>
+                <Circle centerX="25.0" centerY="25.0" radius="25.0"/>
+            </clip>
+        </ImageView>
+        <Region HBox.hgrow="ALWAYS"/>
+        <VBox fx:id="navigationBarPlaceholder" alignment="CENTER_RIGHT"/>
+    </HBox>
 
-<VBox alignment="TOP_LEFT" spacing="0.0" stylesheets="@styles/trial.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.controller.RecipeViewController">
-   <HBox alignment="CENTER_LEFT" prefHeight="49.0" prefWidth="600.0" styleClass="header-hbox">
-      <ImageView fx:id="logoImage" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@styles/logo.png" />
-         </image>
-         <clip>
-            <Circle centerX="25.0" centerY="25.0" radius="25.0" />
-         </clip>
-      </ImageView>
-      <Region HBox.hgrow="ALWAYS" />
-      <VBox fx:id="navigationBarPlaceholder" alignment="CENTER_RIGHT"/>
-   </HBox>
-
-   <VBox fx:id="rootVBox" alignment="CENTER" spacing="10.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
-      <Label fx:id="recipeNameLabel" text="Recipe">
-         <VBox.margin>
-            <Insets bottom="20.0" top="20.0" />
-         </VBox.margin>
-         <graphic>
-            <ChoiceBox fx:id="recipeChoiceBox" prefWidth="150.0" />
-         </graphic>
-      </Label>
-      <ImageView fx:id="recipeImageView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-         <VBox.margin>
-            <Insets left="40.0" right="40.0" />
-         </VBox.margin>
-      </ImageView>
-      <Label text="Ingredients">
-         <VBox.margin>
-            <Insets top="40.0" />
-         </VBox.margin>
-      </Label>
-      <TextArea fx:id="ingredientsTextArea" editable="false" prefHeight="200.0" prefWidth="200.0">
-         <VBox.margin>
-            <Insets left="40.0" right="40.0" />
-         </VBox.margin>
-      </TextArea>
-      <Label text="Instructions" />
-      <TextArea fx:id="instructionsTextArea" editable="false" prefHeight="200.0" prefWidth="200.0">
-         <VBox.margin>
-            <Insets left="40.0" right="40.0" />
-         </VBox.margin>
-      </TextArea>
-      <Button mnemonicParsing="false" onAction="#onDownloadButtonClick" text="Download">
-         <VBox.margin>
-            <Insets bottom="40.0" top="40.0" />
-         </VBox.margin>
-      </Button>
-   </VBox>
-   <HBox alignment="CENTER_LEFT" prefHeight="49.0" prefWidth="600.0" styleClass="footer-hbox">
-      <Label text="Call us: 0412345678" />
-      <Region HBox.hgrow="ALWAYS" />
-      <Region HBox.hgrow="ALWAYS" />
-      <Label text="150 W. 85th Street, Brisbane" />
-   </HBox>
+    <VBox xmlns:fx="http://javafx.com/fxml/1" fx:id="rootVBox" alignment="CENTER" spacing="10.0"
+          xmlns="http://javafx.com/javafx/17.0.2-ea">
+        <Label fx:id="recipeNameLabel" text="Recipe">
+            <VBox.margin>
+                <Insets bottom="20.0" top="20.0"/>
+            </VBox.margin>
+            <graphic>
+                <ChoiceBox fx:id="recipeChoiceBox" prefWidth="150.0"/>
+            </graphic>
+        </Label>
+        <ImageView fx:id="recipeImageView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+            <VBox.margin>
+                <Insets left="40.0" right="40.0"/>
+            </VBox.margin>
+        </ImageView>
+        <Label text="Ingredients">
+            <VBox.margin>
+                <Insets top="40.0"/>
+            </VBox.margin>
+        </Label>
+        <TextArea fx:id="ingredientsTextArea" editable="false" prefHeight="200.0" prefWidth="200.0">
+            <VBox.margin>
+                <Insets left="40.0" right="40.0"/>
+            </VBox.margin>
+        </TextArea>
+        <Label text="Instructions"/>
+        <TextArea fx:id="instructionsTextArea" editable="false" prefHeight="200.0" prefWidth="200.0">
+            <VBox.margin>
+                <Insets left="40.0" right="40.0"/>
+            </VBox.margin>
+        </TextArea>
+        <Button mnemonicParsing="false" onAction="#onDownloadButtonClick" text="Download">
+            <VBox.margin>
+                <Insets bottom="40.0" top="40.0"/>
+            </VBox.margin>
+        </Button>
+    </VBox>
+    <HBox alignment="CENTER_LEFT" prefHeight="49.0" prefWidth="600.0" styleClass="footer-hbox">
+        <Label text="Call us: 0412345678"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Label text="150 W. 85th Street, Brisbane"/>
+    </HBox>
 </VBox>
