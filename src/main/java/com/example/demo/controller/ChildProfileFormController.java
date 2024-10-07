@@ -14,6 +14,11 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.Button;
 
+
+/**
+ * Controller class for the Child Profile Form.
+ * Handles the creation and submission of new child profiles.
+ */
 public class ChildProfileFormController {
 
     private CarerDAO carerDAO = new CarerDAO(); // Initialize CarerDAO
@@ -36,6 +41,10 @@ public class ChildProfileFormController {
     @FXML
     private Button submitButton;
 
+    /**
+     * Initializes the controller class.
+     * Populates the carer dropdown with data from the database and adds validation listeners.
+     */
     public void initialize() {
         // Populate the carer dropdown with data from the database
         List<Carer> carers = carerDAO.getAllCarers();
@@ -46,6 +55,11 @@ public class ChildProfileFormController {
         validateFields();
     }
 
+
+    /**
+     * Adds validation listeners to the form fields.
+     * Enables or disables the submit button based on the form's validity.
+     */
     private void addValidationListeners() {
         firstNameField.textProperty().addListener((obs, oldText, newText) -> validateFields());
         lastNameField.textProperty().addListener((obs, oldText, newText) -> validateFields());
@@ -54,6 +68,10 @@ public class ChildProfileFormController {
         carerComboBox.valueProperty().addListener((obs, oldCarer, newCarer) -> validateFields());
     }
 
+    /**
+     * Validates the form fields.
+     * Enables the submit button if all required fields are filled.
+     */
     private void validateFields() {
         boolean isFormValid = !firstNameField.getText().isEmpty() &&
                 !lastNameField.getText().isEmpty() &&
@@ -65,6 +83,10 @@ public class ChildProfileFormController {
     }
 
 
+    /**
+     * Submits the child profile form.
+     * Gathers input data, creates a new Child object, and saves it to the database.
+     */
     @FXML
     public void submitChildProfile() {
         // Generate a new UUID for the childId
@@ -91,6 +113,13 @@ public class ChildProfileFormController {
         stage.close();
     }
 
+    /**
+     * Shows an alert with the specified type, title, and message.
+     *
+     * @param alertType the type of alert
+     * @param title the title of the alert
+     * @param message the message of the alert
+     */
     private void showAlert(Alert.AlertType alertType, String title, String message) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
@@ -99,6 +128,9 @@ public class ChildProfileFormController {
         alert.showAndWait();
     }
 
+    /**
+     * Clears all form fields.
+     */
     @FXML
     public void clearForm() {
         // Clear all text fields

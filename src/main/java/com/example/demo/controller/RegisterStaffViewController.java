@@ -14,6 +14,10 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * Controller class for the Register Staff View.
+ * Handles the registration of a new staff member.
+ */
 public class RegisterStaffViewController {
 
     @FXML
@@ -42,10 +46,20 @@ public class RegisterStaffViewController {
 
     private StaffDAO staffDAO;
 
+    /**
+     * Constructor for the RegisterStaffViewController.
+     * Initializes the StaffDAO.
+     */
     public RegisterStaffViewController() {
         staffDAO = new StaffDAO();
     }
 
+    /**
+     * Handles the registration process when the register button is clicked.
+     * Validates the input fields and registers the staff member if valid.
+     *
+     * @param event the action event triggered by the register button
+     */
     @FXML
     private void handleRegister(ActionEvent event) {
         String firstName = firstNameField.getText();
@@ -75,6 +89,12 @@ public class RegisterStaffViewController {
         }
     }
 
+    /**
+     * Shows an alert with the specified title and message.
+     *
+     * @param title the title of the alert
+     * @param message the message of the alert
+     */
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
@@ -83,6 +103,9 @@ public class RegisterStaffViewController {
         alert.showAndWait();
     }
 
+    /**
+     * Clears all input fields in the registration form.
+     */
     private void clearFields() {
         firstNameField.clear();
         lastNameField.clear();
@@ -94,6 +117,11 @@ public class RegisterStaffViewController {
         confirmPasswordField.clear();
     }
 
+    /**
+     * Navigates to the Staff Profile Menu view after successful registration.
+     *
+     * @param event the action event triggered by the register button
+     */
     private void navigateToStaffProfileMenu(ActionEvent event) {
         try {
             Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();

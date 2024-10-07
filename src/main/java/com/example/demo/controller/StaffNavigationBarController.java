@@ -3,12 +3,17 @@ package com.example.demo.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * Controller class for the Staff Navigation Bar.
+ * Handles navigation between different views for staff members.
+ */
 public class StaffNavigationBarController {
 
     @FXML
@@ -50,14 +55,34 @@ public class StaffNavigationBarController {
     private void navigateToChildProfile(ActionEvent event) {loadView(event, "StaffChildProfileView.fxml");}
 
     @FXML
+    private void navigateToCreateMealPlan(ActionEvent event) {
+        loadView(event, "CreateMealPlanView.fxml");
+    }
+
+    @FXML
+    private void navigateToViewMealPlan(ActionEvent event) { loadView(event, "MealPlanView.fxml");}
+
+
+    /**
+     * Logs out the current user.
+     *
+     * @param event the action event triggered by the logout button
+     */
+    @FXML
     private void logout(ActionEvent event) {
         // Implement logout logic here
         System.out.println("Logged out");
     }
 
+    /**
+     * Loads the specified FXML view.
+     *
+     * @param event the action event triggered by the navigation button
+     * @param fxmlFile the FXML file to load
+     */
     private void loadView(ActionEvent event, String fxmlFile) {
         try {
-            Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             Parent root = FXMLLoader.load(getClass().getResource("/com/example/demo/" + fxmlFile));
             Scene scene = new Scene(root);
             stage.setScene(scene);
@@ -67,6 +92,9 @@ public class StaffNavigationBarController {
             //showAlert("Error", "Failed to load the view.");
         }
     }
+
+
+
 
     /* Figure out if this is worth keeping.
     private void showAlert(String title, String message) {

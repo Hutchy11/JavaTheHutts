@@ -1,6 +1,11 @@
 package com.example.demo.model;
 
 import java.util.UUID;
+
+/**
+ * Model class representing a Staff member.
+ * Contains information about a staff member and provides methods to access and modify this information.
+ */
 public class Staff {
     private String staffId;    // UUID for StaffId
     private String firstName;
@@ -11,7 +16,19 @@ public class Staff {
     private String role;
     private String hireDate;
 
-    // Constructor
+    /**
+     * Constructor for the Staff class.
+     * Initializes a new Staff object with the specified details.
+     *
+     * @param staffId the unique ID of the staff member
+     * @param firstName the first name of the staff member
+     * @param lastName the last name of the staff member
+     * @param email the email of the staff member
+     * @param password the password of the staff member
+     * @param phone the phone number of the staff member
+     * @param role the role of the staff member
+     * @param hireDate the hire date of the staff member
+     */
     public Staff(String staffId, String firstName, String lastName, String email, String password, String phone, String role, String hireDate) {
         this.staffId = staffId; // Automatically generate UUID for staffId
         this.firstName = firstName;
@@ -23,7 +40,11 @@ public class Staff {
         this.hireDate = hireDate;
     }
 
-    // Method to generate a UUID
+    /**
+     * Generates a new UUID for the staff member.
+     *
+     * @return a new UUID as a string
+     */
     private String generateUUID() {
         return UUID.randomUUID().toString();
     }

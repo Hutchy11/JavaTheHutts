@@ -18,6 +18,10 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Controller class for the Child Profile View.
+ * Manages the display and interaction with the child profile data.
+ */
 public class ChildProfileController {
 
     @FXML
@@ -37,6 +41,9 @@ public class ChildProfileController {
     @FXML
     private TableColumn<Child, String> emergencyContactColumn;
 
+    /**
+     * Opens the form to create a new child profile.
+     */
     @FXML
     private void createChildProfile() {
         try {
@@ -50,7 +57,9 @@ public class ChildProfileController {
         }
     }
 
-
+    /**
+     * Displays all child profiles in the table view.
+     */
     @FXML
     private void viewAllChildProfiles() {
         ChildDAO childDAO = new ChildDAO();
@@ -74,6 +83,9 @@ public class ChildProfileController {
 
     }
 
+    /**
+     * Displays the child profiles related to the logged-in carer in the table view.
+     */
     @FXML
     private void viewMyChildProfiles() {
         // Get the logged-in carer's ID from the session

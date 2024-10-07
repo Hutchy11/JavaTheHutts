@@ -22,6 +22,10 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Controller class for the Recipe View.
+ * Handles the display and interaction with recipes.
+ */
 public class RecipeViewController {
 
     @FXML
@@ -44,6 +48,10 @@ public class RecipeViewController {
 
     private RecipeDAO recipeDAO = new RecipeDAO();
 
+    /**
+     * Initializes the controller class.
+     * Populates the recipe choice box with available recipe names and sets up listeners.
+     */
     @FXML
     public void initialize() {
         List<String> recipeNames = recipeDAO.getAllRecipeNames();
@@ -55,6 +63,11 @@ public class RecipeViewController {
         });
     }
 
+    /**
+     * Sets the recipe details for the selected recipe name.
+     *
+     * @param recipeName the selected recipe name
+     */
     public void setRecipeDetails(String recipeName) {
         Recipe recipe = recipeDAO.getRecipeByName(recipeName);
         if (recipe != null) {
@@ -70,7 +83,10 @@ public class RecipeViewController {
         }
     }
 
-    // Method to handle the download button click
+    /**
+     * Handles the download button click event.
+     * Generates a PDF file with the recipe details and allows the user to save it.
+     */
     @FXML
     private void onDownloadButtonClick() {
         FileChooser fileChooser = new FileChooser();
@@ -137,6 +153,18 @@ public class RecipeViewController {
         }
     }
 
+    /**
+     * Adds wrapped text to the PDF content stream.
+     *
+     * @param contentStream the content stream to write to
+     * @param text the text to wrap and add
+     * @param x the x-coordinate to start the text
+     * @param y the y-coordinate to start the text
+     * @param fontSize the font size of the text
+     * @param maxWidth the maximum width of the text before wrapping
+     * @return the y-coordinate after adding the text
+     * @throws IOException if an I/O error occurs
+     */
     private float addWrappedText(PDPageContentStream contentStream, String text, float x, float y, int fontSize, float maxWidth) throws IOException {
         contentStream.setFont(PDType1Font.HELVETICA, fontSize);
         String[] words = text.split(" ");

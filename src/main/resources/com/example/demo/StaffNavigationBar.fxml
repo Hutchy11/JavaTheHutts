@@ -11,6 +11,8 @@
     <Button onAction="#navigateToStaffProfileMenu" text="Staff Profile Menu" />
    <Button onAction="#navigateToCreateRecipe" text="Create Recipe" />
    <Button onAction="#navigateToViewRecipe" text="Recipe's" />
+    <Button onAction="#navigateToCreateMealPlan" text="Create Meal Plan" />
+    <Button onAction="#navigateToViewMealPlan" text="Meal Plans" />
     <Button onAction="#navigateToSettings" text="Settings" />
     <Button onAction="#logout" text="Logout" />
 </HBox>

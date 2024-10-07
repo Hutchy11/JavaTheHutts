@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+
+<VBox alignment="TOP_CENTER" spacing="0.0" stylesheets="@styles/trial.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.controller.MealPlanViewController">
+    <HBox alignment="CENTER_LEFT" prefHeight="49.0" prefWidth="600.0" styleClass="header-hbox">
+        <VBox alignment="CENTER_LEFT">
+            <ImageView fx:id="logoImage" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                    <Image url="@styles/logo.png" />
+                </image>
+                <clip>
+                    <Circle centerX="25.0" centerY="25.0" radius="25.0" />
+                </clip>
+            </ImageView>
+        </VBox>
+        <Region HBox.hgrow="ALWAYS" />
+        <VBox alignment="CENTER_RIGHT">
+            <fx:include source="StaffNavigationBar.fxml" />
+        </VBox>
+    </HBox>
+
+    <ScrollPane fitToWidth="true">
+        <VBox alignment="CENTER" prefHeight="720.0" spacing="10.0" style="-fx-background-color: white;">
+            <Label contentDisplay="CENTER" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Meal Plan">
+            <VBox.margin>
+               <Insets top="20.0" />
+            </VBox.margin></Label>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                <children>
+                    <Label alignment="CENTER" text="Date:" >
+                        <HBox.margin>
+                            <Insets bottom="20.0" top="40.0" />
+                        </HBox.margin>
+                        <padding>
+                            <Insets right="10.0" />
+                        </padding>
+                    </Label>
+                    <ChoiceBox fx:id="mealPlanChoiceBox" prefWidth="150.0">
+                        <HBox.margin>
+                            <Insets bottom="20.0" top="40.0" />
+                        </HBox.margin>
+                    </ChoiceBox>
+                </children>
+            </HBox>
+
+            <GridPane alignment="CENTER" hgap="20">
+                <children>
+                    <!-- Day Labels -->
+                    <Label text="Monday" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+                    <Label text="Tuesday" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
+                    <Label text="Wednesday" GridPane.columnIndex="3" GridPane.halignment="CENTER" />
+                    <Label text="Thursday" GridPane.columnIndex="4" GridPane.halignment="CENTER" />
+                    <Label text="Friday" GridPane.columnIndex="5" GridPane.halignment="CENTER" />
+
+                    <!-- Meal Type Labels -->
+                    <Label text="Breakfast" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                    <Label text="Snack" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+                    <Label text="Lunch" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
+                    <Label text="Snack" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
+
+                    <!-- Image Views for Meals -->
+                    <ImageView fx:id="imageViewBreakfastMonday" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                    <ImageView fx:id="imageViewBreakfastTuesday" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                    <ImageView fx:id="imageViewBreakfastWednesday" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                    <ImageView fx:id="imageViewBreakfastThursday" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+                    <ImageView fx:id="imageViewBreakfastFriday" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+
+                    <ImageView fx:id="imageViewSnackMonday" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                    <ImageView fx:id="imageViewSnackTuesday" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                    <ImageView fx:id="imageViewSnackWednesday" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+                    <ImageView fx:id="imageViewSnackThursday" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+                    <ImageView fx:id="imageViewSnackFriday" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" GridPane.columnIndex="5" GridPane.rowIndex="5" />
+
+                    <ImageView fx:id="imageViewLunchMonday" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                    <ImageView fx:id="imageViewLunchTuesday" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" GridPane.columnIndex="2" GridPane.rowIndex="8" />
+                    <ImageView fx:id="imageViewLunchWednesday" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" GridPane.columnIndex="3" GridPane.rowIndex="8" />
+                    <ImageView fx:id="imageViewLunchThursday" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" GridPane.columnIndex="4" GridPane.rowIndex="8" />
+                    <ImageView fx:id="imageViewLunchFriday" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" GridPane.columnIndex="5" GridPane.rowIndex="8" />
+
+                    <ImageView fx:id="imageViewSnackMondayEvening" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+                    <ImageView fx:id="imageViewSnackTuesdayEvening" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" GridPane.columnIndex="2" GridPane.rowIndex="11" />
+                    <ImageView fx:id="imageViewSnackWednesdayEvening" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" GridPane.columnIndex="3" GridPane.rowIndex="11" />
+                    <ImageView fx:id="imageViewSnackThursdayEvening" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" GridPane.columnIndex="4" GridPane.rowIndex="11" />
+                    <ImageView fx:id="imageViewSnackFridayEvening" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" GridPane.columnIndex="5" GridPane.rowIndex="11" />
+
+                    <!-- Meal Name Choices -->
+                    <Label fx:id="mondayBreakfastLabel" text="" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                    <Label fx:id="tuesdayBreakfastLabel" text="" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                    <Label fx:id="wednesdayBreakfastLabel" text="" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                    <Label fx:id="thursdayBreakfastLabel" text="" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+                    <Label fx:id="fridayBreakfastLabel" text="" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+                    <Label fx:id="mondaySnack1Label" text="" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                    <Label fx:id="tuesdaySnack1Label" text="" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+                    <Label fx:id="wednesdaySnack1Label" text="" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+                    <Label fx:id="thursdaySnack1Label" text="" GridPane.columnIndex="4" GridPane.rowIndex="6" />
+                    <Label fx:id="fridaySnack1Label" text="" GridPane.columnIndex="5" GridPane.rowIndex="6" />
+                    <Label fx:id="mondayLunchLabel" text="" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                    <Label fx:id="tuesdayLunchLabel" text="" GridPane.columnIndex="2" GridPane.rowIndex="9" />
+                    <Label fx:id="wednesdayLunchLabel" text="" GridPane.columnIndex="3" GridPane.rowIndex="9" />
+                    <Label fx:id="thursdayLunchLabel" text="" GridPane.columnIndex="4" GridPane.rowIndex="9" />
+                    <Label fx:id="fridayLunchLabel" text="" GridPane.columnIndex="5" GridPane.rowIndex="9" />
+
+                    <!-- Snack Choices (evening) -->
+                    <Label fx:id="mondaySnack2Label" text="" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+                    <Label fx:id="tuesdaySnack2Label" text="" GridPane.columnIndex="2" GridPane.rowIndex="12" />
+                    <Label fx:id="wednesdaySnack2Label" text="" GridPane.columnIndex="3" GridPane.rowIndex="12" />
+                    <Label fx:id="thursdaySnack2Label" text="" GridPane.columnIndex="4" GridPane.rowIndex="12" />
+                    <Label fx:id="fridaySnack2Label" text="" GridPane.columnIndex="5" GridPane.rowIndex="12" />
+                </children>
+                <columnConstraints>
+                    <ColumnConstraints />
+                    <ColumnConstraints />
+                    <ColumnConstraints />
+                    <ColumnConstraints />
+                    <ColumnConstraints />
+                    <ColumnConstraints />
+                </columnConstraints>
+                <rowConstraints>
+                    <RowConstraints />
+                    <RowConstraints />
+                    <RowConstraints />
+                    <RowConstraints />
+                    <RowConstraints />
+                    <RowConstraints />
+                    <RowConstraints />
+                    <RowConstraints />
+                    <RowConstraints />
+                    <RowConstraints />
+                    <RowConstraints />
+                    <RowConstraints />
+                    <RowConstraints />
+                </rowConstraints>
+            </GridPane>
+         <padding>
+            <Insets bottom="40.0" />
+         </padding>
+        </VBox>
+    </ScrollPane>
+
+    <HBox alignment="CENTER_LEFT" prefHeight="49.0" prefWidth="600.0" styleClass="footer-hbox">
+        <Label text="Call us: 0412345678" />
+        <Region HBox.hgrow="ALWAYS" />
+        <Hyperlink text="Terms and Conditions" />
+        <Region HBox.hgrow="ALWAYS" />
+        <Label text="150 W. 85th Street, Brisbane" />
+    </HBox>
+</VBox>

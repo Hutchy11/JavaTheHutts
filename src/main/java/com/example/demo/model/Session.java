@@ -1,5 +1,9 @@
 package com.example.demo.model;
 
+/**
+ * Controller class for the Register Carer View.
+ * Handles the registration of a new carer.
+ */
 public class Session {
     private static Carer loggedCarer;
     private static Staff loggedStaff;
@@ -24,7 +28,9 @@ public class Session {
         return loggedStaff;
     }
 
-    // Clear the session
+    /**
+     * Clear the logged-in Carer and Staff.
+     */
     public static void clear() {
         loggedCarer = null;
         loggedStaff = null;

@@ -2,6 +2,9 @@ package com.example.demo.model;
 
 import java.util.UUID;
 
+/**
+ * This class represents a Child object.
+ */
 public class Child {
     private String childId; // Automatically generate UUID for staffId
     private String parentId;
@@ -12,7 +15,18 @@ public class Child {
     private String dietaryRequirements;
     private String emergencyContact;
 
-    // Constructor
+    /**
+     * Constructs a new Child object.
+     *
+     * @param childId the unique identifier for the child
+     * @param parentId the unique identifier for the parent
+     * @param firstName the first name of the child
+     * @param lastName the last name of the child
+     * @param dateOfBirth the date of birth of the child
+     * @param allergies the allergies of the child
+     * @param dietaryRequirements the dietary requirements of the child
+     * @param emergencyContact the emergency contact for the child
+     */
     public Child(String childId, String parentId, String firstName, String lastName, String dateOfBirth,
                  String allergies, String dietaryRequirements, String emergencyContact) {
         this.childId = childId;

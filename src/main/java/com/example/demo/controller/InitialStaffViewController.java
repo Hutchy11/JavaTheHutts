@@ -12,12 +12,19 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.io.IOException;
 
-
+/**
+ * Controller class for the Initial Staff View.
+ * Handles the display and interaction with the staff's initial view.
+ */
 public class InitialStaffViewController {
 
     @FXML
     private Label successLabel;
 
+    /**
+     * Initializes the controller class.
+     * Sets up the success label with the logged-in staff's information.
+     */
     public void initialize() {
         Staff loggedStaff = Session.getLoggedStaff();  // Retrieve the carer from the session
 
@@ -31,6 +38,12 @@ public class InitialStaffViewController {
         }
     }
 
+    /**
+     * Handles the action of creating a post.
+     * This method is triggered by the corresponding UI event.
+     *
+     * @param event the action event triggered by the user
+     */
     @FXML
     private void createPost(ActionEvent event) {
         // Implement the navigation logic here
