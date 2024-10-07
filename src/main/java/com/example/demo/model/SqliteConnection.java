@@ -4,6 +4,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+/**
+ * Singleton class for managing SQLite database connection.
+ * Provides a single instance of the database connection.
+ */
 public class SqliteConnection {
     private static Connection instance = null;
 

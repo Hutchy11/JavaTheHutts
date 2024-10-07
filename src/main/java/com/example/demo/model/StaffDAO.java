@@ -4,7 +4,10 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * Controller class for the Carer Navigation Bar.
+ * Handles navigation between different views for carers.
+ */
 public class StaffDAO implements IStaffDAO {
     private Connection connection;
 

@@ -9,6 +9,10 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * Controller class for the Carer Navigation Bar.
+ * Handles navigation between different views for carers.
+ */
 public class CarerNavigationBarController {
 
     @FXML

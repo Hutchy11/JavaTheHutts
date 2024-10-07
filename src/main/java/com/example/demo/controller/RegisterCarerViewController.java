@@ -13,6 +13,10 @@ import javafx.scene.Scene;
 
 import java.io.IOException;
 
+/**
+ * Controller class for the Register Carer View.
+ * Handles the registration of a new carer.
+ */
 public class RegisterCarerViewController {
 
     @FXML
@@ -32,10 +36,20 @@ public class RegisterCarerViewController {
 
     private CarerDAO carerDAO;
 
+    /**
+     * Constructor for the RegisterCarerViewController.
+     * Initializes the CarerDAO.
+     */
     public RegisterCarerViewController() {
         carerDAO = new CarerDAO();
     }
 
+    /**
+     * Handles the registration process when the register button is clicked.
+     * Validates the input fields and registers the carer if valid.
+     *
+     * @param event the action event triggered by the register button
+     */
     @FXML
     private void handleRegister(ActionEvent event) {
         String firstName = firstNameField.getText();
@@ -64,6 +78,12 @@ public class RegisterCarerViewController {
         }
     }
 
+    /**
+     * Shows an alert with the specified title and message.
+     *
+     * @param title the title of the alert
+     * @param message the message of the alert
+     */
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
@@ -72,6 +92,9 @@ public class RegisterCarerViewController {
         alert.showAndWait();
     }
 
+    /**
+     * Clears all input fields in the registration form.
+     */
     private void clearFields() {
         firstNameField.clear();
         lastNameField.clear();
@@ -82,6 +105,11 @@ public class RegisterCarerViewController {
         confirmPasswordField.clear();
     }
 
+    /**
+     * Navigates to the Carer Profile Menu view after successful registration.
+     *
+     * @param event the action event triggered by the register button
+     */
     private void navigateToCarerProfileMenu(ActionEvent event) {
         try {
             Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();

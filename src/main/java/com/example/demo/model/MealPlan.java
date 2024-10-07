@@ -3,6 +3,10 @@ package com.example.demo.model;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Controller class for the Register Carer View.
+ * Handles the registration of a new carer.
+ */
 public class MealPlan {
     private String mealPlanId;
     private String staffId;

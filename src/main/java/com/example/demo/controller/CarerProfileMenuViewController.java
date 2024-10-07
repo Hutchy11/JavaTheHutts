@@ -16,6 +16,10 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * Controller class for the Carer Profile Menu View.
+ * Manages the display and interaction with the carer profile data.
+ */
 public class CarerProfileMenuViewController {
 
     @FXML
@@ -35,10 +39,18 @@ public class CarerProfileMenuViewController {
 
     private CarerDAO carerDAO;
 
+    /**
+     * Constructor for CarerProfileMenuViewController.
+     * Initializes the CarerDAO.
+     */
     public CarerProfileMenuViewController() {
         carerDAO = new CarerDAO();
     }
 
+    /**
+     * Initializes the controller class.
+     * Sets up the table columns and loads carer data.
+     */
     @FXML
     public void initialize() {
         carerIdColumn.setCellValueFactory(new PropertyValueFactory<>("carerId"));
@@ -51,11 +63,19 @@ public class CarerProfileMenuViewController {
         loadCarerData();
     }
 
+    /**
+     * Loads carer data from the database and sets it to the table view.
+     */
     private void loadCarerData() {
         ObservableList<Carer> carerList = FXCollections.observableArrayList(carerDAO.getAllCarers());
         carerTableView.setItems(carerList);
     }
 
+    /**
+     * Navigates to the Register Carer view.
+     *
+     * @param event the action event triggered by the user
+     */
     @FXML
     private void navigateToRegisterCarer(ActionEvent event) {
         try {

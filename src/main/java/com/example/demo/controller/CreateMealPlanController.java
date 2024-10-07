@@ -21,6 +21,10 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.*;
 
+/**
+ * Controller class for the Create Meal Plan View.
+ * Handles the creation and submission of new meal plans.
+ */
 public class CreateMealPlanController {
 
     @FXML private ImageView logoImage;
@@ -87,6 +91,11 @@ public class CreateMealPlanController {
     private final RecipeDAO recipeDAO = new RecipeDAO();
     private Map<String, String> recipeNameToIdMap = new HashMap<>();
 
+
+    /**
+     * Initializes the controller class.
+     * Populates all choice boxes and adds field listeners.
+     */
     @FXML
     private void initialize() {
         populateAllChoiceBoxes();
@@ -94,6 +103,9 @@ public class CreateMealPlanController {
         checkFieldsCompletion();
     }
 
+    /**
+     * Populates all choice boxes with recipes based on meal type.
+     */
     private void populateAllChoiceBoxes() {
         populateChoiceBox(choiceBoxBreakfastMonday, "Breakfast", imageViewBreakfastMonday);
         populateChoiceBox(choiceBoxSnackMonday, "Snack", imageViewSnackMonday);
@@ -121,6 +133,14 @@ public class CreateMealPlanController {
         populateChoiceBox(choiceBoxSnackFridayEvening, "Snack", imageViewSnackFridayEvening);
     }
 
+
+    /**
+     * Populates a specific choice box with recipes of a given meal type.
+     *
+     * @param choiceBox the choice box to populate
+     * @param mealType the type of meal (e.g., Breakfast, Snack, Lunch)
+     * @param imageView the image view to display the selected recipe's image
+     */
     private void populateChoiceBox(ComboBox<String> choiceBox, String mealType, ImageView imageView) {
         List<Recipe> recipes = recipeDAO.getRecipesByMealType(mealType);
         for (Recipe recipe : recipes) {
@@ -140,11 +160,21 @@ public class CreateMealPlanController {
         });
     }
 
+    /**
+     * Retrieves the recipe ID from a choice box based on the selected recipe name.
+     *
+     * @param choiceBox the choice box to get the selected recipe from
+     * @return the recipe ID of the selected recipe
+     */
     private String getRecipeIdFromChoiceBox(ComboBox<String> choiceBox) {
         String selectedRecipeName = choiceBox.getValue();
         return recipeNameToIdMap.get(selectedRecipeName);
     }
 
+
+    /**
+     * Adds listeners to form fields to check for completion.
+     */
     private void addFieldListeners() {
         datePicker.valueProperty().addListener((observable, oldValue, newValue) -> checkFieldsCompletion());
 
@@ -174,10 +204,19 @@ public class CreateMealPlanController {
         addComboBoxListener(choiceBoxSnackFridayEvening);
     }
 
+
+    /**
+     * Adds a listener to a combo box to check for field completion.
+     *
+     * @param comboBox the combo box to add the listener to
+     */
     private void addComboBoxListener(ComboBox<String> comboBox) {
         comboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> checkFieldsCompletion());
     }
 
+    /**
+     * Checks if all required fields are completed and enables/disables the submit button accordingly.
+     */
     private void checkFieldsCompletion() {
         boolean allFieldsComplete = datePicker.getValue() != null &&
                 isComboBoxSelected(choiceBoxBreakfastMonday) &&
@@ -204,10 +243,20 @@ public class CreateMealPlanController {
         createMealPlan.setDisable(!allFieldsComplete);
     }
 
+    /**
+     * Checks if a combo box has a selected item.
+     *
+     * @param comboBox the combo box to check
+     * @return true if an item is selected, false otherwise
+     */
     private boolean isComboBoxSelected(ComboBox<String> comboBox) {
         return comboBox.getSelectionModel().getSelectedItem() != null;
     }
 
+
+    /**
+     * Creates a new meal plan and saves it to the database.
+     */
     @FXML
     private void createMealPlan() {
         MealPlan mealPlan = new MealPlan();
@@ -266,6 +315,9 @@ public class CreateMealPlanController {
         }
     }
 
+    /**
+     * Clears all form fields.
+     */
     private void clearFields() {
         datePicker.setValue(null);
 
@@ -320,6 +372,13 @@ public class CreateMealPlanController {
         imageViewSnackFridayEvening.setImage(null);
     }
 
+    /**
+     * Creates a new meal plan with the given recipe and date.
+     *
+     * @param selectedRecipe the selected recipe
+     * @param selectedDate the selected date
+     * @return the created MealPlan object
+     */
     public MealPlan createMealPlan(String selectedRecipe, LocalDate selectedDate) {
         if (selectedRecipe == null) {
             throw new NullPointerException("Recipe cannot be null");

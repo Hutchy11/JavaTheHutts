@@ -10,6 +10,10 @@ import javafx.scene.image.ImageView;
 import java.io.ByteArrayInputStream;
 import java.util.List;
 
+/**
+ * Controller class for the Meal Plan View.
+ * Handles the display and interaction with meal plans.
+ */
 public class MealPlanViewController {
 
     @FXML
@@ -76,7 +80,10 @@ public class MealPlanViewController {
     public MealPlanDAO mealPlanDAO = new MealPlanDAO();
     public RecipeDAO recipeDAO = new RecipeDAO();
 
-
+    /**
+     * Initializes the controller class.
+     * Populates the meal plan choice box with available dates and sets up listeners.
+     */
     @FXML
     public void initialize() {
         List<String> mealPlanDates = MealPlanDAO.getAllMealPlanDates();
@@ -88,6 +95,11 @@ public class MealPlanViewController {
         });
     }
 
+    /**
+     * Sets the meal plan details for the selected date.
+     *
+     * @param date the selected date
+     */
     public void setMealPlanDetails(String date) {
         List<String> recipeIds = mealPlanDAO.getAllRecipeIdsByDate(date);
         System.out.println("Fetched recipe IDs: " + recipeIds);
@@ -124,6 +136,13 @@ public class MealPlanViewController {
         }
     }
 
+    /**
+     * Sets the label text and image view for a given recipe name.
+     *
+     * @param label the label to set the text
+     * @param imageView the image view to set the image
+     * @param recipeName the name of the recipe
+     */
     private void setLabelAndImage(Label label, ImageView imageView, String recipeName) {
         label.setText(recipeName);
         Recipe recipe = recipeDAO.getRecipeByName(recipeName);

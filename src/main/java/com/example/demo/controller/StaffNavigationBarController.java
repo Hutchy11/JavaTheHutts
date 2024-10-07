@@ -10,6 +10,10 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * Controller class for the Staff Navigation Bar.
+ * Handles navigation between different views for staff members.
+ */
 public class StaffNavigationBarController {
 
     @FXML
@@ -59,13 +63,23 @@ public class StaffNavigationBarController {
     private void navigateToViewMealPlan(ActionEvent event) { loadView(event, "MealPlanView.fxml");}
 
 
-
+    /**
+     * Logs out the current user.
+     *
+     * @param event the action event triggered by the logout button
+     */
     @FXML
     private void logout(ActionEvent event) {
         // Implement logout logic here
         System.out.println("Logged out");
     }
 
+    /**
+     * Loads the specified FXML view.
+     *
+     * @param event the action event triggered by the navigation button
+     * @param fxmlFile the FXML file to load
+     */
     private void loadView(ActionEvent event, String fxmlFile) {
         try {
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

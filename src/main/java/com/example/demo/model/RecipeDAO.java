@@ -4,6 +4,10 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Controller class for the Register Carer View.
+ * Handles the registration of a new carer.
+ */
 public class RecipeDAO implements IRecipeDAO {
     private Connection connection;
 

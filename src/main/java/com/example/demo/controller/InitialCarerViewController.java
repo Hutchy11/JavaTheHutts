@@ -14,6 +14,11 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import java.util.List;
 import java.util.stream.Collectors;
+
+/**
+ * Controller class for the Initial Carer View.
+ * Handles the display and interaction with the carer's initial view.
+ */
 public class InitialCarerViewController {
 
     @FXML
@@ -35,6 +40,10 @@ public class InitialCarerViewController {
     @FXML
     private TableColumn<Child, String> emergencyContactColumn;
 
+    /**
+     * Initializes the controller class.
+     * Sets up the success label with the logged-in carer's information.
+     */
     public void initialize() {
         Carer loggedCarer = Session.getLoggedCarer();  // Retrieve the carer from the session
 
@@ -48,6 +57,9 @@ public class InitialCarerViewController {
         }
     }
 
+    /**
+     * Displays the children profiles related to the logged-in carer in the table view.
+     */
     @FXML
     private void viewMyChildren() {
         Carer loggedCarer = Session.getLoggedCarer();

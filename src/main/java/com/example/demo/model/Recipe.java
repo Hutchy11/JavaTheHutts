@@ -2,6 +2,10 @@ package com.example.demo.model;
 
 import java.util.UUID;
 
+/**
+ * Controller class for the Register Carer View.
+ * Handles the registration of a new carer.
+ */
 public class Recipe {
     private String recipeId;    // UUID for recipeId
     private String recipeName;

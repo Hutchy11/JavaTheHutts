@@ -15,7 +15,10 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-
+/**
+ * Controller class for the Login View.
+ * Handles the login process for both staff and carers.
+ */
 public class LoginController {
 
     @FXML
@@ -27,12 +30,22 @@ public class LoginController {
     @FXML
     public IStaffDAO staffDAO;
     public ICarerDAO carerDAO;
-    // Constructor
+
+    /**
+     * Constructor for the LoginController.
+     * Initializes the DAOs for staff and carer.
+     */
     public LoginController() {
         this.staffDAO = new StaffDAO();
         this.carerDAO = new CarerDAO();
     }
 
+    /**
+     * Handles the login button click event.
+     * Authenticates the user based on the provided email and password.
+     *
+     * @param event the action event triggered by the login button
+     */
     @FXML
     protected void onLoginButtonClick(ActionEvent event) {
         String email = emailField.getText();
@@ -58,6 +71,12 @@ public class LoginController {
         showAlert("Login Failed", "Invalid email or password.");
     }
 
+    /**
+     * Shows an alert with the specified title and message.
+     *
+     * @param title the title of the alert
+     * @param message the message of the alert
+     */
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
@@ -66,7 +85,12 @@ public class LoginController {
         alert.showAndWait();
     }
 
-    // Method to load a new FXML page after login
+    /**
+     * Loads a new FXML page after a successful login.
+     *
+     * @param event the action event triggered by the login button
+     * @param fxmlFile the FXML file to load
+     */
     private void loadDashboard(ActionEvent event, String fxmlFile) {
         try {
             // Get the current stage (window) and load the new FXML

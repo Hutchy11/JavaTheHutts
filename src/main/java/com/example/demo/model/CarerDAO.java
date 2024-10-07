@@ -6,7 +6,10 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * Controller class for the Register Carer View.
+ * Handles the registration of a new carer.
+ */
 public class CarerDAO implements ICarerDAO {
     private Connection connection;
 

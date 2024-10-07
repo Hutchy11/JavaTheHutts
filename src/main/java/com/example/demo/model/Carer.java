@@ -1,5 +1,9 @@
 package com.example.demo.model;
 
+/**
+ * Controller class for the Register Carer View.
+ * Handles the registration of a new carer.
+ */
 public class Carer {
     private String carerId;
     private String firstName;

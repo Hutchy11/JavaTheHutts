@@ -4,6 +4,10 @@ import java.sql.*;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * Controller class for the Register Carer View.
+ * Handles the registration of a new carer.
+ */
 public class MealPlanDAO implements IMealPlanDAO {
     private Connection connection;
 

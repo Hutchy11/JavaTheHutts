@@ -1,6 +1,11 @@
 package com.example.demo.model;
 
 import java.util.UUID;
+
+/**
+ * Controller class for the Carer Navigation Bar.
+ * Handles navigation between different views for carers.
+ */
 public class Staff {
     private String staffId;    // UUID for StaffId
     private String firstName;

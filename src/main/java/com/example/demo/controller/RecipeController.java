@@ -15,6 +15,10 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.UUID;
 
+/**
+ * Controller class for the Recipe View.
+ * Handles the creation and submission of new recipes.
+ */
 public class RecipeController {
 
     @FXML
@@ -41,7 +45,9 @@ public class RecipeController {
     private RecipeDAO recipeDAO = new RecipeDAO(); // Initialize RecipeDAO
     private byte[] recipeImage; // Byte array to store the selected image
 
-    // Protected method to check if all fields are completed and enable submit button
+    /**
+     * Checks if all fields are completed and enables the submit button.
+     */
     @FXML
     protected void checkFieldsCompletion() {
         // Check if all the fields are filled (not empty)
@@ -54,7 +60,10 @@ public class RecipeController {
         submitButton.setDisable(!(isRecipeNameFilled && isIngredientsFilled && isInstructionsFilled && isChoiceBoxSelected));
     }
 
-    // Initialize method to set up default behavior
+    /**
+     * Initializes the controller class.
+     * Sets up default behavior and listeners for form fields.
+     */
     @FXML
     public void initialize() {
         // Disable the submit button by default
@@ -69,6 +78,12 @@ public class RecipeController {
         recipeChoiceBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> checkFieldsCompletion());
     }
 
+    /**
+     * Handles the submit button click event.
+     * Creates a new recipe and saves it to the database.
+     *
+     * @throws IOException if an I/O error occurs
+     */
     @FXML
     protected void onSubmitButtonClick() throws IOException {
         String recipeName = recipeNameField.getText().trim();
@@ -89,7 +104,10 @@ public class RecipeController {
 
     }
 
-    // Method to handle the image selection
+    /**
+     * Handles the image selection button click event.
+     * Allows the user to select an image for the recipe.
+     */
     @FXML
     protected void onSelectImageButtonClick() {
         FileChooser fileChooser = new FileChooser();
@@ -107,7 +125,9 @@ public class RecipeController {
         }
     }
 
-    // Clear the input fields after successful submission
+    /**
+     * Clears the input fields after successful submission.
+     */
     private void clearFields() {
         recipeNameField.clear();
         ingredientsTextArea.clear();

@@ -19,7 +19,10 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-
+/**
+ * Controller class for the Staff Profile Menu View.
+ * Handles the display and interaction with staff profiles.
+ */
 public class StaffProfileMenuViewController {
 
     @FXML
@@ -41,10 +44,18 @@ public class StaffProfileMenuViewController {
 
     private StaffDAO staffDAO;
 
+    /**
+     * Constructor for the StaffProfileMenuViewController.
+     * Initializes the StaffDAO.
+     */
     public StaffProfileMenuViewController() {
         staffDAO = new StaffDAO();
     }
 
+    /**
+     * Initializes the controller class.
+     * Sets up the table columns and loads the staff data.
+     */
     @FXML
     public void initialize() {
         staffIdColumn.setCellValueFactory(new PropertyValueFactory<>("staffId"));
@@ -58,11 +69,19 @@ public class StaffProfileMenuViewController {
         loadStaffData();
     }
 
+    /**
+     * Loads the staff data into the table view.
+     */
     private void loadStaffData() {
         ObservableList<Staff> staffList = FXCollections.observableArrayList(staffDAO.getAllStaffs());
         staffTableView.setItems(staffList);
     }
 
+    /**
+     * Navigates to the Register Staff view.
+     *
+     * @param event the action event triggered by the navigation button
+     */
     @FXML
     private void navigateToRegisterStaff(ActionEvent event) {
         try {
@@ -76,6 +95,9 @@ public class StaffProfileMenuViewController {
         }
     }
 
+    /**
+     * Inner class for handling meal plan creation.
+     */
     public static class CreateMealPlanController {
 
         @FXML
@@ -117,17 +139,27 @@ public class StaffProfileMenuViewController {
         @FXML
         private Button cancelButton;
 
+        /**
+         * Initializes the controller class.
+         * Sets up any required data or configurations.
+         */
         @FXML
         private void initialize() {
             // Initialize any required data or setup here
         }
 
+        /**
+         * Handles the save meal plan action.
+         */
         @FXML
         private void handleSaveMealPlan() {
             // Handle the save meal plan action
             System.out.println("Meal plan saved!");
         }
 
+        /**
+         * Handles the cancel meal plan creation action.
+         */
         @FXML
         private void handleCancelMealPlan() {
             // Handle the cancel action
