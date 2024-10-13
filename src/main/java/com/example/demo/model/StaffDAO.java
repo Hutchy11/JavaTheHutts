@@ -146,4 +146,21 @@ public class StaffDAO implements IStaffDAO {
         return staffs;
     }
 
+    public void updateStaff(Staff staff) {
+        String sql = "UPDATE staff SET FirstName = ?, LastName = ?, Email = ?, Password = ?, Phone = ?, Role = ?, HireDate = ? WHERE StaffId = ?";
+
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setString(1, staff.getFirstName());
+            pstmt.setString(2, staff.getLastName());
+            pstmt.setString(3, staff.getEmail());
+            pstmt.setString(4, staff.getPassword());
+            pstmt.setString(5, staff.getPhone());
+            pstmt.setString(6, staff.getRole());
+            pstmt.setString(7, staff.getHireDate());
+            pstmt.setString(8, staff.getStaffId());
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
@@ -81,6 +82,20 @@ public class ChildProfileController {
         // Show the table view
         childTableView.setVisible(true);
 
+        // Add row click event
+        childTableView.setRowFactory(tv -> {
+            TableRow<Child> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (!row.isEmpty()) {
+                    Child rowData = row.getItem();
+                    openEditChildProfileDialog(rowData);
+                }
+            });
+            return row;
+        });
+
+        refreshTable();
+
     }
 
     /**
@@ -118,4 +133,28 @@ public class ChildProfileController {
             System.out.println("No carer is logged in.");
         }
     }
+
+    public void openEditChildProfileDialog(Child child) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/demo/EditChildProfile.fxml"));
+            Stage stage = new Stage();
+            stage.setTitle("Edit Child Profile");
+            stage.setScene(new Scene(fxmlLoader.load()));
+            EditChildProfileDialogController controller = fxmlLoader.getController();
+            controller.setChild(child);
+            controller.setParentController(this); // Set the parent controller
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void refreshTable() {
+        // Re-fetch the data and refresh the table view
+        ChildDAO childDAO = new ChildDAO();
+        List<Child> children = childDAO.getAllChildren();
+        ObservableList<Child> childList = FXCollections.observableArrayList(children);
+        childTableView.setItems(childList);
+    }
+
 }

@@ -15,6 +15,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Controller class for the Carer Profile Menu View.
@@ -60,6 +61,12 @@ public class CarerProfileMenuViewController {
         phoneColumn.setCellValueFactory(new PropertyValueFactory<>("phone"));
         addressColumn.setCellValueFactory(new PropertyValueFactory<>("address"));
 
+        carerTableView.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 2 && carerTableView.getSelectionModel().getSelectedItem() != null) {
+                openEditCarerProfileDialog(carerTableView.getSelectionModel().getSelectedItem());
+            }
+        });
+
         loadCarerData();
     }
 
@@ -87,5 +94,29 @@ public class CarerProfileMenuViewController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void openEditCarerProfileDialog(Carer carer) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/demo/EditCarerProfile.fxml"));
+            Parent parent = loader.load();
+
+            EditCarerProfileDialogController controller = loader.getController();
+            controller.setCarer(carer);
+            controller.setParentController(this);
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(parent));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void refreshTable() {
+        // Re-fetch the data and refresh the table view
+        List<Carer> carers = carerDAO.getAllCarers();
+        ObservableList<Carer> carerList = FXCollections.observableArrayList(carers);
+        carerTableView.setItems(carerList);
     }
 }
