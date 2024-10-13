@@ -10,5 +10,7 @@ public interface ICarerDAO {
     Carer login(String email, String password);
 
     List<Carer> getAllCarers();
+
+    void updateCarer(Carer carer);
 }
 
