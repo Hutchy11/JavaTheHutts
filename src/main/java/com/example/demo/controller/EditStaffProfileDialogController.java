@@ -2,10 +2,15 @@ package com.example.demo.controller;
 
 import com.example.demo.model.Staff;
 import com.example.demo.model.StaffDAO;
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+/**
+ * Controller class for editing a staff member's profile.
+ */
 public class EditStaffProfileDialogController {
     @FXML
     private TextField firstNameField;
@@ -20,11 +25,16 @@ public class EditStaffProfileDialogController {
     @FXML
     private TextField passwordField;
     @FXML
-    private TextField hireDateField; // Ensure this matches the fx:id in the FXML
+    private TextField hireDateField;
 
     private Staff staff;
     private StaffProfileMenuViewController parentController;
 
+    /**
+     * Sets the staff member to be edited.
+     *
+     * @param staff the staff member to be edited
+     */
     public void setStaff(Staff staff) {
         this.staff = staff;
         firstNameField.setText(staff.getFirstName());
@@ -36,10 +46,18 @@ public class EditStaffProfileDialogController {
         hireDateField.setText(staff.getHireDate());
     }
 
+    /**
+     * Sets the parent controller.
+     *
+     * @param parentController the parent controller
+     */
     public void setParentController(StaffProfileMenuViewController parentController) {
         this.parentController = parentController;
     }
 
+    /**
+     * Saves the edited staff profile.
+     */
     @FXML
     private void save() {
         staff.setFirstName(firstNameField.getText());
@@ -50,14 +68,36 @@ public class EditStaffProfileDialogController {
         staff.setPassword(passwordField.getText());
         staff.setHireDate(hireDateField.getText());
 
-        StaffDAO staffDAO = new StaffDAO();
-        staffDAO.updateStaff(staff);
+        Task<Void> task = new Task<>() {
+            @Override
+            protected Void call() throws Exception {
+                StaffDAO staffDAO = new StaffDAO();
+                staffDAO.updateStaff(staff);
+                return null;
+            }
 
-        parentController.refreshTable();
+            @Override
+            protected void succeeded() {
+                Platform.runLater(() -> {
+                    parentController.refreshTable();
+                    ((Stage) firstNameField.getScene().getWindow()).close();
+                });
+            }
 
-        ((Stage) firstNameField.getScene().getWindow()).close();
+            @Override
+            protected void failed() {
+                Platform.runLater(() -> {
+                    // Handle failure (e.g., show an error message)
+                });
+            }
+        };
+
+        new Thread(task).start();
     }
 
+    /**
+     * Cancels the edit operation and closes the dialog.
+     */
     @FXML
     private void cancel() {
         ((Stage) firstNameField.getScene().getWindow()).close();

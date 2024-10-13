@@ -1,12 +1,16 @@
-// EditChildProfileDialogController.java
 package com.example.demo.controller;
 
 import com.example.demo.model.Child;
 import com.example.demo.model.ChildDAO;
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+/**
+ * Controller class for editing a child's profile.
+ */
 public class EditChildProfileDialogController {
     @FXML
     private TextField firstNameField;
@@ -24,6 +28,12 @@ public class EditChildProfileDialogController {
     private Child child;
     private ChildProfileController parentController;
 
+
+    /**
+     * Sets the child to be edited.
+     *
+     * @param child the child to be edited
+     */
     public void setChild(Child child) {
         this.child = child;
         firstNameField.setText(child.getFirstName());
@@ -34,10 +44,18 @@ public class EditChildProfileDialogController {
         emergencyContactField.setText(child.getEmergencyContact());
     }
 
+    /**
+     * Sets the parent controller.
+     *
+     * @param parentController the parent controller
+     */
     public void setParentController(ChildProfileController parentController) {
         this.parentController = parentController;
     }
 
+    /**
+     * Saves the edited child profile.
+     */
     @FXML
     private void save() {
         child.setFirstName(firstNameField.getText());
@@ -47,17 +65,36 @@ public class EditChildProfileDialogController {
         child.setDietaryRequirements(dietaryField.getText());
         child.setEmergencyContact(emergencyContactField.getText());
 
-        // Save the updated child to the database
-        ChildDAO childDAO = new ChildDAO();
-        childDAO.updateChild(child);
+        Task<Void> task = new Task<>() {
+            @Override
+            protected Void call() throws Exception {
+                ChildDAO childDAO = new ChildDAO();
+                childDAO.updateChild(child);
+                return null;
+            }
 
-        // Refresh the table in the parent controller
-        parentController.refreshTable();
+            @Override
+            protected void succeeded() {
+                Platform.runLater(() -> {
+                    parentController.refreshTable();
+                    ((Stage) firstNameField.getScene().getWindow()).close();
+                });
+            }
 
-        // Close the dialog
-        ((Stage) firstNameField.getScene().getWindow()).close();
+            @Override
+            protected void failed() {
+                Platform.runLater(() -> {
+                    // Handle failure (e.g., show an error message)
+                });
+            }
+        };
+
+        new Thread(task).start();
     }
 
+    /**
+     * Cancels the edit operation and closes the dialog.
+     */
     @FXML
     private void cancel() {
         ((Stage) firstNameField.getScene().getWindow()).close();
