@@ -81,11 +81,11 @@ public class RegisterStaffViewController {
         boolean success = staffDAO.registerStaff(staffId, firstName, lastName, email, password, phone, role, hireDate);
 
         if (success) {
-            showAlert("Success", "Carer registered successfully.");
+            showAlert("Success", "Staff member registered successfully.");
             clearFields();
             navigateToStaffProfileMenu(event);
         } else {
-            showAlert("Error", "Failed to register carer.");
+            showAlert("Error", "Failed to register staff member.");
         }
     }
 
