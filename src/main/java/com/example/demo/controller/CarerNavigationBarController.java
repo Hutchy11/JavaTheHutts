@@ -38,8 +38,11 @@ public class CarerNavigationBarController {
 
     @FXML
     private void logout(ActionEvent event) {
-        // Implement logout logic here
+        // Clear session data or perform any necessary cleanup
         System.out.println("Logged out");
+
+        // Redirect to the login view
+        loadView(event, "LoginView.fxml");
     }
 
     private void loadView(ActionEvent event, String fxmlFile) {

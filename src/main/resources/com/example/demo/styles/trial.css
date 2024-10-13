@@ -92,3 +92,20 @@
 .table-row-cell:even {
     -fx-background-color: #ffffff; /* White background for even rows */
 }
+
+.button {
+    -fx-background-color: #2E8B57;
+        -fx-text-fill: white;
+        -fx-padding: 10px;
+        -fx-pref-width: 100px; /* Make the button wider */
+        -fx-alignment: center; /* Center the text in the button */
+}
+
+.button:hover {
+     -fx-background-color: #3CB371;
+ }
+
+.hbox {
+    -fx-spacing: 10px; /* Spacing between elements */
+    -fx-alignment: center; /* Center alignment */
+}

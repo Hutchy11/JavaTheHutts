@@ -70,8 +70,11 @@ public class StaffNavigationBarController {
      */
     @FXML
     private void logout(ActionEvent event) {
-        // Implement logout logic here
+        // Clear session data or perform any necessary cleanup
         System.out.println("Logged out");
+
+        // Redirect to the login view
+        loadView(event, "LoginView.fxml");
     }
 
     /**
