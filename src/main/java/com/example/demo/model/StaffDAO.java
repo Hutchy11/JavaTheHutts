@@ -146,6 +146,11 @@ public class StaffDAO implements IStaffDAO {
         return staffs;
     }
 
+    /**
+     * Updates the details of an existing staff member in the database.
+     *
+     * @param staff the Staff object containing updated details
+     */
     public void updateStaff(Staff staff) {
         String sql = "UPDATE staff SET FirstName = ?, LastName = ?, Email = ?, Password = ?, Phone = ?, Role = ?, HireDate = ? WHERE StaffId = ?";
 

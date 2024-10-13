@@ -138,6 +138,11 @@ public class CarerDAO implements ICarerDAO {
         return false;
     }
 
+    /**
+     * Updates the details of an existing carer in the database.
+     *
+     * @param loggedCarer the Carer object containing updated details
+     */
     public void updateCarer(Carer loggedCarer) {
         String updateSQL = """
                     UPDATE carer

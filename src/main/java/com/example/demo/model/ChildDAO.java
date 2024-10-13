@@ -133,6 +133,11 @@ public class ChildDAO implements IChildDAO {
         return children;
     }
 
+    /**
+     * Updates the details of an existing child in the database.
+     *
+     * @param child the Child object containing updated details
+     */
     public void updateChild(Child child) {
         String sql = "UPDATE child SET FirstName = ?, LastName = ?, DateOfBirth = ?, Allergies = ?, DietaryRequirements = ?, EmergencyContact = ? WHERE ChildId = ?";
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
