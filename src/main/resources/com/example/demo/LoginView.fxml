@@ -6,47 +6,65 @@
 <?import javafx.scene.image.Image?>
 
 
+<?import javafx.geometry.Insets?>
 <VBox stylesheets="@styles/trial.css" alignment="TOP_LEFT" spacing="0.0" xmlns="http://javafx.com/javafx/21"
       xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.controller.LoginController">
-  <HBox styleClass="header-hbox" prefHeight="49.0" prefWidth="600.0" alignment="CENTER_LEFT">
-    <ImageView fx:id="logoImage" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-      <image>
-        <Image url="@styles/logo.png" />
-      </image>
-      <clip>
-        <Circle radius="25.0" centerX="25.0" centerY="25.0" />
-      </clip>
-    </ImageView>
-    <Region HBox.hgrow="ALWAYS" />
-  </HBox>
 
-  <VBox prefHeight="720.0" prefWidth="300.0" alignment="CENTER" spacing="10.0" style="-fx-background-color: white;">
-    <ImageView fx:id="mainLogoImage" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
-      <image>
-        <Image url="@styles/mainlogo.png" />
-      </image>
-    </ImageView>
+  <VBox alignment="TOP_LEFT" spacing="5.0">
 
-    <Label prefHeight="40.0" prefWidth="289.0" text="Bright Beginnings" styleClass="heading-label" />
-    <Label prefHeight="17.0" prefWidth="291.0" text="Where Little Minds Shine and Big Dreams Start" styleClass="subheading-label" />
+    <!-- Header HBox with a bottom margin -->
+    <HBox styleClass="header-hbox" prefHeight="49.0" prefWidth="600.0" alignment="CENTER_LEFT">
+      <VBox.margin>
+        <Insets top="2.5" left="2.5" right="2.5"/> <!-- Margin applied below header -->
+      </VBox.margin>
+      <ImageView fx:id="logoImage" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+        <image>
+          <Image url="@styles/logo.png" />
+        </image>
+        <clip>
+          <Circle radius="25.0" centerX="25.0" centerY="25.0" />
+        </clip>
+      </ImageView>
+      <Region HBox.hgrow="ALWAYS" />
+    </HBox>
 
+    <!-- Main VBox with a top margin -->
+    <VBox styleClass="vbox-main" prefHeight="720.0" prefWidth="300.0" alignment="CENTER" spacing="10.0">
+      <VBox.margin>
+        <Insets top="2.5" bottom="2.5" left="2.5" right="2.5"/> <!-- Margin applied above and below this VBox -->
+      </VBox.margin>
+      <ImageView fx:id="mainLogoImage" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+        <image>
+          <Image url="@styles/mainlogo.png" />
+        </image>
+      </ImageView>
 
-    <Label prefHeight="40.0" maxWidth="289.0" text="Email" />
-    <TextField fx:id="emailField" prefHeight="30.0" maxWidth="289.0" promptText="Enter your email" />
+      <Label prefHeight="40.0" prefWidth="289.0" text="Bright Beginnings" styleClass="heading-label" />
+      <Label prefHeight="17.0" prefWidth="291.0" text="Where Little Minds Shine and Big Dreams Start" styleClass="subheading-label" />
 
-    <Label prefHeight="17.0" maxWidth="289.0" text="Password" />
-    <PasswordField fx:id="passwordField" prefHeight="30.0" maxWidth="289.0" promptText="Enter your password" />
+      <Label prefHeight="40.0" maxWidth="289.0" text="Email" />
+      <TextField fx:id="emailField" prefHeight="30.0" maxWidth="289.0" promptText="Enter your email" />
 
-    <Button text="Login" prefHeight="30.0" maxWidth="289.0" onAction="#onLoginButtonClick" styleClass="login-button"/>
-    <Region prefHeight="20.0"/>
+      <Label prefHeight="17.0" maxWidth="289.0" text="Password" />
+      <PasswordField fx:id="passwordField" prefHeight="30.0" maxWidth="289.0" promptText="Enter your password" />
+
+      <Button text="Login" prefHeight="30.0" maxWidth="289.0" onAction="#onLoginButtonClick" styleClass="login-button"/>
+      <Region prefHeight="20.0"/>
+    </VBox>
+
+    <!-- Footer HBox with a top margin -->
+    <HBox styleClass="footer-hbox" prefHeight="49.0" prefWidth="600.0" alignment="CENTER_LEFT">
+      <VBox.margin>
+        <Insets bottom="2.5" left="2.5" right="2.5"/> <!-- Margin applied above footer -->
+      </VBox.margin>
+      <Label text="Call us: 0412345678" />
+      <Region HBox.hgrow="ALWAYS" />
+      <Hyperlink text="Terms and Conditions"/>
+      <Region HBox.hgrow="ALWAYS" />
+      <Label text="150 W. 85th Street, Brisbane" />
+    </HBox>
+
   </VBox>
 
-  <HBox styleClass="footer-hbox" prefHeight="49.0" prefWidth="600.0" alignment="CENTER_LEFT">
-    <Label text="Call us: 0412345678" />
-    <Region HBox.hgrow="ALWAYS" />
-    <Hyperlink text="Terms and Conditions"/>
-    <Region HBox.hgrow="ALWAYS" />
-    <Label text="150 W. 85th Street, Brisbane" />
-  </HBox>
 </VBox>
 

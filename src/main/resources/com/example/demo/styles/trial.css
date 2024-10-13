@@ -5,22 +5,42 @@
     -fx-padding: 10px;
     -fx-pref-width: 100px; /* Make the button wider */
     -fx-alignment: center; /* Center the text in the button */
+    -fx-background-radius: 5px; /* Slightly reduced rounded corners */
 }
 
 .login-button:hover {
     -fx-background-color: #3CB371;
+    -fx-background-radius: 5px;
 }
 
 /* Style for the HBox containing the button and logo */
 .header-hbox {
     -fx-background-color: #D3D3D3; /* Light gray background */
     -fx-padding: 10px; /* Optional padding for spacing */
+    -fx-background-radius: 10px; /* Reduced rounded corners for the HBox */
+    -fx-border-radius: 10px; /* Matching border rounding */
+    -fx-spacing: 10px; /* Adds some space inside the HBox */
+    -fx-margin-bottom: 5px; /* Add some space below the header */
 }
 
-/* Style for the HBox containing the button and logo */
+/* Style for the HBox containing the footer */
 .footer-hbox {
     -fx-background-color: #D3D3D3; /* Light gray background */
     -fx-padding: 10px; /* Optional padding for spacing */
+    -fx-background-radius: 10px; /* Reduced rounded corners for the HBox */
+    -fx-border-radius: 10px; /* Matching border rounding */
+    -fx-spacing: 10px; /* Adds some space inside the HBox */
+    -fx-margin-top: 5px; /* Add some space above the footer */
+}
+
+/* Style for the VBox containing the main content */
+.vbox-main {
+    -fx-background-color: white;
+    -fx-padding: 10px;
+    -fx-background-radius: 10px; /* Reduced rounded corners for the VBox */
+    -fx-border-radius: 10px; /* Matching border rounding */
+    -fx-border-color: #D3D3D3; /* Optional border color */
+    -fx-spacing: 20px; /* Space between elements inside the VBox */
 }
 
 /* Style for the main heading label */
@@ -36,4 +56,39 @@
     -fx-font-size: 14px;
     -fx-text-fill: #666666;
     -fx-alignment: center;
+}
+
+/* Style for the TableView */
+.table-view {
+    -fx-background-color: white;
+    -fx-border-radius: 15px; /* Curved corners for the entire table */
+    -fx-background-radius: 15px; /* Match the background with curved corners */
+    -fx-padding: 10px;
+    -fx-border-color: #cccccc;
+    -fx-border-width: 2px;
+}
+
+/* Style for each TableRow */
+.table-row-cell {
+    -fx-background-color: white;
+    -fx-background-radius: 10px; /* Curved corners for individual rows */
+    -fx-border-radius: 10px; /* Make the row borders rounded */
+    -fx-border-color: #dddddd;
+    -fx-border-width: 1px;
+    -fx-padding: 5px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.1), 5, 0, 0, 2); /* Optional shadow for more depth */
+}
+
+.table-row-cell:filled:selected {
+    -fx-background-color: #2E8B57; /* Color for selected row */
+    -fx-text-fill: white; /* Text color for selected row */
+    -fx-background-radius: 10px; /* Ensure the selected row keeps its rounded corners */
+}
+
+.table-row-cell:odd {
+    -fx-background-color: #f9f9f9; /* Slightly different background for odd rows */
+}
+
+.table-row-cell:even {
+    -fx-background-color: #ffffff; /* White background for even rows */
 }

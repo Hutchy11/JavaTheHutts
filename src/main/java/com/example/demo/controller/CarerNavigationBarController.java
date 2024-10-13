@@ -25,7 +25,7 @@ public class CarerNavigationBarController {
     }
     @FXML
     private void navigateToViewRecipe(ActionEvent event) {
-        loadView(event, "RecipeView.fxml");
+        loadView(event, "RecipeCarerView.fxml");
     }
     @FXML
     private void navigateToChildProfile(ActionEvent event) {
