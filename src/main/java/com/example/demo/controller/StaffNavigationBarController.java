@@ -48,7 +48,7 @@ public class StaffNavigationBarController {
 
     @FXML
     private void navigateToSettings(ActionEvent event) {
-        loadView(event, "SettingsView.fxml");
+        loadView(event, "EditStaffProfile.fxml");
     }
 
     @FXML
