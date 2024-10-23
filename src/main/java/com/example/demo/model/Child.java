@@ -1,6 +1,5 @@
 package com.example.demo.model;
 
-import java.util.UUID;
 
 /**
  * This class represents a Child object.

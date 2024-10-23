@@ -1,8 +1,6 @@
 package com.example.demo.model;
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,9 +15,13 @@ public class CarerDAO implements ICarerDAO {
      * Constructor for the CarerDAO class.
      * Initializes the database connection and creates the carer table if it doesn't exist.
      */
-    public CarerDAO(){
-        connection = SqliteConnection.getInstance();
-        createTable();
+    public CarerDAO() {
+        try {
+            connection = DriverManager.getConnection("jdbc:sqlite:childcaredb.db");
+            createTable();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -158,6 +160,22 @@ public class CarerDAO implements ICarerDAO {
             pstmt.setString(6, loggedCarer.getAddress());
             pstmt.setString(7, loggedCarer.getCarerId());
             pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Closes the database connection if it is open.
+     * This method checks if the connection is not null and is not already closed.
+     * If the connection is open, it closes the connection.
+     * If an SQLException occurs during the closing process, it prints the stack trace.
+     */
+    public void closeConnection() {
+        try {
+            if (connection != null && !connection.isClosed()) {
+                connection.close();
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }

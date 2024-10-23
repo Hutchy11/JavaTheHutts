@@ -9,6 +9,9 @@ import javafx.scene.layout.VBox;
 import com.example.demo.model.Carer;
 import com.example.demo.model.CarerDAO;
 
+/**
+ * Controller class for managing carer settings.
+ */
 public class CarerSettingsController {
 
     @FXML
@@ -35,12 +38,19 @@ public class CarerSettingsController {
     private CarerDAO carerDAO;
     private Carer loggedCarer;
 
+    /**
+     * Initializes the controller and loads user data.
+     */
     public void initialize() {
         carerDAO = new CarerDAO();
         loggedCarer = Session.getLoggedCarer();
         loadUserData();
     }
 
+
+    /**
+     * Loads the logged-in carer's data into the form fields.
+     */
     private void loadUserData() {
         if (loggedCarer != null) {
             phoneNumberField.setText(loggedCarer.getPhone());
@@ -49,6 +59,9 @@ public class CarerSettingsController {
         }
     }
 
+    /**
+     * Updates the logged-in carer's data with the values from the form fields.
+     */
     @FXML
     private void updateUserData() {
         if (loggedCarer != null) {
@@ -60,11 +73,17 @@ public class CarerSettingsController {
         }
     }
 
+    /**
+     * Shows the password reset section.
+     */
     @FXML
     private void showPasswordResetSection() {
         passwordResetSection.setVisible(true);
     }
 
+    /**
+     * Hides the password reset section.
+     */
     @FXML
     private void hidePasswordResetSection() {
         passwordResetSection.setVisible(false);
@@ -92,6 +111,12 @@ public class CarerSettingsController {
         hidePasswordResetSection();
     }
 
+    /**
+     * Shows an alert with the specified title and message.
+     *
+     * @param title the title of the alert
+     * @param message the message of the alert
+     */
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);

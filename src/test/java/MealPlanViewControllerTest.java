@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@Disabled("Test class is disabled for now")
+@Disabled ("Test class is disabled for now")
 public class MealPlanViewControllerTest {
 
     private MealPlanViewController controller;

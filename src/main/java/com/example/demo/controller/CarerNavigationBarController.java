@@ -57,13 +57,4 @@ public class CarerNavigationBarController {
             //showAlert("Error", "Failed to load the view.");
         }
     }
-
-    /* Figure out if this is worth keeping.
-    private void showAlert(String title, String message) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
-    } */
 }

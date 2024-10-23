@@ -123,11 +123,3 @@ public class RegisterCarerViewController {
         }
     }
 }
-
-/*  Old form check code.
-    if (success) {
-            showAlert("Success", "Carer registered successfully.");
-        } else {
-            showAlert("Error", "Failed to register carer.");
-        }
-    }*/
