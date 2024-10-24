@@ -12,7 +12,6 @@
     <Button onAction="#navigateToCarerProfileMenu" text="Carer Profile Menu" />
     <Button onAction="#navigateToStaffProfileMenu" text="Staff Profile Menu" />
     <Button onAction="#navigateToViewMealPlan" text="Meal Plans" />
-    <Button onAction="#navigateToProfile" text="Profile" />
     <Button onAction="#navigateToSettings" text="Settings" />
     <Button onAction="#logout" text="Logout" />
 </HBox>
