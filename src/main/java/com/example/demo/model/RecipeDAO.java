@@ -102,6 +102,98 @@ public class RecipeDAO implements IRecipeDAO {
     }
 
     /**
+     * Retrieves a list of recipe IDs for a given recipe name.
+     *
+     * @param recipeName the name of the recipe
+     * @return an ArrayList of recipe IDs that match the given recipe name
+     */
+    @Override
+    public ArrayList<String> getRecipeIdByName(String recipeName) {
+        ArrayList<String> recipeIds = new ArrayList<>();
+        String sql = "SELECT RecipeId FROM Recipe WHERE RecipeName = ?";
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setString(1, recipeName);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    recipeIds.add(rs.getString("RecipeId"));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return recipeIds;
+    }
+
+    /**
+     * Retrieves a list of ingredients for a given recipe name.
+     *
+     * @param recipeName the name of the recipe
+     * @return an ArrayList of ingredients that match the given recipe name
+     */
+    @Override
+    public ArrayList<String> getIngredientsByName(String recipeName) {
+        ArrayList<String> ingredients = new ArrayList<>();
+        String sql = "SELECT Ingredients FROM Recipe WHERE RecipeName = ?";
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setString(1, recipeName);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    ingredients.add(rs.getString("Ingredients"));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return ingredients;
+    }
+
+    /**
+     * Retrieves a list of instructions for a given recipe name.
+     *
+     * @param recipeName the name of the recipe
+     * @return an ArrayList of instructions that match the given recipe name
+     */
+    @Override
+    public ArrayList<String> getInstructionsByName(String recipeName) {
+        ArrayList<String> instructions = new ArrayList<>();
+        String sql = "SELECT Instructions FROM Recipe WHERE RecipeName = ?";
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setString(1, recipeName);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    instructions.add(rs.getString("Instructions"));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return instructions;
+    }
+
+    /**
+     * Retrieves a list of meal types for a given recipe name.
+     *
+     * @param recipeName the name of the recipe
+     * @return an ArrayList of meal types that match the given recipe name
+     */
+    @Override
+    public ArrayList<String> getMealTypeByName(String recipeName) {
+        ArrayList<String> mealType = new ArrayList<>();
+        String sql = "SELECT MealType FROM Recipe WHERE RecipeName = ?";
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setString(1, recipeName);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    mealType.add(rs.getString("MealType"));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return mealType;
+    }
+
+    /**
      * Retrieves recipes by meal type from the database.
      *
      * @param mealType the type of meal (e.g., breakfast, lunch, dinner)

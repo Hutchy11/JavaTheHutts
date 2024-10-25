@@ -9,6 +9,7 @@ public class MockRecipeDAO implements IRecipeDAO {
     public void insertRecipe(Recipe recipe) {
     }
 
+    @Override
     public ArrayList<String> getRecipeIdByName(String recipeName) {
         // Simulate returning a list of recipe IDs for a given recipe name
         ArrayList<String> recipeIds = new ArrayList<>();
@@ -28,6 +29,7 @@ public class MockRecipeDAO implements IRecipeDAO {
         return new ArrayList<>();
     }
 
+    @Override
     public ArrayList<String> getIngredientsByName(String recipeName) {
         ArrayList<String> ingredients = new ArrayList<>();
         if ("Basic Omelette".compareTo(recipeName) == 0) {
@@ -46,6 +48,7 @@ public class MockRecipeDAO implements IRecipeDAO {
         return new ArrayList<>();
     }
 
+    @Override
     public ArrayList<String> getInstructionsByName(String recipeName) {
         ArrayList<String> instructions = new ArrayList<>();
         if ("Basic Omelette".compareTo(recipeName) == 0) {
@@ -64,6 +67,7 @@ public class MockRecipeDAO implements IRecipeDAO {
         return new ArrayList<>();
     }
 
+    @Override
     public ArrayList<String> getMealTypeByName(String recipeName) {
         ArrayList<String> mealType = new ArrayList<>();
         if ("Basic Omelette".compareTo(recipeName) == 0) {
