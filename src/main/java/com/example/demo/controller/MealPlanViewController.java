@@ -16,66 +16,47 @@ import java.util.List;
  */
 public class MealPlanViewController {
 
+    // Individual Label declarations
+    // Breakfast row on meal plan
     @FXML
-    public Label mondayBreakfastLabel;
+    public Label mondayBreakfastLabel, tuesdayBreakfastLabel, wednesdayBreakfastLabel, thursdayBreakfastLabel, fridayBreakfastLabel;
+
+    // Morning snack row on meal plan
     @FXML
-    public Label tuesdayBreakfastLabel;
+    private Label mondaySnack1Label, tuesdaySnack1Label, wednesdaySnack1Label, thursdaySnack1Label, fridaySnack1Label;
+
+    // Lunch row on meal plan
     @FXML
-    public Label wednesdayBreakfastLabel;
+    private Label mondayLunchLabel, tuesdayLunchLabel, wednesdayLunchLabel, thursdayLunchLabel, fridayLunchLabel;
+
+    // Afternoon snack row on meal plan
     @FXML
-    public Label thursdayBreakfastLabel;
-    @FXML
-    public Label fridayBreakfastLabel;
-    @FXML
-    private Label mondaySnack1Label;
-    @FXML
-    private Label tuesdaySnack1Label;
-    @FXML
-    private Label wednesdaySnack1Label;
-    @FXML
-    private Label thursdaySnack1Label;
-    @FXML
-    private Label fridaySnack1Label;
-    @FXML
-    private Label mondayLunchLabel;
-    @FXML
-    private Label tuesdayLunchLabel;
-    @FXML
-    private Label wednesdayLunchLabel;
-    @FXML
-    private Label thursdayLunchLabel;
-    @FXML
-    private Label fridayLunchLabel;
-    @FXML
-    private Label mondaySnack2Label;
-    @FXML
-    private Label tuesdaySnack2Label;
-    @FXML
-    private Label wednesdaySnack2Label;
-    @FXML
-    private Label thursdaySnack2Label;
-    @FXML
-    private Label fridaySnack2Label;
+    private Label mondaySnack2Label, tuesdaySnack2Label, wednesdaySnack2Label, thursdaySnack2Label, fridaySnack2Label;
+
     @FXML
     private ChoiceBox<String> mealPlanChoiceBox;
 
     // Individual ImageView declarations
+    // Breakfast row on meal plan
     @FXML
-    private ImageView imageViewBreakfastMonday, imageViewBreakfastTuesday, imageViewBreakfastWednesday;
+    private ImageView imageViewBreakfastMonday, imageViewBreakfastTuesday, imageViewBreakfastWednesday,
+            imageViewBreakfastThursday, imageViewBreakfastFriday;
+
+    // Morning snack row on meal plan
     @FXML
-    private ImageView imageViewBreakfastThursday, imageViewBreakfastFriday;
+    private ImageView imageViewSnackMonday, imageViewSnackTuesday, imageViewSnackWednesday,
+            imageViewSnackThursday, imageViewSnackFriday;
+
+    // Lunch row on meal plan
     @FXML
-    private ImageView imageViewSnackMonday, imageViewSnackTuesday, imageViewSnackWednesday;
+    private ImageView imageViewLunchMonday, imageViewLunchTuesday, imageViewLunchWednesday,
+            imageViewLunchThursday, imageViewLunchFriday;
+
+    // Afternoon snack row on meal plan
     @FXML
-    private ImageView imageViewSnackThursday, imageViewSnackFriday;
-    @FXML
-    private ImageView imageViewLunchMonday, imageViewLunchTuesday, imageViewLunchWednesday;
-    @FXML
-    private ImageView imageViewLunchThursday, imageViewLunchFriday;
-    @FXML
-    private ImageView imageViewSnackMondayEvening, imageViewSnackTuesdayEvening, imageViewSnackWednesdayEvening;
-    @FXML
-    private ImageView imageViewSnackThursdayEvening, imageViewSnackFridayEvening;
+    private ImageView imageViewSnackMondayEvening, imageViewSnackTuesdayEvening, imageViewSnackWednesdayEvening,
+            imageViewSnackThursdayEvening, imageViewSnackFridayEvening;
+
 
     public MealPlanDAO mealPlanDAO = new MealPlanDAO();
     public RecipeDAO recipeDAO = new RecipeDAO();
@@ -107,7 +88,7 @@ public class MealPlanViewController {
         System.out.println("Fetched recipe names: " + recipeNames);
 
         if (recipeNames != null && recipeNames.size() >= 19) {
-            // Set labels and images for each day of the week
+            // Set labels and images for each day of the week using the recipe name
             setLabelAndImage(mondayBreakfastLabel, imageViewBreakfastMonday, recipeNames.get(18));
             setLabelAndImage(tuesdayBreakfastLabel, imageViewBreakfastTuesday, recipeNames.get(2));
             setLabelAndImage(wednesdayBreakfastLabel, imageViewBreakfastWednesday, recipeNames.get(6));

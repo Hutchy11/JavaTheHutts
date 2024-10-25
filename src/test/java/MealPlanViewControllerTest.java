@@ -1,65 +1,76 @@
-import com.example.demo.controller.MealPlanViewController;
-import javafx.application.Platform;
-import javafx.scene.control.Label;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
+import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
+import com.example.demo.model.MockMealPlanDAO;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import java.util.ArrayList;
 
-@Disabled ("Test class is disabled for now")
-public class MealPlanViewControllerTest {
 
-    private MealPlanViewController controller;
+class MealPlanViewControllerTest {
+
+    private MockMealPlanDAO mockMeal;
+
+    private static final String DATE_TEST = "2024-10-28";
+    private static final String INVALID_DATE_TEST = "2020-10-28";
+    private static final int TOTAL_RECIPE_COUNT = 4;
+    private static final String FIRST_RECIPE_ID = "cdf60846-05ac-47d9-94e6-5c6c098c9e2a";
+    private static final String LAST_RECIPE_ID = "02f5c1d7-56cf-4d45-b120-342e2b72f36b";
+    private static final String INVALID_RECIPE_ID_TEST = "invalid recipe id";
+    private static final String FIRST_RECIPE_NAME = "Basic Omelette";
+    private static final String LAST_RECIPE_NAME = "Chicken and salad wrap";
+    private static final String INVALID_RECIPE_NAME_TEST = "invalid recipe name";
 
     @BeforeEach
-    public void setUp() throws InterruptedException {
-        // Initialize the JavaFX toolkit
-        CountDownLatch latch = new CountDownLatch(1);
-        Platform.startup(() -> latch.countDown());
-        latch.await();
-
-        // Initialize the controller
-        controller = new MealPlanViewController();
-
-        // Initialize Label fields in the JavaFX thread
-        CountDownLatch labelLatch = new CountDownLatch(1);
-        Platform.runLater(() -> {
-            controller.mondayBreakfastLabel = new Label();
-            controller.tuesdayBreakfastLabel = new Label();
-            controller.wednesdayBreakfastLabel = new Label();
-            controller.thursdayBreakfastLabel = new Label();
-            controller.fridayBreakfastLabel = new Label();
-            labelLatch.countDown();  // Signal that labels are initialized
-        });
-
-        // Wait for labels to be initialized
-        labelLatch.await(5, TimeUnit.SECONDS);
+    public void setUp() {
+        mockMeal = new MockMealPlanDAO();
     }
 
     @Test
-    public void testSetMealPlanDetails() throws InterruptedException {
-        String date = "2023-10-01";
-
-        // Run the method that updates the labels in the JavaFX thread
-        CountDownLatch methodLatch = new CountDownLatch(1);
-        Platform.runLater(() -> {
-            // Call the method to set meal plan details
-            controller.setMealPlanDetails(date);
-            methodLatch.countDown();  // Signal that the method has completed
-        });
-
-        // Wait for the method to complete
-        methodLatch.await(5, TimeUnit.SECONDS);
-
-        // Perform assertions after JavaFX updates are completed
-        assertEquals("Recipe1", controller.mondayBreakfastLabel.getText());
-        assertEquals("Recipe2", controller.tuesdayBreakfastLabel.getText());
-        assertEquals("Recipe3", controller.wednesdayBreakfastLabel.getText());
-        assertEquals("Recipe4", controller.thursdayBreakfastLabel.getText());
-        assertEquals("Recipe5", controller.fridayBreakfastLabel.getText());
+    public void testGetAllRecipeIdByDate() {
+        ArrayList<String> allRecipeId = mockMeal.getAllRecipeIdsByDate(DATE_TEST);
+        assertEquals(TOTAL_RECIPE_COUNT, allRecipeId.size());
     }
+
+    @Test
+    public void testGetFirstRecipeIdByDate() {
+        ArrayList<String> allRecipeId = mockMeal.getAllRecipeIdsByDate(DATE_TEST);
+        assertEquals(FIRST_RECIPE_ID, allRecipeId.get(0));
+    }
+
+    @Test
+    public void testEmptyListDate() {
+        ArrayList<String> allRecipeId = mockMeal.getAllRecipeIdsByDate(INVALID_DATE_TEST);
+        assertEquals(0, allRecipeId.size());
+    }
+
+    @Test
+    public void testGetLastRecipeIdByDate() {
+        ArrayList<String> allRecipeId = mockMeal.getAllRecipeIdsByDate(DATE_TEST);
+        assertEquals(LAST_RECIPE_ID, allRecipeId.get(TOTAL_RECIPE_COUNT - 1));
+    }
+
+    @Test
+    public void testGetFirstRecipeNameById() {
+        String RecipeName = mockMeal.getRecipeNameById(FIRST_RECIPE_ID);
+        assertEquals(FIRST_RECIPE_NAME, RecipeName);
+    }
+
+    @Test
+    public void testGetLastRecipeNameById() {
+        String RecipeName = mockMeal.getRecipeNameById(LAST_RECIPE_ID);
+        assertEquals(LAST_RECIPE_NAME, RecipeName);
+    }
+
+    @Test
+    public void testInvalidRecipeNameById() {
+        String RecipeName = mockMeal.getRecipeNameById(INVALID_RECIPE_ID_TEST);
+        assertEquals("", RecipeName);
+    }
+
+    @Test
+    public void testInvalidRecipeIdByName() {
+        String RecipeName = mockMeal.getRecipeNameById(INVALID_RECIPE_NAME_TEST);
+        assertEquals("", RecipeName);
+    }
+
 }

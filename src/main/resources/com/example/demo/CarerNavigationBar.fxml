@@ -7,7 +7,6 @@
     <Button onAction="#navigateToCarerHome" text="Home" />
    <Button onAction="#navigateToViewRecipe" text="Recipes" />
     <Button onAction="#navigateToChildProfile" text="Child Profile" />
-    <Button onAction="#navigateToProfile" text="Profile" />
     <Button onAction="#navigateToSettings" text="Settings" />
     <Button onAction="#logout" text="Logout" />
 </HBox>
